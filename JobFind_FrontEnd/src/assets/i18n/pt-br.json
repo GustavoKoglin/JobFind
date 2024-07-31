@@ -1,0 +1,132 @@
+{
+  "pages": {
+    "translate": {
+      "navPage": {
+        "sobre": "Sobre",
+        "contato": "Contato",
+        "vagas": "Vagas",
+        "empresas": "Empresas",
+        "login": "Login",
+        "empresasLogin": "Empresa",
+        "candidatoLogin": "Candidato"
+      },
+      "footer": {
+        "copyright": "COPYRIGHT © 2024 | JOBFIND | TODOS OS DIREITOS RESERVADOS .",
+        "termosUso": "Termos de Uso",
+        "contato": "Contato",
+        "sobre": "Sobre",
+        "trabalheConosco": "Trabalhe Conosco",
+        "politicaPrivacidade": "Política de Privacidade",
+        "faq": "FAQ",
+        "suporte": "Suporte"
+      },
+      "pageNotFound": {
+        "error": "404",
+        "pageNotFoundComponent": "Página não encontrada!",
+        "message": "A URL que você acessou não corresponde a nenhuma página neste site.",
+        "backBtn": "Voltar para a página inicial."
+      },
+      "toast": {
+        "sucesso": "Mensagem enviada com sucesso!",
+        "erro": "Ocorreu um erro! Por favor, tente novamente ou entre em contato conososco.",
+        "erroEnviarMensagem": "Todos os campo são de preenchimento obrigatório!"
+      },
+      "home": {
+        "titulo": "Desbloqueie o potencial da sua equipe!",
+        "subtitulo": "Com o JobFind, você encontra os melhores talentos, acelera o processo de contratação e fortalece sua equipe.",
+        "texto": " Nossa plataforma completa e intuitiva simplifica cada etapa do RH, desde a seleção até o engajamento, proporcionando uma experiência única e digital. Conecte-se com profissionais excepcionais e impulsione o sucesso da sua empresa com o JobFind!",
+        "tituloDois": "Para você que busca o trabalho dos seus sonhos",
+        "subtituloDois": "Encontre a vaga de trabalho perfeita para você, com a JobFind você tem acesso a diversas oportunidades de emprego, de forma rápida e prática.",
+        "textoDois": "Na JobFind, também promovemos diversidade e inclusão. Cadastre-se agora e inicie sua jornada!",
+        "button": "Saiba Mais"
+      },
+      "auth": {
+        "esconder": "Esconder Senha",
+        "mostrar": "Mostrar Senha",
+        "chooseUserType": "Escolha o Tipo de Usuário",
+        "selectBelow": "Selecione abaixo para continuar.",
+        "empresaAccess": "Acesso para Empresas",
+        "candidatoAccess": "Acesso para Candidatos",
+        "empresaLogin": "Login para Empresas",
+        "candidatoLogin": "Login para Candidatos",
+        "empresaRegister": "Registrar Empresa",
+        "candidatoRegister": "Registrar Candidato"
+      },
+      "candidatosAuth": {
+        "login": {
+          "login": "Logar como Candidato:",
+          "registrar": "Registre-se como Candidato:",
+          "form": {
+            "email": "E-mail",
+            "emailPlaceholder": "Digite seu e-mail",
+            "emailRequired": "O e-mail é obrigatório",
+            "emailInvalid": "E-mail inválido",
+            "confirmEmail": "Confirme seu e-mail",
+            "confirmEmailPlaceholder": "Digite seu e-mail novamente",
+            "confirmEmailRequired": "A confirmação do e-mail é obrigatória",
+            "confirmEmailInvalid": "E-mail inválido",
+            "emailMismatch": "Os e-mails não coincidem",
+            "password": "Senha",
+            "passwordPlaceholder": "Digite sua senha",
+            "passwordRequired": "A senha é obrigatória",
+            "passwordMinLength": "A senha deve ter pelo menos 6 caracteres",
+            "passwordPattern": "A senha deve conter letras e números",
+            "confirmPassword": "Confirme sua senha",
+            "confirmPasswordPlaceholder": "Digite sua senha novamente",
+            "confirmPasswordRequired": "A confirmação da senha é obrigatória",
+            "confirmPasswordMinLength": "A confirmação da senha deve ter pelo menos 6 caracteres",
+            "passwordMismatch": "As senhas não coincidem",
+            "rememberMe": "Lembrar-me",
+            "stayLogged": "Permanecer Conectado",
+            "forgotPassword": "Esqueceu a senha?"
+          }
+        },
+        "button": {
+          "login": "Entrar",
+          "register":"Criar uma conta"
+        },
+        "links": {
+          "register": "Criar uma conta",
+          "login": "Já tenho uma conta"
+        }
+      },
+      "empresasAuth": {
+        "login": {
+          "login": "Logar como Empresa:",
+          "registrar": "Registre-se como Empresa:",
+          "form": {
+            "email": "E-mail",
+            "emailPlaceholder": "Digite seu e-mail",
+            "emailRequired": "E-mail é obrigatório",
+            "emailInvalid": "E-mail inválido",
+            "confirmEmail": "Confirmar e-mail",
+            "confirmEmailPlaceholder": "Confirme seu e-mail",
+            "confirmEmailRequired": "Confirme seu e-mail é obrigatório",
+            "confirmEmailInvalid": "E-mail de confirmação inválido",
+            "password": "Senha",
+            "passwordPlaceholder": "Digite sua senha",
+            "passwordRequired": "Senha é obrigatória",
+            "passwordMinLength": "Senha deve ter pelo menos 6 caracteres",
+            "passwordPattern": "Senha deve conter letras, números e caracteres especiais",
+            "confirmPassword": "Confirmar senha",
+            "confirmPasswordPlaceholder": "Confirme sua senha",
+            "confirmPasswordRequired": "Confirme sua senha é obrigatória",
+            "confirmPasswordMinLength": "Senha de confirmação deve ter pelo menos 6 caracteres",
+            "passwordMismatch": "Senhas não correspondem",
+            "rememberMe": "Lembrar-me",
+            "stayLogged": "Permanecer conectado",
+            "forgotPassword": "Esqueceu a senha?"
+          }
+        },
+        "button": {
+          "login": "Entrar",
+          "register": "Cadastrar"
+        },
+        "links": {
+          "register": "Cadastrar-se",
+          "login": "Já tenho uma conta"
+        }
+      }
+    }
+  }
+}

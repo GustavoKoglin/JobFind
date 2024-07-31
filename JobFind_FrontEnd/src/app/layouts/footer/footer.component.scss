@@ -1,0 +1,117 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column; /* Garante que a página tenha altura mínima de 100% da viewport */
+}
+
+.container {
+  flex: 1; /* Faz com que a div container ocupe todo o espaço restante */
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.footer {
+  background-color: #f8f9fa;;
+  color: #000;
+  padding: 12px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  bottom: 0;
+  left: 0;
+  position: relative;
+  width: 100%;
+}
+
+li {
+  font-weight: bold;
+  color: #0c141d; /* Cor do texto dos links */
+  margin-right: 1rem;
+  text-decoration: none; /* Remove o sublinhado padrão */
+  position: relative; /* Necessário para o posicionamento do sublinhado */
+  padding-bottom: 0.25rem; /* Adiciona espaço abaixo do texto para o sublinhado */
+
+  &:hover {
+    color: #386aa8; /* Cor ao passar o mouse */
+    &::after {
+      content: ''; /* Adiciona o sublinhado personalizado */
+      position: absolute;
+      left: 0;
+      bottom: 0; /* Posiciona o sublinhado na parte inferior do texto */
+      width: 100%;
+      height: 2px; /* Espessura do sublinhado */
+      background-color: #386aa8; /* Cor do sublinhado */
+    }
+  }
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+ul.menu-link-footer {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  margin-bottom: 15px;
+  padding: 0;
+  overflow-x: hidden; // Remover as setas de rolagem
+
+  li {
+    display: inline-block;
+    margin-left: 20px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    a {
+      font-size: 18px;
+      color: #6b6969;
+      text-decoration: none;
+      transition: color 0.3s;
+
+      &:hover {
+        color: #0c141d;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px){
+  .footer{
+    transform: translate(0, 150%);
+  }
+  ul.menu-link-footer {
+    display: inline-block;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  p{
+    margin-bottom: 10px;
+  }
+
+  li {
+    margin-left: 0;
+    margin-bottom: 5px;
+    text-align: center;
+    align-items: center;
+  }
+
+}

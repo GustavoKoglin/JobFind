@@ -1,0 +1,53 @@
+<!-- nav.menu.component.html -->
+<div class="navbar-container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" routerLink="/home">
+      <div class="text-logo">JobFind</div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a routerLink="/sobre" class="nav-link">{{ 'pages.translate.navPage.sobre' | translate }}</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/contato" class="nav-link">{{ 'pages.translate.navPage.contato' | translate }}</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/vagas" class="nav-link">{{ 'pages.translate.navPage.vagas' | translate }}</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/para-empresas" class="nav-link">{{ 'pages.translate.navPage.empresas' | translate }}</a>
+        </li>
+      </ul>
+
+      <div class="dropdown me-2">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="loginDropdown" (click)="toggleDropdown('login')">
+          Login
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="loginDropdown" [class.show]="dropdowns.login">
+          <li>
+            <a class="dropdown-item" (click)="selectLoginType('empresa')">{{ 'pages.translate.navPage.empresasLogin' | translate }}</a>
+          </li>
+          <li>
+            <a class="dropdown-item" (click)="selectLoginType('candidato')">{{ 'pages.translate.navPage.candidatoLogin' | translate }}</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="dropdown me-2">
+        <button class="btn btn-dark dropdown-toggle" type="button" id="languageDropdown" (click)="toggleDropdown('language')">
+          {{ currentLanguage.name }}
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown" [class.show]="dropdowns.language">
+          <li *ngFor="let lang of getAvailableLanguages()">
+            <button class="dropdown-item" (click)="setLanguage(lang.code)">{{ lang.name }}</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>

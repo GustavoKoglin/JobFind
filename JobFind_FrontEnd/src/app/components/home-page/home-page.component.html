@@ -1,0 +1,43 @@
+<app-nav-menu></app-nav-menu>
+
+<div class="homepage">
+  <!-- Img Section -->
+  <div class="img-section-wrapper">
+    <div class="img-section">
+      <img src="../../../assets/imgs/trabalho em equipe.png" alt="People Working">
+    </div>
+  </div>
+
+  <!-- Banners Section -->
+  <div class="banners-section">
+    <!-- Banner 1 -->
+    <div class="banner">
+      <div class="container">
+        <h1 class="display-4"><strong>{{'pages.translate.home.titulo' | translate}}</strong></h1>
+        <p class="lead">
+          <strong>{{'pages.translate.home.subtitulo' | translate}}</strong><br><br>
+          {{'pages.translate.home.texto' | translate}}
+        </p>
+        <div class="btn btn-primary btn-lgm">
+          <a routerLink="/{{'pages.translate.rotas.buttonSaibaMais' | translate }}" class="nav-link">{{ 'pages.translate.home.button' | translate }}</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Banner 2 -->
+    <div class="banner">
+      <div class="container">
+        <h1 class="display-4"><strong>{{'pages.translate.home.tituloDois' | translate}}</strong></h1>
+        <p class="lead">
+          <strong>{{'pages.translate.home.subtituloDois' | translate}}</strong><br><br>
+          {{'pages.translate.home.textoDois' | translate}}
+        </p>
+        <div class="btn btn-primary btn-lgm">
+          <a routerLink="/{{'pages.translate.rotas.buttonSaibaMais' | translate }}" class="nav-link">{{ 'pages.translate.home.button' | translate }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

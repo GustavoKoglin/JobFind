@@ -1,0 +1,109 @@
+/* Navbar Styles */
+.navbar-container {
+
+  .navbar {
+    background-color: #0c141d; /* Cor de fundo da navbar */
+    margin-bottom: 1rem;
+    border-radius: 0.5rem; /* Borda arredondada */
+
+    .navbar-brand {
+      .text-logo {
+        margin-left: 2rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #0c141d; /* Cor do texto da marca */
+      }
+    }
+
+    .navbar-nav {
+      margin-right: auto; /* Centraliza os links à direita */
+      margin-left: 3rem; /* Alinha os links à esquerda */
+      display: flex; /* Alinha os links horizontalmente */
+      align-items: center; /* Centraliza os links verticalmente */
+    }
+
+    .navbar-toggler {
+      border: none;
+    }
+
+    .nav-link {
+      font-weight: bold;
+      color: #0c141d; /* Cor do texto dos links */
+      margin-right: 1rem;
+      text-decoration: none; /* Remove o sublinhado padrão */
+      position: relative; /* Necessário para o posicionamento do sublinhado */
+      padding-bottom: 0.25rem; /* Adiciona espaço abaixo do texto para o sublinhado */
+
+      &:hover {
+        color: #386aa8; /* Cor ao passar o mouse */
+        &::after {
+          content: ''; /* Adiciona o sublinhado personalizado */
+          position: absolute;
+          left: 0;
+          bottom: 0; /* Posiciona o sublinhado na parte inferior do texto */
+          width: 100%;
+          height: 2px; /* Espessura do sublinhado */
+          background-color: #386aa8; /* Cor do sublinhado */
+        }
+      }
+    }
+
+    .dropdown-menu {
+      width: 100%;
+      min-width: 100px; /* Largura mínima do dropdown */
+      text-align: center; /* Alinha o texto ao centro */
+      background-color: #0c141d; /* Cor de fundo do dropdown */
+      border: none;
+      border-radius: 0.25rem; /* Borda arredondada do dropdown */
+    }
+
+    .dropdown-item {
+      cursor: pointer;
+      color: #f8f9fa; /* Cor do texto dos itens do dropdown */
+      &:hover {
+        background-color: #386aa8; /* Cor de fundo ao passar o mouse */
+        color: #f8f9fa; /* Cor do texto ao passar o mouse */
+        text-decoration: none; /* Remove o sublinhado ao passar o mouse */
+      }
+    }
+
+    .dropdown-toggle {
+      width: 100%;
+      min-width: 100px; /* Largura mínima para o botão */
+      text-align: center; /* Alinha o texto ao centro */
+      background-color: #394047; /* Cor de fundo do botão */
+      color: #fff; /* Cor do texto do botão */
+      border: none; /* Remove a borda padrão */
+      border-radius: 0.25rem; /* Borda arredondada do botão */
+
+      &:hover {
+        background-color: #0056b3; /* Cor de fundo ao passar o mouse */
+      }
+    }
+
+    .btn-primary {
+      margin-right: 1rem; /* Adiciona margem à direita do botão de login */
+    }
+
+    .dropdown {
+      &.language-dropdown {
+        margin-left: 2rem; /* Adiciona margem à esquerda do botão de idioma */
+      }
+    }
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .navbar {
+    .navbar-brand {
+      .text-logo {
+        font-size: 1.2rem;
+      }
+    }
+
+    .nav-link {
+      margin-right: 0.5rem;
+    }
+  }
+}

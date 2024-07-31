@@ -1,0 +1,122 @@
+{
+  "pages": {
+    "translate": {
+      "navPage": {
+        "login": "Login",
+        "sobre": "About",
+        "contato": "Contact",
+        "vagas": "Jobs",
+        "empresas": "Companies",
+        "candidatoLogin": "Candidate",
+        "empresasLogin": "Company"
+      },
+      "home": {
+        "titulo": "Unlock your team's potential!",
+        "subtitulo": "With JobFind, you find the best talent, speed up the hiring process and strengthen your team.",
+        "texto": "Our complete and intuitive platform simplifies every step of HR, from selection to engagement, providing a unique, digital experience. Connect with exceptional professionals and drive your company's success with JobFind!",
+        "tituloDois": "For you who seek your dream job!",
+        "subtituloDois": "We are here to help you build your team and grow your business.",
+        "textoDois": "At JobFind, we also promote diversity and inclusion. Register now and start your journey!",
+        "button": "Learn More"
+      },
+      "footer": {
+        "copyright": "COPYRIGHT © 2024 | JOBFIND | ALL RIGHTS RESERVED.",
+        "termosUso": "Use Terms",
+        "contato": "Contact",
+        "blog": "Blog",
+        "faq": "FAQ",
+        "suporte": "Support",
+        "trabalheConosco": "Work With Us",
+        "politicaPrivacidade": "Privacy Policy"
+      },
+      "pageNotFound": {
+        "error": "404",
+        "pageNotFoundComponent": "Page not found!",
+        "message": "The URL you accessed does not correspond to any page on this site.",
+        "backBtn": "Come back to the homepage."
+      },
+      "auth": {
+        "chooseUserType": "Choose User Type",
+        "selectBelow": "Select Below",
+        "empresaAccess": "Access for Companies",
+        "candidateAccess": "Access for Candidates",
+        "empresaLogin": "Company Login",
+        "candidatoLogin": "Candidate Login",
+        "empresaRegister": "Register Company",
+        "candidatoRegister": "Register Candidate"
+      },
+      "candidato": {
+        "login": {
+          "title": "Login",
+          "form": {
+            "email": "Email",
+            "emailPlaceholder": "Enter your email",
+            "emailRequired": "Email is required",
+            "emailInvalid": "Invalid email",
+            "confirmEmail": "Confirm your email",
+            "confirmEmailPlaceholder": "Re-enter your email",
+            "confirmEmailRequired": "Email confirmation is required",
+            "confirmEmailInvalid": "Invalid email",
+            "emailMismatch": "Emails do not match",
+            "password": "Password",
+            "passwordPlaceholder": "Enter your password",
+            "passwordRequired": "Password is required",
+            "passwordMinLength": "Password must be at least 6 characters long",
+            "passwordPattern": "Password must contain letters and numbers",
+            "confirmPassword": "Confirm your password",
+            "confirmPasswordPlaceholder": "Re-enter your password",
+            "confirmPasswordRequired": "Password confirmation is required",
+            "confirmPasswordMinLength": "Password confirmation must be at least 6 characters long",
+            "passwordMismatch": "Passwords do not match",
+            "rememberMe": "Remember me",
+            "stayLogged": "Stay logged in",
+            "forgotPassword": "Forgot password?"
+          }
+        },
+        "button": {
+          "login": "Login"
+        },
+        "links": {
+          "register": "Create an account",
+          "login": "Already have an account"
+        }
+      },
+      "empresasAuth": {
+        "login": {
+          "title": "Login",
+          "form": {
+            "email": "Email",
+            "emailPlaceholder": "Enter your email",
+            "emailRequired": "Email is required",
+            "emailInvalid": "Invalid email",
+            "confirmEmail": "Confirm Email",
+            "confirmEmailPlaceholder": "Confirm your email",
+            "confirmEmailRequired": "Confirm Email is required",
+            "confirmEmailInvalid": "Invalid confirm email",
+            "password": "Password",
+            "passwordPlaceholder": "Enter your password",
+            "passwordRequired": "Password is required",
+            "passwordMinLength": "Password must be at least 6 characters",
+            "passwordPattern": "Password must contain letters, numbers, and special characters",
+            "confirmPassword": "Confirm Password",
+            "confirmPasswordPlaceholder": "Confirm your password",
+            "confirmPasswordRequired": "Confirm Password is required",
+            "confirmPasswordMinLength": "Confirm Password must be at least 6 characters",
+            "passwordMismatch": "Passwords do not match",
+            "rememberMe": "Remember me",
+            "stayLogged": "Stay logged in",
+            "forgotPassword": "Forgot password?"
+          }
+        },
+        "button": {
+          "login": "Login",
+          "register": "Register"
+        },
+        "links": {
+          "register": "Sign up",
+          "login": "Already have an account"
+        }
+      }
+    }
+  }
+}

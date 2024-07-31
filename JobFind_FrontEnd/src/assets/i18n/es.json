@@ -1,0 +1,118 @@
+{
+  "pages": {
+    "translate": {
+      "navPage": {
+        "login": "Login",
+        "sobre": "Sobre",
+        "contato": "Contacto",
+        "vagas": "Vagas",
+        "empresas": "Empresas",
+        "candidatoLogin": "Candidato",
+        "empresaLogin": "Empresa"
+      },
+      "home": {
+        "title": "¡Desbloquea el potencial de tu equipo!",
+        "subtitle": "Con JobFind, encuentras el mejor talento, aceleras el proceso de contratación y fortaleces tu equipo.",
+        "text": "Nuestra plataforma completa e intuitiva simplifica cada paso de RR.HH., desde la selección hasta la participación, brindando una experiencia digital única. ¡Conéctese con profesionales excepcionales e impulse el éxito de su empresa con JobFind!",
+        "tituloDois": "¡Para ti que buscas el trabajo de tus sueños!",
+        "subtituloDois": "Descubre las ofertas de trabajo más relevantes para ti, con JobFind tienes acceso a diversas oportunidades laborales de forma rápida y práctica.",
+        "textoDois": "En JobFind, también promovemos la diversidad y la inclusión. ¡Regístrate ahora y comienza tu viaje!",
+        "botón": "Más Informaciones"
+      },
+      "footer": {
+        "copyright": "COPYRIGHT © 2024 | JOBFIND | TODOS LOS DERECHOS RESERVADOS.",
+        "termosUso": "Terminos de uso",
+        "contato": "Contacto",
+        "nosApoie": "Apoyanos"
+      },
+      "pageNotFound": {
+        "error": "404",
+        "pageNotFoundComponent": "¡Página no encontrada!",
+        "message": "La URL que accedió no corresponde a ninguna página de este sitio.",
+        "backBtn": "Volver a la página de inicio"
+      },
+      "auth": {
+        "chooseUserType": "Choisissez le Type d'Utilisateur",
+        "selectBelow": "Sélectionnez ci-dessous",
+        "empresaAccess": "Accès pour Entreprises",
+        "candidateAccess": "Accès pour Candidats",
+        "empresaLogin": "Connexion pour Entreprises",
+        "candidatoLogin": "Connexion pour Candidats",
+        "empresaRegister": "Enregistrer l'Entreprise",
+        "candidatoRegister": "Enregistrer le Candidat"
+      },
+      "candidato": {
+        "login": {
+          "title": "Iniciar sesión",
+          "form": {
+            "email": "Correo electrónico",
+            "emailPlaceholder": "Ingrese su correo electrónico",
+            "emailRequired": "El correo electrónico es obligatorio",
+            "emailInvalid": "Correo electrónico inválido",
+            "confirmEmail": "Confirme su correo electrónico",
+            "confirmEmailPlaceholder": "Ingrese su correo electrónico nuevamente",
+            "confirmEmailRequired": "La confirmación del correo electrónico es obligatoria",
+            "confirmEmailInvalid": "Correo electrónico inválido",
+            "emailMismatch": "Los correos electrónicos no coinciden",
+            "password": "Contraseña",
+            "passwordPlaceholder": "Ingrese su contraseña",
+            "passwordRequired": "La contraseña es obligatoria",
+            "passwordMinLength": "La contraseña debe tener al menos 6 caracteres",
+            "passwordPattern": "La contraseña debe contener letras y números",
+            "confirmPassword": "Confirme su contraseña",
+            "confirmPasswordPlaceholder": "Ingrese su contraseña nuevamente",
+            "confirmPasswordRequired": "La confirmación de la contraseña es obligatoria",
+            "confirmPasswordMinLength": "La confirmación de la contraseña debe tener al menos 6 caracteres",
+            "passwordMismatch": "Las contraseñas no coinciden",
+            "rememberMe": "Recuérdame",
+            "stayLogged": "Permanecer conectado",
+            "forgotPassword": "¿Olvidó la contraseña?"
+          }
+        },
+        "button": {
+          "login": "Iniciar sesión"
+        },
+        "links": {
+          "register": "Crear una cuenta",
+          "login": "Ya tengo una cuenta"
+        }
+      },
+      "empresasAuth": {
+        "login": {
+          "title": "Iniciar sesión",
+          "form": {
+            "email": "Correo electrónico",
+            "emailPlaceholder": "Ingrese su correo electrónico",
+            "emailRequired": "El correo electrónico es obligatorio",
+            "emailInvalid": "Correo electrónico inválido",
+            "confirmEmail": "Confirmar correo electrónico",
+            "confirmEmailPlaceholder": "Confirme su correo electrónico",
+            "confirmEmailRequired": "Confirmar correo electrónico es obligatorio",
+            "confirmEmailInvalid": "Correo electrónico de confirmación inválido",
+            "password": "Contraseña",
+            "passwordPlaceholder": "Ingrese su contraseña",
+            "passwordRequired": "Contraseña es obligatoria",
+            "passwordMinLength": "La contraseña debe tener al menos 6 caracteres",
+            "passwordPattern": "La contraseña debe contener letras, números y caracteres especiales",
+            "confirmPassword": "Confirmar contraseña",
+            "confirmPasswordPlaceholder": "Confirme su contraseña",
+            "confirmPasswordRequired": "Confirmar contraseña es obligatoria",
+            "confirmPasswordMinLength": "La contraseña de confirmación debe tener al menos 6 caracteres",
+            "passwordMismatch": "Las contraseñas no coinciden",
+            "rememberMe": "Recuérdame",
+            "stayLogged": "Permanecer conectado",
+            "forgotPassword": "¿Olvidó la contraseña?"
+          }
+        },
+        "button": {
+          "login": "Iniciar sesión",
+          "register": "Registrarse"
+        },
+        "links": {
+          "register": "Regístrate",
+          "login": "Ya tengo una cuenta"
+        }
+      }
+    }
+  }
+}

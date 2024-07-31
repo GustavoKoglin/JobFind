@@ -1,0 +1,122 @@
+{
+  "pages": {
+    "translate": {
+      "navPage": {
+        "login": "Login",
+        "sobre": "À Propos de Nous",
+        "contato": "Contact",
+        "vagas": "Emplois",
+        "empresas": "Entreprises",
+        "candidatoLogin": "Candidat",
+        "empresasLogin": "Entreprise"
+      },
+      "rotas": {
+        "buttonSaibaMais": "en-savoir-nous",
+        "sobreNav": "a-propos-de-nous",
+        "contato": "contact",
+        "trabalheConosco": "travaille-avec-nous",
+        "empresas": "zone-entreprise",
+        "candidato": "zone-candidat"
+      },
+      "home": {
+        "titulo": "Libérez le potentiel de votre équipe !",
+        "subtitulo": "Avec JobFind, vous trouvez les meilleurs talents, accélérez le processus de recrutement et renforcez votre équipe.",
+        "texto": "Notre plateforme complète et intuitive simplifie chaque étape des RH, de la sélection à l'engagement, en offrant une expérience numérique unique. Connectez-vous avec des professionnels exceptionnels et pilotez le succès de votre entreprise avec JobFind!",
+        "tituloDois": "Pour ceux qui cherchent leur emploi de rêves!",
+        "subtituloDois": "Découvrez le poste idéal pour vous. Avec JobFind, vous avez accès rapidement et facilement à diverses opportunités d'emploi.",
+        "textoDois": "Chez JobFind, nous favorisons la diversité et l'inclusion. Trouvez l'opportunité d'emploi de vos rêves sur notre plateforme. Inscrivez-vous maintenant et commencez votre aventure!",
+        "button": "En savoir plus"
+      },
+      "footer": {
+        "copyright": "COPYRIGHT © 2024 | JOBFIND | TOUS DROITS RÉSERVÉS.",
+        "termosUso": "Conditions d'utilisation",
+        "termosPrivacidade": "Confidentialité et modalités",
+        "contato": "Contact",
+        "nosApoie": "Soutenez-nous",
+        "trabalheConosco": "Travaille Avec Nous",
+        "sobre": "À Propos de Nous",
+        "politicaPrivacidade": "Politique de confidentialité",
+        "faq": "FAQ",
+        "suporte": "Support"
+      },
+      "pageNotFound": {
+        "error": "404",
+        "pageNotFoundComponent": "Page non trouvée!",
+        "message": "L'URL auquel vous avez accédé ne correspond à aucune page de ce site.",
+        "backBtn": "Retour à la page d'accueil"
+      },
+      "candidato": {
+        "login": {
+          "title": "Connexion",
+          "form": {
+            "email": "Email",
+            "emailPlaceholder": "Entrez votre email",
+            "emailRequired": "L'email est requis",
+            "emailInvalid": "Email invalide",
+            "confirmEmail": "Confirmez votre email",
+            "confirmEmailPlaceholder": "Entrez à nouveau votre email",
+            "confirmEmailRequired": "La confirmation de l'email est requise",
+            "confirmEmailInvalid": "Email invalide",
+            "emailMismatch": "Les emails ne correspondent pas",
+            "password": "Mot de passe",
+            "passwordPlaceholder": "Entrez votre mot de passe",
+            "passwordRequired": "Le mot de passe est requis",
+            "passwordMinLength": "Le mot de passe doit contenir au moins 6 caractères",
+            "passwordPattern": "Le mot de passe doit contenir des lettres et des chiffres",
+            "confirmPassword": "Confirmez votre mot de passe",
+            "confirmPasswordPlaceholder": "Entrez à nouveau votre mot de passe",
+            "confirmPasswordRequired": "La confirmation du mot de passe est requise",
+            "confirmPasswordMinLength": "La confirmation du mot de passe doit contenir au moins 6 caractères",
+            "passwordMismatch": "Les mots de passe ne correspondent pas",
+            "rememberMe": "Se souvenir de moi",
+            "stayLogged": "Rester connecté",
+            "forgotPassword": "Mot de passe oublié?"
+          }
+        },
+        "button": {
+          "login": "Se connecter"
+        },
+        "links": {
+          "register": "Créer un compte",
+          "login": "Déjà un compte"
+        }
+      },
+      "empresa": {
+        "login": {
+          "title": "Connexion",
+          "form": {
+            "email": "E-mail",
+            "emailPlaceholder": "Entrez votre e-mail",
+            "emailRequired": "L'e-mail est requis",
+            "emailInvalid": "E-mail invalide",
+            "confirmEmail": "Confirmer l'e-mail",
+            "confirmEmailPlaceholder": "Confirmez votre e-mail",
+            "confirmEmailRequired": "La confirmation de l'e-mail est requise",
+            "confirmEmailInvalid": "E-mail de confirmation invalide",
+            "password": "Mot de passe",
+            "passwordPlaceholder": "Entrez votre mot de passe",
+            "passwordRequired": "Le mot de passe est requis",
+            "passwordMinLength": "Le mot de passe doit contenir au moins 6 caractères",
+            "passwordPattern": "Le mot de passe doit contenir des lettres, des chiffres et des caractères spéciaux",
+            "confirmPassword": "Confirmer le mot de passe",
+            "confirmPasswordPlaceholder": "Confirmez votre mot de passe",
+            "confirmPasswordRequired": "La confirmation du mot de passe est requise",
+            "confirmPasswordMinLength": "La confirmation du mot de passe doit contenir au moins 6 caractères",
+            "passwordMismatch": "Les mots de passe ne correspondent pas",
+            "rememberMe": "Se souvenir de moi",
+            "stayLogged": "Rester connecté",
+            "forgotPassword": "Mot de passe oublié?"
+          }
+        },
+        "button": {
+          "login": "Connexion",
+          "register": "S'inscrire"
+        },
+        "links": {
+          "register": "S'inscrire",
+          "login": "Vous avez déjà un compte"
+        }
+      }
+    }
+  }
+}

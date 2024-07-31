@@ -1,0 +1,161 @@
+.company-page {
+  display: flex;
+  align-items: stretch; // Mantém os itens com a mesma altura
+  padding: 2rem 0;
+  gap: 1rem; // Espaçamento entre a seção esquerda e direita
+
+  .left-section {
+    flex: 1; // Ocupa o restante do espaço disponível
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // Adicione mais estilos se necessário para a seção esquerda
+  }
+
+  .right-section {
+    flex: 1; // Ocupa metade da largura
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+
+    .card {
+      width: 100%;
+      max-width: 500px; // Define uma largura máxima para o card
+      border-radius: 0.5rem; // Adiciona bordas arredondadas ao card
+      box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1); // Sombra suave ao redor do card
+
+      .card-body {
+        padding: 2rem;
+      }
+
+      .form-group {
+        margin-bottom: 1rem; // Adiciona espaço entre os grupos de formulário
+
+        label {
+          display: block; // Garante que a label ocupa a largura total
+          margin-bottom: 0.5rem; // Espaçamento entre a label e o input
+          font-weight: bold; // Ajuda na visibilidade das labels
+          position: relative; // Necessário para posicionar o ícone corretamente
+        }
+
+        input.form-control {
+          padding: 0.75rem 1.25rem; // Ajusta o padding dos inputs
+          width: 100%; // Garante que o input ocupe a largura total disponível
+          border-radius: 0.25rem; // Adiciona bordas arredondadas aos inputs
+          border-color: #6c757d;
+          accent-color: #007bff;
+        }
+
+        .fa {
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          transform: translateY(-50%); // Centraliza verticalmente
+          cursor: pointer;
+          transition: color 0.3s;
+        }
+
+        .invalid-feedback {
+          color: #dc3545; // Cor vermelha para mensagens de erro
+          font-size: 0.875rem; // Tamanho de fonte menor para mensagens de erro
+        }
+      }
+
+      .form-check {
+        margin-bottom: 0.5rem; // Espaçamento entre checkboxes
+        display: flex;
+        align-items: center;
+
+        .form-check-input {
+          margin-right: 0.5rem; // Espaçamento entre o checkbox e o label
+        }
+
+        .form-check-label {
+          margin: 0; // Remove margens padrão do label
+        }
+      }
+
+      .form-check-label {
+        user-select: none;
+      }
+
+      /* Estilo personalizado para checkboxes */
+      .form-check-input {
+        border-color: #6c757d;
+        /* Cor da borda mais escura */
+        accent-color: #007bff;
+        /* Cor do checkmark */
+      }
+
+      /* Alterar a cor da borda do checkbox ao focar */
+      .form-check-input:focus {
+        border-color: #007bff;
+        /* Cor da borda ao focar */
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        /* Sombra ao focar */
+      }
+
+      .password-group {
+        display: flex;
+        align-items: center;
+
+        .form-control {
+          flex: 1;
+          margin-right: 10px;
+        }
+
+        .btn-outline-secondary {
+          flex-shrink: 0;
+        }
+      }
+
+      /* Estilo para feedback de validação */
+      .invalid-feedback {
+        display: none;
+        color: #dc3545;
+        /* Cor do texto de erro */
+      }
+
+      .is-invalid {
+        border-color: #dc3545;
+        /* Cor da borda do campo inválido */
+      }
+
+      .is-invalid+.invalid-feedback {
+        display: block;
+      }
+
+      /* Estilo adicional para campos de entrada com bordas mais escuras */
+      .form-control {
+        border-color: #6c757d;
+        /* Cor da borda dos campos */
+      }
+
+      .form-control:focus {
+        border-color: #007bff;
+        /* Cor da borda ao focar */
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        /* Sombra ao focar */
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .candidate-page {
+    flex-direction: column;
+    gap: 0; // Remove o gap entre seções em telas menores
+
+    .left-section,
+    .right-section {
+      flex-basis: 100%;
+    }
+
+    .right-section {
+      .card {
+        max-width: 100%;
+      }
+    }
+  }
+}
