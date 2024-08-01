@@ -13,9 +13,7 @@ import { TermsOfUseComponent } from './components/terms-of-use/terms-of-use.comp
 import { PrivacyComponent } from './components/privacy/privacy.component';
 import { AuthComponent } from './components/login/auth/auth.component';
 import { ContactComponent } from './components/contact/contact.component';
-
-
-
+import { FaqComponent } from './components/faq/faq.component';
 
 export const routes: Routes = [
   { path: '', component: HomePageComponent, pathMatch: 'full' },
@@ -32,8 +30,9 @@ export const routes: Routes = [
   { path: 'para-empresas', component: CompaniesComponent },
   { path: 'suporte', component: SuporteComponent },
   { path: 'trabalhe-conosco', component: WorkWithUsComponent },
-  { path: 'termos-de-uso', component: TermsOfUseComponent },
+  { path: 'termos-de-uso', component: TermsOfUseComponent},
   { path: 'politica-de-privacidade', component: PrivacyComponent },
+  { path: 'faq', component: FaqComponent },
   { path: '**', component: NotFoundComponent },
 ];
 
