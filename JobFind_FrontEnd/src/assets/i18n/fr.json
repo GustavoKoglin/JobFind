@@ -8,7 +8,7 @@
         "vagas": "Emplois",
         "empresas": "Entreprises",
         "candidatoLogin": "Candidat",
-        "empresasLogin": "Entreprise"
+        "empresaLogin": "Entreprise"
       },
       "rotas": {
         "buttonSaibaMais": "en-savoir-nous",
@@ -44,6 +44,16 @@
         "pageNotFoundComponent": "Page non trouvée!",
         "message": "L'URL auquel vous avez accédé ne correspond à aucune page de ce site.",
         "backBtn": "Retour à la page d'accueil"
+      },
+      "auth": {
+        "chooseUserType": "Choisissez le Type d'Utilisateur",
+        "selectBelow": "Sélectionnez ci-dessous",
+        "empresaAccess": "Accès pour Entreprises",
+        "candidatoAccess": "Accès pour Candidats",
+        "empresaLogin": "Connexion pour Entreprises",
+        "candidatoLogin": "Connexion pour Candidats",
+        "empresaRegister": "Enregistrer l'Entreprise",
+        "candidatoRegister": "Enregistrer le Candidat"
       },
       "candidato": {
         "login": {
