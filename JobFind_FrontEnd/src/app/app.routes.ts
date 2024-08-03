@@ -21,12 +21,22 @@ export const routes: Routes = [
   { path: 'sobre', component: AboutComponent },
   { path: 'contato', component: ContactComponent },
   { path: 'vagas', component: JobsComponent },
-  { path: 'auth/candidato', component: AuthComponent },
-  { path: 'auth/candidato/login', component: CandidateComponent },
-  { path: 'auth/candidato/registrar', component: CandidateComponent },
-  { path: 'auth/empresa', component: AuthComponent },
-  { path: 'auth/empresa/login', component: CompanyComponent },
-  { path: 'auth/empresa/registrar', component: CompanyComponent },
+  {
+    path: 'auth/candidato',
+    component: AuthComponent,
+    children: [
+      { path: 'login', component: CandidateComponent },
+      { path: 'registrar', component: CandidateComponent }
+    ]
+  },
+  {
+    path: 'auth/empresa',
+    component: AuthComponent,
+    children: [
+      { path: 'login', component: CompanyComponent },
+      { path: 'registrar', component: CompanyComponent }
+    ]
+  },
   { path: 'para-empresas', component: CompaniesComponent },
   { path: 'suporte', component: SuporteComponent },
   { path: 'trabalhe-conosco', component: WorkWithUsComponent },
