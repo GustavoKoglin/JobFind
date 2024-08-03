@@ -10,6 +10,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    { provide: LOCALE_ID, useValue: 'pt-br' },
     provideAnimations(),
     provideAnimationsAsync(),
     provideToastr({
@@ -30,6 +31,5 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptors([httpInterceptor]),
     withFetch()),
     provideTranslate(),
-    { provide: LOCALE_ID, useValue: 'pt-br' },
   ],
 };

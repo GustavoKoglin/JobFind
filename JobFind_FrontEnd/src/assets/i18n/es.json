@@ -11,19 +11,23 @@
         "empresaLogin": "Empresa"
       },
       "home": {
-        "title": "¡Desbloquea el potencial de tu equipo!",
-        "subtitle": "Con JobFind, encuentras el mejor talento, aceleras el proceso de contratación y fortaleces tu equipo.",
-        "text": "Nuestra plataforma completa e intuitiva simplifica cada paso de RR.HH., desde la selección hasta la participación, brindando una experiencia digital única. ¡Conéctese con profesionales excepcionales e impulse el éxito de su empresa con JobFind!",
+        "titulo": "¡Desbloquea el potencial de tu equipo!",
+        "subtitulo": "Con JobFind, encuentras el mejor talento, aceleras el proceso de contratación y fortaleces tu equipo.",
+        "texto": "Nuestra plataforma completa e intuitiva simplifica cada paso de RR.HH., desde la selección hasta la participación, brindando una experiencia digital única. ¡Conéctese con profesionales excepcionales e impulse el éxito de su empresa con JobFind!",
         "tituloDois": "¡Para ti que buscas el trabajo de tus sueños!",
         "subtituloDois": "Descubre las ofertas de trabajo más relevantes para ti, con JobFind tienes acceso a diversas oportunidades laborales de forma rápida y práctica.",
         "textoDois": "En JobFind, también promovemos la diversidad y la inclusión. ¡Regístrate ahora y comienza tu viaje!",
-        "botón": "Más Informaciones"
+        "button": "Más Informaciones"
       },
       "footer": {
+        "sobre": "Sobre",
+        "suporte": "Soporte",
+        "faq" : "FAQ",
+        "trabalheConosco": "Trabaja con nosotros",
+        "politicaPrivacidade": "Política de Privacidad",
         "copyright": "COPYRIGHT © 2024 | JOBFIND | TODOS LOS DERECHOS RESERVADOS.",
         "termosUso": "Terminos de uso",
-        "contato": "Contacto",
-        "nosApoie": "Apoyanos"
+        "contato": "Contacto"
       },
       "pageNotFound": {
         "error": "404",
