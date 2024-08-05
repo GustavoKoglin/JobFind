@@ -36,7 +36,6 @@ export class AuthComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Atualiza userType com base no AuthService
     this.authService.getLoginType().subscribe(userType => {
       this.userType = userType;
       console.log('UserType on Init:', this.userType);

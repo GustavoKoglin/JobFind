@@ -71,18 +71,6 @@ export class AuthService {
     });
   }
 
-  // Método para login de candidato
-  loginCandidate(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/candidato/login`, { email, password })
-      .pipe(catchError(this.handleError));
-  }
-
-  // Método para login de empresa
-  loginCompany(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/empresa/login`, { email, password })
-      .pipe(catchError(this.handleError));
-  }
-
   // Método para verificar se o usuário está autenticado
   isAuthenticated(): boolean {
     // Implemente a verificação do token de autenticação aqui
@@ -104,6 +92,17 @@ export class AuthService {
     }
     console.error(errorMessage);
     return throwError(errorMessage);
+  }
+
+  loginCandidate(email: string, password: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/candidato/login`, { email, password })
+      .pipe(catchError(this.handleError));
+  }
+
+  // Método para login de empresa
+  loginCompany(email: string, password: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/empresa/login`, { email, password })
+      .pipe(catchError(this.handleError));
   }
 
   // Método para registrar um novo candidato

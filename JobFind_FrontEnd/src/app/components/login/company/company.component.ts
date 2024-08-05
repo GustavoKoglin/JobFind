@@ -82,6 +82,16 @@ export class CompanyComponent implements OnInit {
       rememberMe: [false],
       stayLogged: [false]
     }, { validators: this.passwordMatchValidator });
+
+    if (this.loginType === 'login') {
+      this.companyForm.get('confirmEmail')?.clearValidators();
+      this.companyForm.get('confirmSenha')?.clearValidators();
+    } else {
+      this.companyForm.get('confirmEmail')?.setValidators([Validators.required, Validators.email]);
+      this.companyForm.get('confirmSenha')?.setValidators([Validators.required, Validators.minLength(8)]);
+    }
+    this.companyForm.get('confirmEmail')?.updateValueAndValidity();
+    this.companyForm.get('confirmSenha')?.updateValueAndValidity();
   }
 
   // Alterna entre os formulários de login e registro
@@ -132,18 +142,12 @@ export class CompanyComponent implements OnInit {
       this.companyForm.markAllAsTouched();
     }
   }
-  navigateTo(userType: 'empresa', loginType: 'login' | 'registrar'): void {
-    if (this.userType && this.loginType === 'login') {
+  navigateTo(loginType: 'login' | 'registrar'): void {
+    if (this.userType) {
       const route = `/auth/${this.userType}/${loginType}`;
       this.router.navigate([route]);
     } else {
-      console.error('Falha ao logar!');
-    }
-    if (this.userType && this.loginType === 'registrar') {
-      const route = `/auth/${this.userType}/${loginType}`;
-      this.router.navigate([route]);
-    } else {
-      console.error('Falha ao registrar!');
+      console.error('Tipo de usuário não definido');
     }
   }
 
@@ -174,21 +178,23 @@ export class CompanyComponent implements OnInit {
     return null;
   }
 
-   // Define o idioma atual e salva no localStorage
-   setLanguage(language: Language): void {
-    if (typeof window !== 'undefined') {
-      this.currentLanguage = language;
-      localStorage.setItem('language', JSON.stringify(language));
-      this.translate.use(language.code);
-    }
+  // Define o idioma atual e salva no localStorage
+  setLanguage(language: Language): void {
+    this.currentLanguage = language;
+    localStorage.setItem('language', language.code);
+    this.translate.use(language.code);
   }
 
   // Carrega o estado do formulário salvo no localStorage
   loadFormState(): void {
-    if (typeof window !== 'undefined') {
-      const savedType = localStorage.getItem('loginType');
-      this.loginType = savedType === 'registrar' ? 'registrar' : 'login';
-      this.initializeForm(); // Certifique-se de inicializar o formulário corretamente com base no tipo
+    const savedType = localStorage.getItem('loginType');
+    this.loginType = savedType === 'registrar' ? 'registrar' : 'login';
+    this.initializeForm(); // Certifique-se de inicializar o formulário com base no tipo
+  }
+
+  saveFormState(): void {
+    if (this.companyForm.valid) {
+      localStorage.setItem('loginType', this.loginType);
     }
   }
 
@@ -200,18 +206,10 @@ export class CompanyComponent implements OnInit {
     }
   }
 
-  // Salva o estado do formulário no localStorage
-  saveFormState(): void {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('formState', JSON.stringify(this.companyForm.value));
-    }
-  }
-
   saveFormData(): void {
     if (this.companyForm.valid) {
       const formData = this.companyForm.getRawValue();
       localStorage.setItem('companyFormData', JSON.stringify(formData));
     }
   }
-
 }
