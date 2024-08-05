@@ -12,7 +12,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
   selector: 'app-candidate',
   standalone: true,
   imports: [
-    TranslateModule,
+  TranslateModule,
     ReactiveFormsModule,
     RouterLink,
     RouterLinkActive,
@@ -24,9 +24,12 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
   templateUrl: './candidate.component.html',
   styleUrls: ['./candidate.component.scss']
 })
+
 export class CandidateComponent implements OnInit {
+
   candidateForm!: FormGroup;
   loginType: 'login' | 'registrar' = 'login';
+  userType = 'candidato';
   showPassword = false;
   showConfirmPassword = false;
 
@@ -44,7 +47,12 @@ export class CandidateComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) { }
+  ) {
+    this.userType = 'candidato';
+    console.log('UserType on Constructor:', this.userType);
+    this.loginType = 'login';
+    console.log('LoginType on Constructor:', this.loginType);
+  }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -59,9 +67,9 @@ export class CandidateComponent implements OnInit {
   // Carrega o idioma salvo no localStorage, se existir
   loadLanguage(): void {
     if (typeof window !== 'undefined') {
-      const savedLanguage = localStorage.getItem('language');
-      if (savedLanguage) {
-        this.currentLanguage = JSON.parse(savedLanguage);
+      const savedLanguageCode = localStorage.getItem('language');
+      if (savedLanguageCode) {
+        this.currentLanguage = this.languages.find(lang => lang.code === savedLanguageCode) || { code: 'pt-br', name: 'Português' };
         this.translate.use(this.currentLanguage.code);
       }
     }
@@ -103,19 +111,35 @@ export class CandidateComponent implements OnInit {
   // Envia o formulário, realizando login ou registro
   onSubmit(): void {
     if (this.candidateForm.valid) {
+      const { email, senha } = this.candidateForm.value;
+
       if (this.loginType === 'login') {
-        this.authService.loginEmpresa(this.candidateForm.value).subscribe({
-          next: () => this.router.navigate(['/home']),
+        this.authService.loginCandidate(email, senha).subscribe({
+          next: () => this.router.navigate(['auth/candidato/login']),
           error: (error: any) => console.error('Erro ao fazer login', error)
         });
       } else {
         if (this.candidateForm.hasError('passwordMismatch') || this.candidateForm.hasError('emailMismatch')) {
           return;
         }
+
         // Código para registrar o usuário aqui
+        const { nome, cpf, email, emailConfirm, senha, senhaConfirm } = this.candidateForm.value;
+        this.authService.registerCandidate(nome, cpf, email, emailConfirm, senha, senhaConfirm).subscribe({
+          next: () => this.router.navigate(['auth/candidato/registrar']), // Atualize para a rota de sucesso ou onde quiser redirecionar
+          error: (error: any) => console.error('Erro ao registrar', error)
+        });
       }
     } else {
       this.candidateForm.markAllAsTouched();
+    }
+  }
+  navigateTo(userType: 'candidato'): void {
+    if (this.userType) {
+      const route = `/auth/${this.userType}/${userType}`;
+      this.router.navigate([route]);
+    } else {
+      console.error('Tipo de usuário não definido');
     }
   }
 
@@ -153,10 +177,9 @@ export class CandidateComponent implements OnInit {
   // Carrega o estado do formulário salvo no localStorage
   loadFormState(): void {
     if (typeof window !== 'undefined') {
-      const savedFormState = localStorage.getItem('formState');
-      if (savedFormState) {
-        this.candidateForm.setValue(JSON.parse(savedFormState));
-      }
+      const savedType = localStorage.getItem('loginType');
+      this.loginType = savedType === 'registrar' ? 'registrar' : 'login';
+      this.initializeForm(); // Certifique-se de inicializar o formulário corretamente com base no tipo
     }
   }
 
@@ -181,5 +204,4 @@ export class CandidateComponent implements OnInit {
       localStorage.setItem('candidateFormData', JSON.stringify(formData));
     }
   }
-
 }

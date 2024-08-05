@@ -1,7 +1,12 @@
 <!-- not-found.component.html -->
-<div class="error-container">
-  <h1>{{'pages.translate.pageNotFound.error' | translate}}</h1>
-  <h2>{{'pages.translate.pageNotFound.pageNotFoundComponent' | translate}}</h2>
-  <p>{{'pages.translate.pageNotFound.message' | translate}}</p>
-  <a routerLink="/home" class="btn">{{'pages.translate.pageNotFound.backBtn' | translate}}</a>
-</div>
+
+<app-nav-menu></app-nav-menu>
+
+  <div class="error-container">
+    <h1>{{'pages.translate.pageNotFound.error' | translate}}</h1>
+    <h2>{{'pages.translate.pageNotFound.pageNotFoundComponent' | translate}}</h2>
+    <p>{{'pages.translate.pageNotFound.message' | translate}}</p>
+    <a routerLink="/home" class="btn">{{'pages.translate.pageNotFound.backBtn' | translate}}</a>
+  </div>
+
+<app-footer></app-footer>

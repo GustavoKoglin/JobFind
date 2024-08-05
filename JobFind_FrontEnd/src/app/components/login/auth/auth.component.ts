@@ -24,36 +24,36 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 })
 export class AuthComponent implements OnInit {
   userType?: 'empresa' | 'candidato';
+  loginType?: 'login' | 'registrar';
 
   constructor(
     private translate: TranslateService,
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) {
+    console.log('UserType on Constructor:', this.userType);
+    console.log('LoginType on Constructor:', this.loginType);
+  }
 
   ngOnInit(): void {
     // Atualiza userType com base no AuthService
-    this.userType = this.authService.getLoginType();
-    console.log('UserType on Init:', this.userType);
+    this.authService.getLoginType().subscribe(userType => {
+      this.userType = userType;
+      console.log('UserType on Init:', this.userType);
+    });
   }
 
-  navigateTo(path: string) {
-    const userType = this.authService.getLoginType();
-    if (userType) {
-      // Ajuste a lógica para usar apenas valores válidos de userType
-      const route = userType === 'empresa'
-        ? `/auth/empresa/${path}`
-        : `/auth/candidato/${path}`;
-
-      if (route) {
-        this.router.navigate([route]);
-      } else {
-        console.error('Tipo de usuário não reconhecido');
-        // Redirecionar ou mostrar mensagem de erro
-      }
+  navigateTo(path: 'login' | 'registrar'): void {
+    if (this.userType) {
+      const route = `/auth/${this.userType}/${path}`;
+      this.router.navigate([route]);
     } else {
       console.error('Tipo de usuário não definido');
-      // Redirecionar ou mostrar mensagem de erro
     }
+  }
+
+  setLoginType(loginType: 'login' | 'registrar'): void {
+    this.loginType = loginType;
+    console.log('LoginType:', this.loginType);
   }
 }

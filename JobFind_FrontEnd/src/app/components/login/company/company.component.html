@@ -9,65 +9,65 @@
     <div class="card shadow-sm">
       <div class="card-body">
         <h4 class="card-title text-center">
-          {{ loginType === 'login' ? ('pages.translate.candidatosAuth.login.login' | translate) :
-          ('pages.translate.candidatosAuth.login.registrar' | translate) }}
+          {{ loginType === 'login' ? ('pages.translate.empresasAuth.login.login' | translate) :
+          ('pages.translate.empresasAuth.login.registrar' | translate) }}
         </h4>
 
-        <form [formGroup]="candidateForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="companyForm" (ngSubmit)="onSubmit()">
           <div class="form-group mb-3">
-            <label for="email">{{ 'pages.translate.candidatosAuth.login.form.email' | translate }}</label>
+            <label for="email">{{ 'pages.translate.empresasAuth.login.form.email' | translate }}</label>
             <input type="email" class="form-control" id="email"
-              placeholder="{{ 'pages.translate.candidatosAuth.login.form.emailPlaceholder' | translate }}" formControlName="email"
+              placeholder="{{ 'pages.translate.empresasAuth.login.form.emailPlaceholder' | translate }}" formControlName="email"
               required>
-            <div *ngIf="candidateForm.get('email')?.touched && candidateForm.get('email')?.invalid"
+            <div *ngIf="companyForm.get('email')?.touched && companyForm.get('email')?.invalid"
               class="invalid-feedback">
-              <div *ngIf="candidateForm.get('email')?.errors?.['required']">
-                {{ 'pages.translate.candidatosAuth.login.form.login.emailRequired' | translate }}
+              <div *ngIf="companyForm.get('email')?.errors?.['required']">
+                {{ 'pages.translate.empresasAuth.login.form.login.emailRequired' | translate }}
               </div>
-              <div *ngIf="candidateForm.get('email')?.errors?.['email']">
-                {{ 'pages.translate.candidatosAuth.login.form.login.emailInvalid' | translate }}
+              <div *ngIf="companyForm.get('email')?.errors?.['email']">
+                {{ 'pages.translate.empresasAuth.login.form.login.emailInvalid' | translate }}
               </div>
             </div>
           </div>
 
           <!-- Campo confirmar email, visível apenas no registro -->
           <div *ngIf="loginType === 'registrar'" class="form-group">
-            <label for="confirmEmail">{{ 'pages.translate.candidatosAuth.login.form.confirmEmail' | translate }}</label>
+            <label for="confirmEmail">{{ 'pages.translate.empresasAuth.login.form.confirmEmail' | translate }}</label>
             <input type="email" class="form-control" id="confirmEmail"
-              placeholder="{{ 'pages.translate.candidatosAuth.login.form.confirmEmailPlaceholder' | translate }}"
+              placeholder="{{ 'pages.translate.empresasAuth.login.form.confirmEmailPlaceholder' | translate }}"
               formControlName="confirmEmail" required>
-            <div *ngIf="candidateForm.get('confirmEmail')?.touched && candidateForm.get('confirmEmail')?.invalid"
+            <div *ngIf="companyForm.get('confirmEmail')?.touched && companyForm.get('confirmEmail')?.invalid"
               class="invalid-feedback">
-              <div *ngIf="candidateForm.get('confirmEmail')?.errors?.['required']">
-                {{ 'pages.translate.candidatosAuth.login.form.login.confirmEmailRequired' | translate }}
+              <div *ngIf="companyForm.get('confirmEmail')?.errors?.['required']">
+                {{ 'pages.translate.empresasAuth.login.form.login.confirmEmailRequired' | translate }}
               </div>
-              <div *ngIf="candidateForm.get('confirmEmail')?.errors?.['email']">
-                {{ 'pages.translate.candidatosAuth.login.form.confirmEmailInvalid' | translate }}
+              <div *ngIf="companyForm.get('confirmEmail')?.errors?.['email']">
+                {{ 'pages.translate.empresasAuth.login.form.confirmEmailInvalid' | translate }}
               </div>
-              <div *ngIf="candidateForm.hasError('emailMismatch')">
-                {{ 'pages.translate.candidatosAuth.login.form.emailMismatch' | translate }}
+              <div *ngIf="companyForm.hasError('emailMismatch')">
+                {{ 'pages.translate.empresasAuth.login.form.emailMismatch' | translate }}
               </div>
             </div>
           </div>
 
           <div class="form-group">
             <label for="senha">
-              {{ 'pages.translate.candidatosAuth.login.form.password' | translate }}
+              {{ 'pages.translate.empresasAuth.login.form.password' | translate }}
               <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'" (click)="togglePasswordVisibility()"></i>
             </label>
             <input [type]="showPassword ? 'text' : 'password'" class="form-control" id="senha"
-              placeholder="{{ 'pages.translate.candidatosAuth.login.form.passwordPlaceholder' | translate }}" formControlName="senha"
+              placeholder="{{ 'pages.translate.empresasAuth.login.form.passwordPlaceholder' | translate }}" formControlName="senha"
               required>
-            <div *ngIf="candidateForm.get('senha')?.touched && candidateForm.get('senha')?.invalid"
+            <div *ngIf="companyForm.get('senha')?.touched && companyForm.get('senha')?.invalid"
               class="invalid-feedback">
-              <div *ngIf="candidateForm.get('senha')?.errors?.['required']">
-                {{ 'pages.translate.candidatosAuth.login.form.passwordRequired' | translate }}
+              <div *ngIf="companyForm.get('senha')?.errors?.['required']">
+                {{ 'pages.translate.empresasAuth.login.form.passwordRequired' | translate }}
               </div>
-              <div *ngIf="candidateForm.get('senha')?.errors?.['minlength']">
-                {{ 'pages.translate.candidatosAuth.login.form.passwordMinLength' | translate }}
+              <div *ngIf="companyForm.get('senha')?.errors?.['minlength']">
+                {{ 'pages.translate.empresasAuth.login.form.passwordMinLength' | translate }}
               </div>
-              <div *ngIf="candidateForm.get('senha')?.errors?.['pattern']">
-                {{ 'pages.translate.candidatosAuth.login.form.passwordPattern' | translate }}
+              <div *ngIf="companyForm.get('senha')?.errors?.['pattern']">
+                {{ 'pages.translate.empresasAuth.login.form.passwordPattern' | translate }}
               </div>
             </div>
           </div>
@@ -75,53 +75,53 @@
           <!-- Campo confirmar senha, visível apenas no registro -->
           <div *ngIf="loginType === 'registrar'" class="form-group">
             <label for="confirmSenha">
-              {{ 'pages.translate.candidatosAuth.login.form.confirmPassword' | translate }}
+              {{ 'pages.translate.empresasAuth.login.form.confirmPassword' | translate }}
               <i class="fa" [ngClass]="showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'"
                 (click)="toggleConfirmPasswordVisibility()"></i>
             </label>
             <input [type]="showConfirmPassword ? 'text' : 'password'" class="form-control" id="confirmSenha"
-              placeholder="{{ 'pages.translate.candidatosAuth.login.form.confirmPasswordPlaceholder' | translate }}"
+              placeholder="{{ 'pages.translate.empresasAuth.login.form.confirmPasswordPlaceholder' | translate }}"
               formControlName="confirmSenha" required>
-            <div *ngIf="candidateForm.get('confirmSenha')?.touched && candidateForm.get('confirmSenha')?.invalid"
+            <div *ngIf="companyForm.get('confirmSenha')?.touched && companyForm.get('confirmSenha')?.invalid"
               class="invalid-feedback">
-              <div *ngIf="candidateForm.get('confirmSenha')?.errors?.['required']">
-                {{ 'pages.translate.candidatosAuth.login.form.confirmPasswordRequired' | translate }}
+              <div *ngIf="companyForm.get('confirmSenha')?.errors?.['required']">
+                {{ 'pages.translate.empresasAuth.login.form.confirmPasswordRequired' | translate }}
               </div>
-              <div *ngIf="candidateForm.get('confirmSenha')?.errors?.['minlength']">
-                {{ 'pages.translate.candidatosAuth.login.form.confirmPasswordMinLength' | translate }}
+              <div *ngIf="companyForm.get('confirmSenha')?.errors?.['minlength']">
+                {{ 'pages.translate.empresasAuth.login.form.confirmPasswordMinLength' | translate }}
               </div>
-              <div *ngIf="candidateForm.hasError('passwordMismatch')">
-                {{ 'pages.translate.candidatosAuth.login.form.passwordMismatch' | translate }}
+              <div *ngIf="companyForm.hasError('passwordMismatch')">
+                {{ 'pages.translate.empresasAuth.login.form.passwordMismatch' | translate }}
               </div>
             </div>
           </div>
 
           <div class="form-group form-check">
             <input type="checkbox" class="form-check-input" id="rememberMe" formControlName="rememberMe">
-            <label class="form-check-label" for="rememberMe">{{ 'pages.translate.candidatosAuth.login.form.rememberMe' | translate }}</label>
+            <label class="form-check-label" for="rememberMe">{{ 'pages.translate.empresasAuth.login.form.rememberMe' | translate }}</label>
           </div>
 
           <div class="form-group form-check">
             <input type="checkbox" class="form-check-input" id="stayLogged" formControlName="stayLogged">
-            <label class="form-check-label" for="stayLogged">{{ 'pages.translate.candidatosAuth.login.form.stayLogged' | translate }}</label>
+            <label class="form-check-label" for="stayLogged">{{ 'pages.translate.empresasAuth.login.form.stayLogged' | translate }}</label>
           </div>
 
           <div *ngIf="loginType === 'login'" class="form-group">
-            <a href="#" class="d-block mb-3">{{ 'pages.translate.candidatosAuth.login.form.forgotPassword' | translate }}</a>
+            <a href="#" class="d-block mb-3">{{ 'pages.translate.empresasAuth.login.form.forgotPassword' | translate }}</a>
           </div>
 
           <button type="submit" class="btn btn-primary w-100 mt-3">
-            {{ loginType === 'login' ? ('pages.translate.candidatosAuth.button.login' | translate) :
-            ('pages.translate.candidatosAuth.button.register' | translate) }}
+            {{ loginType === 'login' ? ('pages.translate.empresasAuth.button.login' | translate) :
+            ('pages.translate.empresasAuth.button.register' | translate) }}
           </button>
         </form>
 
         <div class="text-center mt-3">
           <button *ngIf="loginType === 'login'" class="btn btn-link" (click)="toggleForm('registrar')">
-            {{ 'pages.translate.candidatosAuth.links.register' | translate }}
+            {{ 'pages.translate.empresasAuth.links.register' | translate }}
           </button>
           <button *ngIf="loginType === 'registrar'" class="btn btn-link" (click)="toggleForm('login')">
-            {{ 'pages.translate.candidatosAuth.links.login' | translate }}
+            {{ 'pages.translate.empresasAuth.links.login' | translate }}
           </button>
         </div>
       </div>

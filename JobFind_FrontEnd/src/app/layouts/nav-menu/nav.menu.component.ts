@@ -6,17 +6,19 @@ import { AuthService } from '../../services/auth.service';
 import { Dropdowns } from '../../interface/dropdowns.interface';
 import { Language } from '../../interface/laguange.interface';
 import { Location } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-nav-menu',
   standalone: true,
   templateUrl: './nav.menu.component.html',
-  styleUrls: ['./nav.menu.component.scss'], // Correção de styleUrl para styleUrls
+  styleUrls: ['./nav.menu.component.scss'],
   imports: [
     CommonModule,
     RouterLink,
     RouterModule,
     TranslateModule,
+    HttpClientModule,
   ]
 })
 export class NavMenuComponent implements OnInit {
@@ -87,10 +89,7 @@ export class NavMenuComponent implements OnInit {
     this.currentLanguage = this.languages.find(lang => lang.code === langCode) || { code: langCode, name: 'Unknown' };
     this.translateService.use(langCode);
     localStorage.setItem('language', langCode);
-
-    // Navega para a mesma URL após a mudança de idioma
     this.router.navigateByUrl(this.router.url);
-
     this.closeAllDropdowns();
   }
 

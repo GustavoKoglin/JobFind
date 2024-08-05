@@ -25,8 +25,9 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
   styleUrls: ['./company.component.scss']
 })
 export class CompanyComponent implements OnInit {
-  candidateForm!: FormGroup;
+  companyForm!: FormGroup;
   loginType: 'login' | 'registrar' = 'login';
+  userType = 'empresa';
   showPassword = false;
   showConfirmPassword = false;
 
@@ -44,7 +45,12 @@ export class CompanyComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) { }
+  ) {
+    this.userType = 'empresa';
+    console.log('UserType on Constructor:', this.userType);
+    this.loginType = 'login';
+    console.log('LoginType on Constructor:', this.loginType);
+  }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -59,16 +65,16 @@ export class CompanyComponent implements OnInit {
   // Carrega o idioma salvo no localStorage, se existir
   loadLanguage(): void {
     if (typeof window !== 'undefined') {
-      const savedLanguage = localStorage.getItem('language');
-      if (savedLanguage) {
-        this.currentLanguage = JSON.parse(savedLanguage);
+      const savedLanguageCode = localStorage.getItem('language');
+      if (savedLanguageCode) {
+        this.currentLanguage = this.languages.find(lang => lang.code === savedLanguageCode) || { code: 'pt-br', name: 'Português' };
         this.translate.use(this.currentLanguage.code);
       }
     }
   }
 
   initializeForm(): void {
-    this.candidateForm = this.fb.group({
+    this.companyForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       confirmEmail: [''],
       senha: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]],
@@ -82,14 +88,14 @@ export class CompanyComponent implements OnInit {
   toggleForm(type: 'login' | 'registrar'): void {
     this.loginType = type;
     if (type === 'login') {
-      this.candidateForm.get('confirmEmail')?.clearValidators();
-      this.candidateForm.get('confirmSenha')?.clearValidators();
+      this.companyForm.get('confirmEmail')?.clearValidators();
+      this.companyForm.get('confirmSenha')?.clearValidators();
     } else {
-      this.candidateForm.get('confirmEmail')?.setValidators([Validators.required, Validators.email]);
-      this.candidateForm.get('confirmSenha')?.setValidators([Validators.required, Validators.minLength(8)]);
+      this.companyForm.get('confirmEmail')?.setValidators([Validators.required, Validators.email]);
+      this.companyForm.get('confirmSenha')?.setValidators([Validators.required, Validators.minLength(8)]);
     }
-    this.candidateForm.get('confirmEmail')?.updateValueAndValidity();
-    this.candidateForm.get('confirmSenha')?.updateValueAndValidity();
+    this.companyForm.get('confirmEmail')?.updateValueAndValidity();
+    this.companyForm.get('confirmSenha')?.updateValueAndValidity();
   }
 
   togglePasswordVisibility(): void {
@@ -102,21 +108,48 @@ export class CompanyComponent implements OnInit {
 
   // Envia o formulário, realizando login ou registro
   onSubmit(): void {
-    if (this.candidateForm.valid) {
+    if (this.companyForm.valid) {
+      const { email, senha } = this.companyForm.value;
+
       if (this.loginType === 'login') {
-        this.authService.loginEmpresa(this.candidateForm.value).subscribe({
+        this.authService.loginCompany(email, senha).subscribe({
           next: () => this.router.navigate(['/home']),
           error: (error: any) => console.error('Erro ao fazer login', error)
         });
       } else {
-        if (this.candidateForm.hasError('passwordMismatch') || this.candidateForm.hasError('emailMismatch')) {
+        if (this.companyForm.hasError('passwordMismatch') || this.companyForm.hasError('emailMismatch')) {
           return;
         }
+
         // Código para registrar o usuário aqui
+        const { nome, cpf, email, emailConfirm, senha, senhaConfirm } = this.companyForm.value;
+        this.authService.registerCompany(nome, cpf, email, emailConfirm, senha, senhaConfirm).subscribe({
+          next: () => this.router.navigate(['/auth/empresa/registrar']), // Atualize para a rota de sucesso ou onde quiser redirecionar
+          error: (error: any) => console.error('Erro ao registrar', error)
+        });
       }
     } else {
-      this.candidateForm.markAllAsTouched();
+      this.companyForm.markAllAsTouched();
     }
+  }
+  navigateTo(userType: 'empresa', loginType: 'login' | 'registrar'): void {
+    if (this.userType && this.loginType === 'login') {
+      const route = `/auth/${this.userType}/${loginType}`;
+      this.router.navigate([route]);
+    } else {
+      console.error('Falha ao logar!');
+    }
+    if (this.userType && this.loginType === 'registrar') {
+      const route = `/auth/${this.userType}/${loginType}`;
+      this.router.navigate([route]);
+    } else {
+      console.error('Falha ao registrar!');
+    }
+  }
+
+  setLoginType(loginType: 'login' | 'registrar'): void {
+    this.loginType = loginType;
+    console.log('LoginType:', this.loginType);
   }
 
   passwordMatchValidator(formGroup: FormGroup): { [key: string]: any } | null {
@@ -153,32 +186,31 @@ export class CompanyComponent implements OnInit {
   // Carrega o estado do formulário salvo no localStorage
   loadFormState(): void {
     if (typeof window !== 'undefined') {
-      const savedFormState = localStorage.getItem('formState');
-      if (savedFormState) {
-        this.candidateForm.setValue(JSON.parse(savedFormState));
-      }
+      const savedType = localStorage.getItem('loginType');
+      this.loginType = savedType === 'registrar' ? 'registrar' : 'login';
+      this.initializeForm(); // Certifique-se de inicializar o formulário corretamente com base no tipo
     }
   }
 
   loadFormData(): void {
-    const storedFormData = localStorage.getItem('candidateFormData');
+    const storedFormData = localStorage.getItem('companyFormData');
     if (storedFormData) {
       const formData = JSON.parse(storedFormData);
-      this.candidateForm.patchValue(formData);
+      this.companyForm.patchValue(formData);
     }
   }
 
   // Salva o estado do formulário no localStorage
   saveFormState(): void {
     if (typeof window !== 'undefined') {
-      localStorage.setItem('formState', JSON.stringify(this.candidateForm.value));
+      localStorage.setItem('formState', JSON.stringify(this.companyForm.value));
     }
   }
 
   saveFormData(): void {
-    if (this.candidateForm.valid) {
-      const formData = this.candidateForm.getRawValue();
-      localStorage.setItem('candidateFormData', JSON.stringify(formData));
+    if (this.companyForm.valid) {
+      const formData = this.companyForm.getRawValue();
+      localStorage.setItem('companyFormData', JSON.stringify(formData));
     }
   }
 
