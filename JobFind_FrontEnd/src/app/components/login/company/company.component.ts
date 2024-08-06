@@ -122,8 +122,8 @@ export class CompanyComponent implements OnInit {
       const { email, senha } = this.companyForm.value;
 
       if (this.loginType === 'login') {
-        this.authService.loginCompany(email, senha).subscribe({
-          next: () => this.router.navigate(['/home']),
+        this.authService.loginCandidate(email, senha).subscribe({
+          next: () => this.router.navigate(['auth/empresa/login']),
           error: (error: any) => console.error('Erro ao fazer login', error)
         });
       } else {
@@ -133,8 +133,8 @@ export class CompanyComponent implements OnInit {
 
         // Código para registrar o usuário aqui
         const { nome, cpf, email, emailConfirm, senha, senhaConfirm } = this.companyForm.value;
-        this.authService.registerCompany(nome, cpf, email, emailConfirm, senha, senhaConfirm).subscribe({
-          next: () => this.router.navigate(['/auth/empresa/registrar']), // Atualize para a rota de sucesso ou onde quiser redirecionar
+        this.authService.registerCandidate(nome, cpf, email, emailConfirm, senha, senhaConfirm).subscribe({
+          next: () => this.router.navigate(['auth/empresa/registrar']), // Atualize para a rota de sucesso ou onde quiser redirecionar
           error: (error: any) => console.error('Erro ao registrar', error)
         });
       }
@@ -142,6 +142,7 @@ export class CompanyComponent implements OnInit {
       this.companyForm.markAllAsTouched();
     }
   }
+
   navigateTo(loginType: 'login' | 'registrar'): void {
     if (this.userType) {
       const route = `/auth/${this.userType}/${loginType}`;
