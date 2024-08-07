@@ -39,6 +39,20 @@ export class AuthComponent implements OnInit {
     this.authService.getLoginType().subscribe(userType => {
       this.userType = userType;
       console.log('UserType on Init:', this.userType);
+
+      //redirecionar para a página de login de candidato ou empresa
+      if (this.userType === 'candidato' && this.router.url === '/auth/candidato/login') {
+        this.router.navigate(['auth/candidato/login']);
+      } else if (this.userType === 'empresa' && this.router.url === '/auth/empresa/login') {
+        this.router.navigate(['auth/empresa/login']);
+      }
+
+      //redirecionar para a página de registro de candidato ou empresa
+      if (this.userType === 'candidato' && this.router.url === '/auth/candidato/registro') {
+        this.router.navigate(['auth/candidato/registrar']);
+      } else if (this.userType === 'empresa' && this.router.url === '/auth/empresa/registro') {
+        this.router.navigate(['/empresa/registrar']);
+      }
     });
   }
 
@@ -54,5 +68,6 @@ export class AuthComponent implements OnInit {
   setLoginType(loginType: 'login' | 'registrar'): void {
     this.loginType = loginType;
     console.log('LoginType:', this.loginType);
+    this.navigateTo(this.loginType); // Verifique se a navegação está funcionando conforme o esperado
   }
 }

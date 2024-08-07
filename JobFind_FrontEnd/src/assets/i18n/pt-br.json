@@ -53,11 +53,73 @@
         "candidatoRegister": "Registrar Candidato"
       },
       "candidatosAuth": {
+        "button": {
+          "login": "Entrar",
+          "register": "Criar uma conta"
+        },
+        "links": {
+          "register": "Criar uma conta",
+          "login": "Já tenho uma conta"
+        },
+        "register": {
+          "title": "Registre-se como Candidato",
+          "button": "Cadastrar",
+          "form": {
+            "title": "Ou",
+            "fullName": "Nome Completo",
+            "fullNamePlaceholder": "Digite seu nome completo",
+            "fullNameRequired": "O nome completo é obrigatório",
+            "fullNamePattern": "O nome completo deve conter apenas letras",
+            "email": "e-Mail",
+            "emailPlaceholder": "nome@dominio.com",
+            "emailRequired": "O e-mail é obrigatório",
+            "emailInvalid": "E-mail inválido",
+            "confirmEmail": "Confirmar e-Mail",
+            "confirmEmailPlaceholder": "nome@dominio.com",
+            "confirmEmailRequired": "A confirmação do e-mail é obrigatória",
+            "confirmEmailMismatch": "Os e-mails não coincidem",
+            "cpf": "CPF",
+            "cpfPlaceholder": "***.***.***-**",
+            "cpfRequired": "O CPF é obrigatório",
+            "cpfInvalid": "CPF inválido",
+            "password": "Senha",
+            "passwordPlaceholder": "Digite sua senha",
+            "passwordRequired": "A senha é obrigatória",
+            "passwordMinLength": "A senha deve ter pelo menos 6 caracteres",
+            "passwordMaxLength": "A senha não pode ter mais de 20 caracteres",
+            "confirmPassword": "Confirme sua senha",
+            "confirmPasswordPlaceholder": "Digite sua senha novamente",
+            "confirmPasswordRequired": "A confirmação da senha é obrigatória",
+            "confirmPasswordMismatch": "As senhas não coincidem",
+            "terms": "Eu aceito os termos de uso e concordo com a política de privacidade",
+            "termsRequired": "Você precisa aceitar os termos de uso",
+            "switchToLogin": "Já tem uma conta? Faça login!",
+            "switchToRegister": "Já tem uma conta? Faça login!"
+          },
+          "social": {
+            "facebook": "Facebook",
+            "google": "Google",
+            "github": "GitHub",
+            "linkedin": "LinkedIn"
+          }
+        },
         "login": {
-          "login": "Logar como Candidato:",
+          "loginCandidato": "Logar como Candidato:",
+          "login": "Ou",
           "registrar": "Registre-se como Candidato:",
+          "social": {
+            "h4": "Logar com as Redes Sociais:",
+            "facebook": "Facebook",
+            "google": "Google",
+            "github": "GitHub",
+            "linkedin": "LinkedIn"
+          },
           "form": {
             "email": "E-mail",
+            "emailLogin": "Logar com E-mail",
+            "cpfLogin": "Logar com CPF",
+            "cpf": "CPF",
+            "cpfPlaceholder": "Digite seu CPF",
             "emailPlaceholder": "Digite seu e-mail",
             "emailRequired": "O e-mail é obrigatório",
             "emailInvalid": "E-mail inválido",
@@ -80,14 +142,6 @@
             "stayLogged": "Permanecer Conectado",
             "forgotPassword": "Esqueceu a senha?"
           }
-        },
-        "button": {
-          "login": "Entrar",
-          "register":"Criar uma conta"
-        },
-        "links": {
-          "register": "Criar uma conta",
-          "login": "Já tenho uma conta"
         }
       },
       "empresasAuth": {

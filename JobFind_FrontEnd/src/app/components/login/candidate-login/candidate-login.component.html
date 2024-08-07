@@ -1,0 +1,167 @@
+<app-nav-menu></app-nav-menu>
+
+<div class="candidate-page">
+  <div class="left-section">
+    <!-- Conteúdo opcional à esquerda -->
+  </div>
+
+  <div class="right-section">
+    <!-- Seletor de login com redes sociais -->
+    <div class="card shadow-sm">
+      <div class="card-header">
+        <h4 class="card-title text-center">
+          {{ 'pages.translate.candidatosAuth.login.loginCandidato' | translate }}
+        </h4>
+      </div>
+
+      <div class="card-body">
+        <h4 class="card-title text-center">
+          {{ 'pages.translate.candidatosAuth.login.social.h4' | translate }}
+        </h4>
+
+        <div class="social-login text-center mt-3">
+          <button class="btn btn-social facebook" (click)="loginWithSocial('facebook')">
+            <i class="bi bi-facebook"></i> {{ 'pages.translate.candidatosAuth.login.social.facebook' | translate }}
+          </button>
+          <button class="btn btn-social google" (click)="loginWithSocial('google')">
+            <i class="bi bi-google"></i> {{ 'pages.translate.candidatosAuth.login.social.google' | translate }}
+          </button>
+          <button class="btn btn-social github" (click)="loginWithSocial('github')">
+            <i class="bi bi-github"></i> {{ 'pages.translate.candidatosAuth.login.social.github' | translate }}
+          </button>
+          <button class="btn btn-social linkedin" (click)="loginWithSocial('linkedin')">
+            <i class="bi bi-linkedin"></i> {{ 'pages.translate.candidatosAuth.login.social.linkedin' | translate }}
+          </button>
+        </div>
+
+        <h4 class="card-title text-center mt-4">
+          {{ 'pages.translate.candidatosAuth.login.login' | translate }}
+        </h4>
+
+        <div class="text-center mt-3">
+          <button class="btn btn-outline-primary mx-1" (click)="toggleLoginMethod('email')">
+            <i class="bi bi-envelope"></i> {{ 'pages.translate.candidatosAuth.login.form.emailLogin' | translate }}
+          </button>
+          <button class="btn btn-outline-primary mx-1" (click)="toggleLoginMethod('cpf')">
+            <i class="bi bi-person-badge"></i> {{ 'pages.translate.candidatosAuth.login.form.cpfLogin' | translate }}
+          </button>
+        </div>
+
+        <form [formGroup]="candidateForm" (ngSubmit)="onSubmit()">
+          <div *ngIf="loginMethod === 'email'" class="form-group mb-3">
+            <label for="email">{{ 'pages.translate.candidatosAuth.login.form.email' | translate }}</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="{{ 'pages.translate.candidatosAuth.login.form.emailPlaceholder' | translate }}"
+              formControlName="email"
+              required
+            />
+            <div *ngIf="candidateForm.get('email')?.touched && candidateForm.get('email')?.invalid"
+              class="invalid-feedback">
+              <div *ngIf="candidateForm.get('email')?.errors?.['required']">
+                {{ 'pages.translate.candidatosAuth.login.form.login.emailRequired' | translate }}
+              </div>
+              <div *ngIf="candidateForm.get('email')?.errors?.['email']">
+                {{ 'pages.translate.candidatosAuth.login.form.login.emailInvalid' | translate }}
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="loginMethod === 'cpf'" class="form-group mb-3">
+            <label for="cpf">{{ 'pages.translate.candidatosAuth.login.form.cpf' | translate }}</label>
+            <input
+              type="text"
+              class="form-control"
+              id="cpf"
+              placeholder="{{ 'pages.translate.candidatosAuth.login.form.cpfPlaceholder' | translate }}"
+              formControlName="cpf"
+              mask="***.***.***-**"
+              maxlength="14"
+              required
+            />
+            <div *ngIf="candidateForm.get('cpf')?.touched && candidateForm.get('cpf')?.invalid"
+              class="invalid-feedback">
+              <div *ngIf="candidateForm.get('cpf')?.errors?.['required']">
+                {{ 'pages.translate.candidatosAuth.login.form.cpfRequired' | translate }}
+              </div>
+              <div *ngIf="candidateForm.get('cpf')?.errors?.['pattern']">
+                {{ 'pages.translate.candidatosAuth.login.form.cpfInvalid' | translate }}
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="senha">
+              {{ 'pages.translate.candidatosAuth.login.form.password' | translate }}
+              <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'" (click)="togglePasswordVisibility()"></i>
+            </label>
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              class="form-control"
+              id="senha"
+              placeholder="{{ 'pages.translate.candidatosAuth.login.form.passwordPlaceholder' | translate }}"
+              formControlName="senha"
+              required
+            />
+            <div *ngIf="candidateForm.get('senha')?.touched && candidateForm.get('senha')?.invalid"
+              class="invalid-feedback">
+              <div *ngIf="candidateForm.get('senha')?.errors?.['required']">
+                {{ 'pages.translate.candidatosAuth.login.form.passwordRequired' | translate }}
+              </div>
+              <div *ngIf="candidateForm.get('senha')?.errors?.['minlength']">
+                {{ 'pages.translate.candidatosAuth.login.form.passwordMinLength' | translate }}
+              </div>
+              <div *ngIf="candidateForm.get('senha')?.errors?.['pattern']">
+                {{ 'pages.translate.candidatosAuth.login.form.passwordPattern' | translate }}
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group form-check">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="rememberMe"
+              formControlName="rememberMe"
+            />
+            <label class="form-check-label" for="rememberMe">
+              {{ 'pages.translate.candidatosAuth.login.form.rememberMe' | translate }}
+            </label>
+          </div>
+
+          <div class="form-group form-check">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="stayLogged"
+              formControlName="stayLogged"
+            />
+            <label class="form-check-label" for="stayLogged">
+              {{ 'pages.translate.candidatosAuth.login.form.stayLogged' | translate }}
+            </label>
+          </div>
+
+          <div *ngIf="loginUserType === 'login'" class="form-group">
+            <a href="#" class="d-block mb-3">
+              {{ 'pages.translate.candidatosAuth.login.form.forgotPassword' | translate }}
+            </a>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100 mt-3">
+            {{ 'pages.translate.candidatosAuth.button.login' | translate }}
+          </button>
+        </form>
+
+        <div class="text-center mt-3">
+          <button *ngIf="loginUserType === 'login'" class="btn btn-link" (click)="toggleForm('registrar')">
+            {{ 'pages.translate.candidatosAuth.links.register' | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

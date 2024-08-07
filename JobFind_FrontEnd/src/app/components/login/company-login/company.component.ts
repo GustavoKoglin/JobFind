@@ -9,10 +9,10 @@ import { FooterComponent } from "../../../layouts/footer/footer.component";
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 @Component({
-  selector: 'app-candidate',
+  selector: 'app-company',
   standalone: true,
   imports: [
-  TranslateModule,
+    TranslateModule,
     ReactiveFormsModule,
     RouterLink,
     RouterLinkActive,
@@ -21,15 +21,13 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
     NavMenuComponent,
     FooterComponent,
   ],
-  templateUrl: './candidate.component.html',
-  styleUrls: ['./candidate.component.scss']
+  templateUrl: './company-login.component.html',
+  styleUrls: ['./company-login.component.scss']
 })
-
-export class CandidateComponent implements OnInit {
-
-  candidateForm!: FormGroup;
+export class CompanyLoginComponent implements OnInit {
+  companyForm!: FormGroup;
   loginType: 'login' | 'registrar' = 'login';
-  userType = 'candidato';
+  userType = 'empresa';
   showPassword = false;
   showConfirmPassword = false;
 
@@ -48,7 +46,7 @@ export class CandidateComponent implements OnInit {
     private router: Router,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    this.userType = 'candidato';
+    this.userType = 'empresa';
     console.log('UserType on Constructor:', this.userType);
     this.loginType = 'login';
     console.log('LoginType on Constructor:', this.loginType);
@@ -76,7 +74,7 @@ export class CandidateComponent implements OnInit {
   }
 
   initializeForm(): void {
-    this.candidateForm = this.fb.group({
+    this.companyForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       confirmEmail: [''],
       senha: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]],
@@ -84,20 +82,30 @@ export class CandidateComponent implements OnInit {
       rememberMe: [false],
       stayLogged: [false]
     }, { validators: this.passwordMatchValidator });
+
+    if (this.loginType === 'login') {
+      this.companyForm.get('confirmEmail')?.clearValidators();
+      this.companyForm.get('confirmSenha')?.clearValidators();
+    } else {
+      this.companyForm.get('confirmEmail')?.setValidators([Validators.required, Validators.email]);
+      this.companyForm.get('confirmSenha')?.setValidators([Validators.required, Validators.minLength(8)]);
+    }
+    this.companyForm.get('confirmEmail')?.updateValueAndValidity();
+    this.companyForm.get('confirmSenha')?.updateValueAndValidity();
   }
 
   // Alterna entre os formulários de login e registro
   toggleForm(type: 'login' | 'registrar'): void {
     this.loginType = type;
     if (type === 'login') {
-      this.candidateForm.get('confirmEmail')?.clearValidators();
-      this.candidateForm.get('confirmSenha')?.clearValidators();
+      this.companyForm.get('confirmEmail')?.clearValidators();
+      this.companyForm.get('confirmSenha')?.clearValidators();
     } else {
-      this.candidateForm.get('confirmEmail')?.setValidators([Validators.required, Validators.email]);
-      this.candidateForm.get('confirmSenha')?.setValidators([Validators.required, Validators.minLength(8)]);
+      this.companyForm.get('confirmEmail')?.setValidators([Validators.required, Validators.email]);
+      this.companyForm.get('confirmSenha')?.setValidators([Validators.required, Validators.minLength(8)]);
     }
-    this.candidateForm.get('confirmEmail')?.updateValueAndValidity();
-    this.candidateForm.get('confirmSenha')?.updateValueAndValidity();
+    this.companyForm.get('confirmEmail')?.updateValueAndValidity();
+    this.companyForm.get('confirmSenha')?.updateValueAndValidity();
   }
 
   togglePasswordVisibility(): void {
@@ -110,37 +118,43 @@ export class CandidateComponent implements OnInit {
 
   // Envia o formulário, realizando login ou registro
   onSubmit(): void {
-    if (this.candidateForm.valid) {
-      const { email, senha } = this.candidateForm.value;
+    if (this.companyForm.valid) {
+      const { email, senha } = this.companyForm.value;
 
       if (this.loginType === 'login') {
         this.authService.loginCandidate(email, senha).subscribe({
-          next: () => this.router.navigate(['auth/candidato/login']),
+          next: () => this.router.navigate(['auth/empresa/login']),
           error: (error: any) => console.error('Erro ao fazer login', error)
         });
       } else {
-        if (this.candidateForm.hasError('passwordMismatch') || this.candidateForm.hasError('emailMismatch')) {
+        if (this.companyForm.hasError('passwordMismatch') || this.companyForm.hasError('emailMismatch')) {
           return;
         }
 
         // Código para registrar o usuário aqui
-        const { nome, cpf, email, emailConfirm, senha, senhaConfirm } = this.candidateForm.value;
+        const { nome, cpf, email, emailConfirm, senha, senhaConfirm } = this.companyForm.value;
         this.authService.registerCandidate(nome, cpf, email, emailConfirm, senha, senhaConfirm).subscribe({
-          next: () => this.router.navigate(['auth/candidato/registrar']), // Atualize para a rota de sucesso ou onde quiser redirecionar
+          next: () => this.router.navigate(['auth/empresa/registrar']), // Atualize para a rota de sucesso ou onde quiser redirecionar
           error: (error: any) => console.error('Erro ao registrar', error)
         });
       }
     } else {
-      this.candidateForm.markAllAsTouched();
+      this.companyForm.markAllAsTouched();
     }
   }
-  navigateTo(userType: 'candidato'): void {
+
+  navigateTo(loginType: 'login' | 'registrar'): void {
     if (this.userType) {
-      const route = `/auth/${this.userType}/${userType}`;
+      const route = `/auth/${this.userType}/${loginType}`;
       this.router.navigate([route]);
     } else {
       console.error('Tipo de usuário não definido');
     }
+  }
+
+  setLoginType(loginType: 'login' | 'registrar'): void {
+    this.loginType = loginType;
+    console.log('LoginType:', this.loginType);
   }
 
   passwordMatchValidator(formGroup: FormGroup): { [key: string]: any } | null {
@@ -165,43 +179,38 @@ export class CandidateComponent implements OnInit {
     return null;
   }
 
-   // Define o idioma atual e salva no localStorage
-   setLanguage(language: Language): void {
-    if (typeof window !== 'undefined') {
-      this.currentLanguage = language;
-      localStorage.setItem('language', JSON.stringify(language));
-      this.translate.use(language.code);
-    }
+  // Define o idioma atual e salva no localStorage
+  setLanguage(language: Language): void {
+    this.currentLanguage = language;
+    localStorage.setItem('language', language.code);
+    this.translate.use(language.code);
   }
 
   // Carrega o estado do formulário salvo no localStorage
   loadFormState(): void {
-    if (typeof window !== 'undefined') {
-      const savedType = localStorage.getItem('loginType');
-      this.loginType = savedType === 'registrar' ? 'registrar' : 'login';
-      this.initializeForm(); // Certifique-se de inicializar o formulário corretamente com base no tipo
+    const savedType = localStorage.getItem('loginType');
+    this.loginType = savedType === 'registrar' ? 'registrar' : 'login';
+    this.initializeForm(); // Certifique-se de inicializar o formulário com base no tipo
+  }
+
+  saveFormState(): void {
+    if (this.companyForm.valid) {
+      localStorage.setItem('loginType', this.loginType);
     }
   }
 
   loadFormData(): void {
-    const storedFormData = localStorage.getItem('candidateFormData');
+    const storedFormData = localStorage.getItem('companyFormData');
     if (storedFormData) {
       const formData = JSON.parse(storedFormData);
-      this.candidateForm.patchValue(formData);
-    }
-  }
-
-  // Salva o estado do formulário no localStorage
-  saveFormState(): void {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('formState', JSON.stringify(this.candidateForm.value));
+      this.companyForm.patchValue(formData);
     }
   }
 
   saveFormData(): void {
-    if (this.candidateForm.valid) {
-      const formData = this.candidateForm.getRawValue();
-      localStorage.setItem('candidateFormData', JSON.stringify(formData));
+    if (this.companyForm.valid) {
+      const formData = this.companyForm.getRawValue();
+      localStorage.setItem('companyFormData', JSON.stringify(formData));
     }
   }
 }

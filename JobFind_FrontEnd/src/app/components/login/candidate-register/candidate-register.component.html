@@ -1,0 +1,160 @@
+<app-nav-menu></app-nav-menu>
+
+<div class="candidate-page">
+  <div class="left-section">
+    <!-- Conteúdo opcional à esquerda -->
+  </div>
+
+  <div class="right-section">
+    <div class="card shadow-sm">
+      <div class="card-header">
+        <h4 class="card-title text-center">
+          {{ 'pages.translate.candidatosAuth.register.title' | translate }}
+        </h4>
+      </div>
+
+      <div class="card-body">
+        <!-- Seletor de login com redes sociais -->
+        <div class="social-login text-center mt-3">
+          <button class="btn btn-social facebook" (click)="loginWithSocial('facebook')">
+            <i class="bi bi-facebook"></i> {{ 'pages.translate.candidatosAuth.register.social.facebook' | translate }}
+          </button>
+          <button class="btn btn-social google" (click)="loginWithSocial('google')">
+            <i class="bi bi-google"></i> {{ 'pages.translate.candidatosAuth.register.social.google' | translate }}
+          </button>
+          <button class="btn btn-social github" (click)="loginWithSocial('github')">
+            <i class="bi bi-github"></i> {{ 'pages.translate.candidatosAuth.register.social.github' | translate }}
+          </button>
+          <button class="btn btn-social linkedin" (click)="loginWithSocial('linkedin')">
+            <i class="bi bi-linkedin"></i> {{ 'pages.translate.candidatosAuth.register.social.linkedin' | translate }}
+          </button>
+        </div>
+
+        <h4 class="card-title text-center mt-4">
+          {{ 'pages.translate.candidatosAuth.register.form.title' | translate }}
+        </h4>
+
+        <form [formGroup]="candidateForm" (ngSubmit)="onSubmit()">
+          <div class="form-group mb-3">
+            <label for="fullName">{{ 'pages.translate.candidatosAuth.register.form.fullName' | translate }}</label>
+            <input type="text" class="form-control" id="fullName"
+              placeholder="{{ 'pages.translate.candidatosAuth.register.form.fullNamePlaceholder' | translate }}" formControlName="fullName"
+              required>
+            <div *ngIf="candidateForm.get('fullName')?.touched && candidateForm.get('fullName')?.invalid"
+              class="invalid-feedback">
+              <div *ngIf="candidateForm.get('fullName')?.errors?.['required']">
+                {{ 'pages.translate.candidatosAuth.register.form.fullNameRequired' | translate }}
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="cpf">{{ 'pages.translate.candidatosAuth.register.form.cpf' | translate }}</label>
+            <input type="text" class="form-control" id="cpf"
+              placeholder="{{ 'pages.translate.candidatosAuth.register.form.cpfPlaceholder' | translate }}" formControlName="cpf"
+              mask="***.***.***-**"
+              maxlength="14"
+              required>
+            <div *ngIf="candidateForm.get('cpf')?.touched && candidateForm.get('cpf')?.invalid"
+              class="invalid-feedback">
+              <div *ngIf="candidateForm.get('cpf')?.errors?.['required']">
+                {{ 'pages.translate.candidatosAuth.register.form.cpfRequired' | translate }}
+              </div>
+              <div *ngIf="candidateForm.get('cpf')?.errors?.['pattern']">
+                {{ 'pages.translate.candidatosAuth.register.form.cpfInvalid' | translate }}
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="email">{{ 'pages.translate.candidatosAuth.register.form.email' | translate }}</label>
+            <input type="email" class="form-control" id="email"
+              placeholder="{{ 'pages.translate.candidatosAuth.register.form.emailPlaceholder' | translate }}" formControlName="email"
+              required>
+            <div *ngIf="candidateForm.get('email')?.touched && candidateForm.get('email')?.invalid"
+              class="invalid-feedback">
+              <div *ngIf="candidateForm.get('email')?.errors?.['required']">
+                {{ 'pages.translate.candidatosAuth.register.form.emailRequired' | translate }}
+              </div>
+              <div *ngIf="candidateForm.get('email')?.errors?.['email']">
+                {{ 'pages.translate.candidatosAuth.register.form.emailInvalid' | translate }}
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="confirmEmail">{{ 'pages.translate.candidatosAuth.register.form.confirmEmail' | translate }}</label>
+            <input type="email" class="form-control" id="confirmEmail"
+              placeholder="{{ 'pages.translate.candidatosAuth.register.form.confirmEmailPlaceholder' | translate }}" formControlName="confirmEmail"
+              required>
+            <div *ngIf="candidateForm.get('confirmEmail')?.touched && candidateForm.get('confirmEmail')?.invalid"
+              class="invalid-feedback">
+              <div *ngIf="candidateForm.get('confirmEmail')?.errors?.['required']">
+                {{ 'pages.translate.candidatosAuth.register.form.confirmEmailRequired' | translate }}
+              </div>
+              <div *ngIf="candidateForm.get('confirmEmail')?.errors?.['email']">
+                {{ 'pages.translate.candidatosAuth.register.form.confirmEmailInvalid' | translate }}
+              </div>
+              <div *ngIf="candidateForm.get('confirmEmail')?.errors?.['emailMismatch']">
+                {{ 'pages.translate.candidatosAuth.register.form.confirmEmailMismatch' | translate }}
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">
+              {{ 'pages.translate.candidatosAuth.register.form.password' | translate }}
+              <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'" (click)="togglePasswordVisibility()"></i>
+            </label>
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              class="form-control"
+              id="password"
+              placeholder="{{ 'pages.translate.candidatosAuth.register.form.passwordPlaceholder' | translate }}"
+              formControlName="password"
+              required
+            />
+            <div *ngIf="candidateForm.get('password')?.touched && candidateForm.get('password')?.invalid"
+              class="invalid-feedback">
+              <div *ngIf="candidateForm.get('password')?.errors?.['required']">
+                {{ 'pages.translate.candidatosAuth.register.form.passwordRequired' | translate }}
+              </div>
+              <div *ngIf="candidateForm.get('password')?.errors?.['minlength']">
+                {{ 'pages.translate.candidatosAuth.register.form.passwordMinLength' | translate }}
+              </div>
+              <div *ngIf="candidateForm.get('password')?.errors?.['pattern']">
+                {{ 'pages.translate.candidatosAuth.register.form.passwordPattern' | translate }}
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="confirmPassword">{{ 'pages.translate.candidatosAuth.register.form.confirmPassword' | translate }}</label>
+            <input type="password" class="form-control" id="confirmPassword"
+              placeholder="{{ 'pages.translate.candidatosAuth.register.form.confirmPasswordPlaceholder' | translate }}" formControlName="confirmPassword"
+              required>
+            <div *ngIf="candidateForm.get('confirmPassword')?.touched && candidateForm.get('confirmPassword')?.invalid"
+              class="invalid-feedback">
+              <div *ngIf="candidateForm.get('confirmPassword')?.errors?.['required']">
+                {{ 'pages.translate.candidatosAuth.register.form.confirmPasswordRequired' | translate }}
+              </div>
+              <div *ngIf="candidateForm.get('confirmPassword')?.errors?.['passwordMismatch']">
+                {{ 'pages.translate.candidatosAuth.register.form.confirmPasswordMismatch' | translate }}
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100 mt-3">
+            {{ 'pages.translate.candidatosAuth.register.button' | translate }}
+          </button>
+
+          <button type="button" class="btn btn-link mt-3" (click)="toggleScreen()">
+            {{ isLoginScreen ? ('pages.translate.candidatosAuth.register.form.switchToRegister' | translate) : ('pages.translate.candidatosAuth.register.form.switchToLogin' | translate) }}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
