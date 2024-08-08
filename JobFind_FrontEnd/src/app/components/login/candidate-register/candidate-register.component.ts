@@ -31,6 +31,7 @@ export class CandidateRegisterComponent implements OnInit {
   showPassword = false;
   showConfirmPassword = false;
   isLoginScreen = false;
+  cpfMask = '000.000.000-00';
 
   constructor(
     private fb: FormBuilder,
@@ -42,11 +43,11 @@ export class CandidateRegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.candidateForm = this.fb.group({
-      fullName: ['', Validators.required],
-      cpf: ['', [Validators.required, Validators.pattern(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/)]],
+      razaoSocial: ['', Validators.required],
+      cnpj: ['', [Validators.required, Validators.pattern(/^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/)]],
       email: ['', [Validators.required, Validators.email]],
       confirmEmail: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6), Validators.pattern(/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{6,}$/)]],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.pattern(/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/)]],
       confirmPassword: ['', Validators.required]
     }, { validator: [this.emailMatchValidator, this.passwordMatchValidator] });
 
@@ -55,6 +56,28 @@ export class CandidateRegisterComponent implements OnInit {
       this.candidateForm.get('confirmEmail')?.updateValueAndValidity();
       this.candidateForm.get('confirmPassword')?.updateValueAndValidity();
     });
+  }
+
+  formatCPF(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    let value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+
+    // Aplica a formatação: 000.000.000-00
+    value = value
+      .replace(/^(\d{3})(\d)/, '$1.$2') // Adiciona o primeiro ponto
+      .replace(/\.(\d{3})(\d)/, '.$1.$2') // Adiciona o segundo ponto
+      .replace(/\.(\d{3})(\d{1,2})$/, '.$1-$2'); // Adiciona o hífen
+
+    input.value = value;
+  }
+
+
+  toggleForm(type: 'login' | 'registrar'): void {
+    if (type === 'registrar') {
+      this.router.navigate(['/auth/candidato/registrar']); // Redireciona para a página de registro
+    } else {
+      this.router.navigate(['/auth/candidato/login']); // Redireciona para a página de login
+    }
   }
 
   emailMatchValidator(form: FormGroup): { [key: string]: boolean } | null {
@@ -72,10 +95,10 @@ export class CandidateRegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const { nome, cpf, email, emailConfirm, senha, senhaConfirm, rememberMe, stayLogged} = this.candidateForm.value;
     if (this.candidateForm.valid) {
-      this.authService.registerCompany(nome, cpf, email, emailConfirm, senha, senhaConfirm).subscribe({
-        next: () => this.router.navigate(['/auth/candidato/registrar']),
+      const { razaoSocial, cnpj, email, emailConfirm, senha, senhaConfirm } = this.candidateForm.value;
+      this.authService.registerCandidate(razaoSocial, cnpj, email, emailConfirm, senha, senhaConfirm).subscribe({
+        next: () => this.router.navigate(['/auth/candidato/login']), // Redireciona para a página de login após registro
         error: (err) => console.error('Error during registration', err)
       });
     }
@@ -87,7 +110,12 @@ export class CandidateRegisterComponent implements OnInit {
   }
 
   toggleScreen(): void {
-    this.isLoginScreen = !this.isLoginScreen; // Alterna entre as telas de login e registro
+    this.isLoginScreen = !this.isLoginScreen;
+    if (this.isLoginScreen) {
+      this.router.navigate(['/auth/candidato/login']); // Redireciona para a página de login
+    } else {
+      this.router.navigate(['/auth/candidato/registrar']); // Redireciona para a página de registro
+    }
   }
 
   private initializeForm(): void {
@@ -106,8 +134,6 @@ export class CandidateRegisterComponent implements OnInit {
       validators: this.passwordMatchValidator
     });
   }
-
-
 
   toggleConfirmPasswordVisibility(): void {
     this.showConfirmPassword = !this.showConfirmPassword;

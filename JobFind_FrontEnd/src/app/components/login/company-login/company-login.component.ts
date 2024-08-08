@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-candidate-login',
+  selector: 'app-company-login',
   standalone: true,
   imports: [
     TranslateModule,
@@ -20,19 +20,19 @@ import { ToastrService } from 'ngx-toastr';
     NavMenuComponent,
     FooterComponent
   ],
-  templateUrl: './candidate-login.component.html',
-  styleUrls: ['./candidate-login.component.scss']
+  templateUrl: './company-login.component.html',
+  styleUrls: ['./company-login.component.scss']
 })
-export class CandidateLoginComponent implements OnInit {
+export class CompanyLoginComponent implements OnInit {
 loginWithSocial(arg0: string) {
 throw new Error('Method not implemented.');
 }
 
-  candidateForm!: FormGroup;
+  companyForm!: FormGroup;
   loginUserType: 'login' | 'registrar' = 'login'; // Assegure-se de que o tipo está correto
-  loginMethod: 'cpf' | 'email' = 'email';
+  loginMethod: 'cnpj' | 'email' = 'email';
   showPassword = false;
-  cpfMask = '000.000.000-00';
+  cnpjMask = '000.000.000-00';
 
   constructor(
     private toast: ToastrService,
@@ -48,45 +48,36 @@ throw new Error('Method not implemented.');
   }
 
   initializeForm(): void {
-    this.candidateForm = this.fb.group({
+    this.companyForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      cpf: ['', [Validators.required, Validators.pattern(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/)]],
+      cnpj: ['', [Validators.required, Validators.pattern(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/)]],
       senha: ['', [Validators.required, Validators.minLength(6), Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/)]],
       rememberMe: [false],
       stayLogged: [false]
     });
   }
 
-  getLoginType(): string | null {
-    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
-      return localStorage.getItem('loginType');
-    }
-    return null;
-  }
-
-  toggleLoginMethod(method: 'cpf' | 'email'): void {
+  toggleLoginMethod(method: 'cnpj' | 'email'): void {
     this.loginMethod = method;
   }
 
   toggleForm(type: 'login' | 'registrar'): void {
     if (type === 'registrar') {
-      this.router.navigate(['/auth/candidato/registrar']); // Redireciona para a página de registro
+      this.router.navigate(['/auth/empresa/registrar']); // Redireciona para a página de registro
     } else {
-      this.router.navigate(['/auth/candidato/login']); // Redireciona para a página de login
+      this.router.navigate(['/auth/empresa/login']); // Redireciona para a página de login
     }
   }
 
-  formatCPF(event: Event): void {
+  formatCNPJ(event: Event): void {
     const input = event.target as HTMLInputElement;
-    let value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
-
-    // Aplica a formatação: 000.000.000-00
-    value = value
-      .replace(/^(\d{3})(\d)/, '$1.$2') // Adiciona o primeiro ponto
-      .replace(/\.(\d{3})(\d)/, '.$1.$2') // Adiciona o segundo ponto
-      .replace(/\.(\d{3})(\d{1,2})$/, '.$1-$2'); // Adiciona o hífen
-
-    input.value = value;
+    const value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+    // Aplica a formatação: 00.000.000/0000-00
+    input.value = value
+      .replace(/^(\d{2})(\d)/, '$1.$2') // Adiciona o primeiro ponto
+      .replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3') // Adiciona o segundo ponto
+      .replace(/\.(\d{3})(\d{4})(\d)/, '.$1/$2-$3'); // Adiciona a barra e o hífen
+    input.value = value
   }
 
   togglePasswordVisibility(): void {
@@ -94,13 +85,13 @@ throw new Error('Method not implemented.');
   }
 
   onSubmit(): void {
-    if (this.candidateForm.valid) {
-      const { nome, cpf, email, emailConfirm, senha, senhaConfirm, rememberMe, stayLogged } = this.candidateForm.value;
-      const loginData = this.loginMethod === 'email' ? { email, senha, rememberMe, stayLogged } : { cpf, senha, rememberMe, stayLogged };
+    if (this.companyForm.valid) {
+      const { email, cnpj, senha, rememberMe, stayLogged } = this.companyForm.value;
+      const loginData = this.loginMethod === 'email' ? { email, senha, rememberMe, stayLogged } : { cnpj, senha, rememberMe, stayLogged };
 
       if (this.loginUserType === 'login') {
         // Lógica para login
-        this.authService.loginCandidate(email, cpf, senha).subscribe({
+        this.authService.loginCompany(email, cnpj, senha).subscribe({
           next: () => this.router.navigate(['#']), // Redireciona para a página de sucesso ou dashboard
           error: (err) => {
             console.error('Erro durante o login', err);
@@ -109,7 +100,7 @@ throw new Error('Method not implemented.');
         });
       } else if (this.loginUserType === 'registrar') {
         // Lógica para registro
-        this.authService.registerCandidate(nome, cpf, email, emailConfirm, senha, senhaConfirm).subscribe({
+        this.authService.registerCompany('', cnpj, email, '', senha, '').subscribe({
           next: () => this.router.navigate(['#']), // Redireciona para a página de login após registro
           error: (err) => {
             console.error('Erro durante o registro', err);

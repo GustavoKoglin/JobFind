@@ -6,19 +6,58 @@
   </div>
 
   <div class="right-section">
+    <!-- Seletor de login com redes sociais -->
     <div class="card shadow-sm">
+      <div class="card-header">
+        <h4 class="card-title text-center">
+          {{ 'pages.translate.empresasAuth.login.title' | translate }}
+        </h4>
+      </div>
+
       <div class="card-body">
         <h4 class="card-title text-center">
-          {{ loginType === 'login' ? ('pages.translate.empresasAuth.login.login' | translate) :
-          ('pages.translate.empresasAuth.login.registrar' | translate) }}
+          {{ 'pages.translate.empresasAuth.login.social.h4' | translate }}
         </h4>
 
+        <div class="social-login text-center mt-3">
+          <button class="btn btn-social facebook" (click)="loginWithSocial('facebook')">
+            <i class="bi bi-facebook"></i> {{ 'pages.translate.empresasAuth.login.social.facebook' | translate }}
+          </button>
+          <button class="btn btn-social google" (click)="loginWithSocial('google')">
+            <i class="bi bi-google"></i> {{ 'pages.translate.empresasAuth.login.social.google' | translate }}
+          </button>
+          <button class="btn btn-social github" (click)="loginWithSocial('github')">
+            <i class="bi bi-github"></i> {{ 'pages.translate.empresasAuth.login.social.github' | translate }}
+          </button>
+          <button class="btn btn-social linkedin" (click)="loginWithSocial('linkedin')">
+            <i class="bi bi-linkedin"></i> {{ 'pages.translate.empresasAuth.login.social.linkedin' | translate }}
+          </button>
+        </div>
+
+        <h4 class="card-title text-center mt-4">
+          {{ 'pages.translate.empresasAuth.login.h4' | translate }}
+        </h4>
+
+        <div class="text-center mt-3">
+          <button class="btn btn-outline-primary mx-1" (click)="toggleLoginMethod('email')">
+            <i class="bi bi-envelope"></i> {{ 'pages.translate.empresasAuth.login.form.emailLogin' | translate }}
+          </button>
+          <button class="btn btn-outline-primary mx-1" (click)="toggleLoginMethod('cnpj')">
+            <i class="bi bi-person-badge"></i> {{ 'pages.translate.empresasAuth.login.form.cnpjLogin' | translate }}
+          </button>
+        </div>
+
         <form [formGroup]="companyForm" (ngSubmit)="onSubmit()">
-          <div class="form-group mb-3">
+          <div *ngIf="loginMethod === 'email'" class="form-group mb-3">
             <label for="email">{{ 'pages.translate.empresasAuth.login.form.email' | translate }}</label>
-            <input type="email" class="form-control" id="email"
-              placeholder="{{ 'pages.translate.empresasAuth.login.form.emailPlaceholder' | translate }}" formControlName="email"
-              required>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="{{ 'pages.translate.empresasAuth.login.form.emailPlaceholder' | translate }}"
+              formControlName="email"
+              required
+            />
             <div *ngIf="companyForm.get('email')?.touched && companyForm.get('email')?.invalid"
               class="invalid-feedback">
               <div *ngIf="companyForm.get('email')?.errors?.['required']">
@@ -30,22 +69,25 @@
             </div>
           </div>
 
-          <!-- Campo confirmar email, visível apenas no registro -->
-          <div *ngIf="loginType === 'registrar'" class="form-group">
-            <label for="confirmEmail">{{ 'pages.translate.empresasAuth.login.form.confirmEmail' | translate }}</label>
-            <input type="email" class="form-control" id="confirmEmail"
-              placeholder="{{ 'pages.translate.empresasAuth.login.form.confirmEmailPlaceholder' | translate }}"
-              formControlName="confirmEmail" required>
-            <div *ngIf="companyForm.get('confirmEmail')?.touched && companyForm.get('confirmEmail')?.invalid"
+          <div *ngIf="loginMethod === 'cnpj'" class="form-group mb-3">
+            <label for="cnpj">{{ 'pages.translate.empresasAuth.login.form.cnpj' | translate }}</label>
+            <input
+              type="text"
+              class="form-control"
+              id="cnpj"
+              placeholder="{{ 'pages.translate.empresasAuth.login.form.cnpjPlaceholder' | translate }}"
+              formControlName="cnpj"
+              mask="000.000.000-00"
+              maxlength="14"
+              required
+            />
+            <div *ngIf="companyForm.get('cnpj')?.touched && companyForm.get('cnpj')?.invalid"
               class="invalid-feedback">
-              <div *ngIf="companyForm.get('confirmEmail')?.errors?.['required']">
-                {{ 'pages.translate.empresasAuth.login.form.login.confirmEmailRequired' | translate }}
+              <div *ngIf="companyForm.get('cnpj')?.errors?.['required']">
+                {{ 'pages.translate.empresasAuth.login.form.cnpjRequired' | translate }}
               </div>
-              <div *ngIf="companyForm.get('confirmEmail')?.errors?.['email']">
-                {{ 'pages.translate.empresasAuth.login.form.confirmEmailInvalid' | translate }}
-              </div>
-              <div *ngIf="companyForm.hasError('emailMismatch')">
-                {{ 'pages.translate.empresasAuth.login.form.emailMismatch' | translate }}
+              <div *ngIf="companyForm.get('cnpj')?.errors?.['pattern']">
+                {{ 'pages.translate.empresasAuth.login.form.cnpjInvalid' | translate }}
               </div>
             </div>
           </div>
@@ -55,9 +97,14 @@
               {{ 'pages.translate.empresasAuth.login.form.password' | translate }}
               <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'" (click)="togglePasswordVisibility()"></i>
             </label>
-            <input [type]="showPassword ? 'text' : 'password'" class="form-control" id="senha"
-              placeholder="{{ 'pages.translate.empresasAuth.login.form.passwordPlaceholder' | translate }}" formControlName="senha"
-              required>
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              class="form-control"
+              id="senha"
+              placeholder="{{ 'pages.translate.empresasAuth.login.form.passwordPlaceholder' | translate }}"
+              formControlName="senha"
+              required
+            />
             <div *ngIf="companyForm.get('senha')?.touched && companyForm.get('senha')?.invalid"
               class="invalid-feedback">
               <div *ngIf="companyForm.get('senha')?.errors?.['required']">
@@ -72,56 +119,44 @@
             </div>
           </div>
 
-          <!-- Campo confirmar senha, visível apenas no registro -->
-          <div *ngIf="loginType === 'registrar'" class="form-group">
-            <label for="confirmSenha">
-              {{ 'pages.translate.empresasAuth.login.form.confirmPassword' | translate }}
-              <i class="fa" [ngClass]="showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'"
-                (click)="toggleConfirmPasswordVisibility()"></i>
+          <div class="form-group form-check">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="rememberMe"
+              formControlName="rememberMe"
+            />
+            <label class="form-check-label" for="rememberMe">
+              {{ 'pages.translate.empresasAuth.login.form.rememberMe' | translate }}
             </label>
-            <input [type]="showConfirmPassword ? 'text' : 'password'" class="form-control" id="confirmSenha"
-              placeholder="{{ 'pages.translate.empresasAuth.login.form.confirmPasswordPlaceholder' | translate }}"
-              formControlName="confirmSenha" required>
-            <div *ngIf="companyForm.get('confirmSenha')?.touched && companyForm.get('confirmSenha')?.invalid"
-              class="invalid-feedback">
-              <div *ngIf="companyForm.get('confirmSenha')?.errors?.['required']">
-                {{ 'pages.translate.empresasAuth.login.form.confirmPasswordRequired' | translate }}
-              </div>
-              <div *ngIf="companyForm.get('confirmSenha')?.errors?.['minlength']">
-                {{ 'pages.translate.empresasAuth.login.form.confirmPasswordMinLength' | translate }}
-              </div>
-              <div *ngIf="companyForm.hasError('passwordMismatch')">
-                {{ 'pages.translate.empresasAuth.login.form.passwordMismatch' | translate }}
-              </div>
-            </div>
           </div>
 
           <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="rememberMe" formControlName="rememberMe">
-            <label class="form-check-label" for="rememberMe">{{ 'pages.translate.empresasAuth.login.form.rememberMe' | translate }}</label>
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="stayLogged"
+              formControlName="stayLogged"
+            />
+            <label class="form-check-label" for="stayLogged">
+              {{ 'pages.translate.empresasAuth.login.form.stayLogged' | translate }}
+            </label>
           </div>
 
-          <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="stayLogged" formControlName="stayLogged">
-            <label class="form-check-label" for="stayLogged">{{ 'pages.translate.empresasAuth.login.form.stayLogged' | translate }}</label>
-          </div>
-
-          <div *ngIf="loginType === 'login'" class="form-group">
-            <a href="#" class="d-block mb-3">{{ 'pages.translate.empresasAuth.login.form.forgotPassword' | translate }}</a>
+          <div *ngIf="loginUserType === 'login'" class="form-group">
+            <a href="#" class="d-block mb-3">
+              {{ 'pages.translate.empresasAuth.login.form.forgotPassword' | translate }}
+            </a>
           </div>
 
           <button type="submit" class="btn btn-primary w-100 mt-3">
-            {{ loginType === 'login' ? ('pages.translate.empresasAuth.button.login' | translate) :
-            ('pages.translate.empresasAuth.button.register' | translate) }}
+            {{ 'pages.translate.empresasAuth.button.login' | translate }}
           </button>
         </form>
 
         <div class="text-center mt-3">
-          <button *ngIf="loginType === 'login'" class="btn btn-link" (click)="toggleForm('registrar')">
+          <button *ngIf="loginUserType === 'login'" class="btn btn-link" (click)="toggleForm('registrar')">
             {{ 'pages.translate.empresasAuth.links.register' | translate }}
-          </button>
-          <button *ngIf="loginType === 'registrar'" class="btn btn-link" (click)="toggleForm('login')">
-            {{ 'pages.translate.empresasAuth.links.login' | translate }}
           </button>
         </div>
       </div>

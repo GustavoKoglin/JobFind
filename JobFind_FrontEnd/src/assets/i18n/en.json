@@ -45,14 +45,25 @@
         "empresaRegister": "Register Company",
         "candidatoRegister": "Register Candidate"
       },
-      "candidato": {
+      "candidatosAuth": {
         "login": {
+          "login":"Or",
+          "social": {
+            "h4" : "Login with Social Media:",
+            "facebook": "Facebook",
+            "google": "Google",
+            "github" : "GitHub",
+            "linkedin": "LinkedIn"
+          },
+          "loginCandidato" : "Login as Candidate:",
           "title": "Login",
           "form": {
-            "email": "Email",
+            "email" : "e-Mail",
+            "emailLogin": "e-Mail",
             "emailPlaceholder": "Enter your email",
             "emailRequired": "Email is required",
             "emailInvalid": "Invalid email",
+            "cpfLogin": "CPF",
             "confirmEmail": "Confirm your email",
             "confirmEmailPlaceholder": "Re-enter your email",
             "confirmEmailRequired": "Email confirmation is required",
@@ -82,10 +93,35 @@
         }
       },
       "empresasAuth": {
-        "login": {
-          "title": "Login",
+        "register": {
+          "button" : "Sign Up",
+          "social" : {
+            "facebook" : "Facebook",
+            "google" : "Google",
+            "github" : "GitHub",
+            "linkedin" : "LinkedIn"
+          },
+          "title": "Register as Company",
           "form": {
-            "email": "Email",
+            "title" : "Or",
+            "razaoSocial" : "Company Name",
+            "razaoSocialPlaceholder": "Enter your company name",
+            "razaoSocialRequired": "Company name is required",
+            "razaoSocialMinLength": "Company name must be at least 3 characters long",
+            "nomePlaceholder": "Enter your name",
+            "nomeRequired": "Name is required",
+            "nomeMinLength": "Name must be at least 3 characters long",
+            "nomePattern": "Name must contain only letters",
+            "sobrenome": "Sobrenome",
+            "sobrenomePlaceholder": "Enter your last name",
+            "sobrenomeRequired": "Last name is required",
+            "sobrenomeMinLength": "Last name must be at least 3 characters long",
+            "sobrenomePattern": "Last name must contain only letters",
+            "cnpj": "CNPJ",
+            "cnpjPlaceholder": "000.000.000/0000-00",
+            "cnpjRequired": "CNPJ is required",
+            "cnpjPattern": "Invalid CNPJ",
+            "email": "E-mail",
             "emailPlaceholder": "Enter your email",
             "emailRequired": "Email is required",
             "emailInvalid": "Invalid email",
@@ -93,6 +129,42 @@
             "confirmEmailPlaceholder": "Confirm your email",
             "confirmEmailRequired": "Confirm Email is required",
             "confirmEmailInvalid": "Invalid confirm email",
+            "password": "Password",
+            "passwordPlaceholder": "Enter your password",
+            "passwordRequired": "Password is required",
+            "passwordMinLength": "Password must be at least 6 characters long",
+            "passwordPattern": "Password must contain letters and numbers",
+            "confirmPassword": "Confirm Password",
+            "confirmPasswordPlaceholder": "Confirm your password",
+            "confirmPasswordRequired": "Confirm Password is required",
+            "confirmPasswordMinLength": "Confirm Password must be at least 6 characters long",
+            "passwordMismatch": "Passwords do not match!",
+            "button": "Sign Up",
+            "switchToLogin" : "Already have an account? Login!",
+            "switchToRegister" : "Already have an account? Login!"
+          }
+        },
+        "login": {
+          "h4" : "Or",
+          "social": {
+            "h4" : "Login with Social Media:",
+            "facebook": "Facebook",
+            "google": "Google",
+            "github": "GitHub",
+            "linkedin": "LinkedIn"
+          },
+          "title": "Login as Company",
+          "form": {
+            "email": "e-Mail",
+            "emailLogin": "e-Mail",
+            "emailPlaceholder": "Enter your email",
+            "emailRequired": "Email is required",
+            "emailInvalid": "Invalid email",
+            "confirmEmail": "Confirm Email",
+            "confirmEmailPlaceholder": "Confirm your email",
+            "confirmEmailRequired": "Confirm Email is required",
+            "confirmEmailInvalid": "Invalid confirm email",
+            "cnpjLogin": "CNPJ",
             "password": "Password",
             "passwordPlaceholder": "Enter your password",
             "passwordRequired": "Password is required",
@@ -113,7 +185,7 @@
           "register": "Register"
         },
         "links": {
-          "register": "Sign up",
+          "register": "Sign Up",
           "login": "Already have an account"
         }
       }

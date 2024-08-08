@@ -4,12 +4,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { CandidateRegistration } from './../interface/candidateRegistraton.interface';
+import { Router } from '@angular/router';
 
 // Define o serviço como injetável
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  loginWithSocial(provider: string) {
+    throw new Error('Method not implemented.');
+  }
 
   private userTypeSubject = new BehaviorSubject<'empresa' | 'candidato'>('candidato');
 
@@ -17,7 +21,8 @@ export class AuthService {
 
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {}
 
   setLoginType(type: 'empresa' | 'candidato'): void {
@@ -94,25 +99,25 @@ export class AuthService {
     return throwError(errorMessage);
   }
 
-  loginCandidate(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/candidato/login`, { email, password })
+  loginCandidate(email: string, password: string, cpf: number): Observable<any> {
+    return this.http.post(`${this.baseUrl}/candidato/login`, { email, password, cpf })
       .pipe(catchError(this.handleError));
   }
 
   // Método para login de empresa
-  loginCompany(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/empresa/login`, { email, password })
+  loginCompany(email: string, password: string, cnpj: number): Observable<any> {
+    return this.http.post(`${this.baseUrl}/empresa/login`, { email, cnpj, password })
       .pipe(catchError(this.handleError));
   }
 
   // Método para registrar um novo candidato
-  registerCandidate(nome: string, cpf: string, email: string, emailConfirm: string, senha: string, senhaConfirm: string): Observable<any> {
+  registerCandidate(nome: string, cpf: number, email: string, emailConfirm: string, senha: string, senhaConfirm: string): Observable<any> {
     return this.http.post(`${this.baseUrl}/candidato/registrar`, { nome, cpf, email, emailConfirm, senha, senhaConfirm })
       .pipe(catchError(this.handleError));
   }
 
   // Método para registrar uma nova empresa
-  registerCompany(razaoSocial: string, cnpj: string, email: string, emailConfirm: string, senha: string, senhaConfirm: string): Observable<any> {
+  registerCompany(razaoSocial: string, cnpj: number, email: string, emailConfirm: string, senha: string, senhaConfirm: string): Observable<any> {
     return this.http.post(`${this.baseUrl}/empresa/registrar`, { razaoSocial, cnpj, email, emailConfirm, senha, senhaConfirm })
       .pipe(catchError(this.handleError));
   }
@@ -143,7 +148,7 @@ export class AuthService {
 
   // Método para deslogar o usuário
   logout(): void {
-    // Implemente a lógica de logout aqui
-    // Exemplo: remova o token de autenticação do armazenamento local
+    localStorage.removeItem('authToken'); // Exemplo: remova o token de autenticação
+    this.router.navigate(['/auth/candidato/login']); // Redirecione para a página de login
   }
 }

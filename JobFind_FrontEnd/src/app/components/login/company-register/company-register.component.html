@@ -1,1 +1,164 @@
-<p>company-register works!</p>
+<app-nav-menu></app-nav-menu>
+
+<div class="company-page">
+  <div class="left-section">
+    <!-- Conteúdo opcional à esquerda -->
+  </div>
+
+  <div class="right-section">
+    <div class="card shadow-sm">
+      <div class="card-header">
+        <h4 class="card-title text-center">
+          {{ 'pages.translate.empresasAuth.register.title' | translate }}
+        </h4>
+      </div>
+
+      <div class="card-body">
+        <!-- Seletor de login com redes sociais -->
+        <div class="social-login text-center mt-3">
+          <button class="btn btn-social facebook" (click)="loginWithSocial('facebook')">
+            <i class="bi bi-facebook"></i> {{ 'pages.translate.empresasAuth.register.social.facebook' | translate }}
+          </button>
+          <button class="btn btn-social google" (click)="loginWithSocial('google')">
+            <i class="bi bi-google"></i> {{ 'pages.translate.empresasAuth.register.social.google' | translate }}
+          </button>
+          <button class="btn btn-social github" (click)="loginWithSocial('github')">
+            <i class="bi bi-github"></i> {{ 'pages.translate.empresasAuth.register.social.github' | translate }}
+          </button>
+          <button class="btn btn-social linkedin" (click)="loginWithSocial('linkedin')">
+            <i class="bi bi-linkedin"></i> {{ 'pages.translate.empresasAuth.register.social.linkedin' | translate }}
+          </button>
+        </div>
+
+        <h4 class="card-title text-center mt-4">
+          {{ 'pages.translate.empresasAuth.register.form.title' | translate }}
+        </h4>
+
+        <form [formGroup]="companyForm" (ngSubmit)="onSubmit()">
+          <div class="form-group mb-3">
+            <label for="razaoSocial">{{ 'pages.translate.empresasAuth.register.form.razaoSocial' | translate }}</label>
+            <input type="text" class="form-control" id="razaoSocial"
+              placeholder="{{ 'pages.translate.empresasAuth.register.form.razaoSocialPlaceholder' | translate }}" formControlName="razaoSocial"
+              required>
+            <div *ngIf="companyForm.get('razaoSocial')?.touched && companyForm.get('razaoSocial')?.invalid"
+              class="invalid-feedback">
+              <div *ngIf="companyForm.get('razaoSocial')?.errors?.['required']">
+                {{ 'pages.translate.empresasAuth.register.form.razaoSocialRequired' | translate }}
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="cnpj">{{ 'pages.translate.empresasAuth.register.form.cnpj' | translate }}</label>
+            <input type="text" class="form-control" id="cnpj"
+              placeholder="{{ 'pages.translate.empresasAuth.register.form.cnpjPlaceholder' | translate }}" formControlName="cnpj"
+              mask="00.000.000/0000-00"
+              maxlength="18"
+              required>
+            <div *ngIf="companyForm.get('cnpj')?.touched && companyForm.get('cnpj')?.invalid"
+              class="invalid-feedback">
+              <div *ngIf="companyForm.get('cnpj')?.errors?.['required']">
+                {{ 'pages.translate.empresasAuth.register.form.cnpjRequired' | translate }}
+              </div>
+              <div *ngIf="companyForm.get('cnpj')?.errors?.['pattern']">
+                {{ 'pages.translate.empresasAuth.register.form.cnpjInvalid' | translate }}
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="email">{{ 'pages.translate.empresasAuth.register.form.email' | translate }}</label>
+            <input type="email" class="form-control" id="email"
+              placeholder="{{ 'pages.translate.empresasAuth.register.form.emailPlaceholder' | translate }}" formControlName="email"
+              required>
+            <div *ngIf="companyForm.get('email')?.touched && companyForm.get('email')?.invalid"
+              class="invalid-feedback">
+              <div *ngIf="companyForm.get('email')?.errors?.['required']">
+                {{ 'pages.translate.empresasAuth.register.form.emailRequired' | translate }}
+              </div>
+              <div *ngIf="companyForm.get('email')?.errors?.['email']">
+                {{ 'pages.translate.empresasAuth.register.form.emailInvalid' | translate }}
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="confirmEmail">{{ 'pages.translate.empresasAuth.register.form.confirmEmail' | translate }}</label>
+            <input type="email" class="form-control" id="confirmEmail"
+              placeholder="{{ 'pages.translate.empresasAuth.register.form.confirmEmailPlaceholder' | translate }}" formControlName="confirmEmail"
+              required>
+            <div *ngIf="companyForm.get('confirmEmail')?.touched && companyForm.get('confirmEmail')?.invalid"
+              class="invalid-feedback">
+              <div *ngIf="companyForm.get('confirmEmail')?.errors?.['required']">
+                {{ 'pages.translate.empresasAuth.register.form.confirmEmailRequired' | translate }}
+              </div>
+              <div *ngIf="companyForm.get('confirmEmail')?.errors?.['email']">
+                {{ 'pages.translate.empresasAuth.register.form.confirmEmailInvalid' | translate }}
+              </div>
+              <div *ngIf="companyForm.get('confirmEmail')?.errors?.['emailMismatch']">
+                {{ 'pages.translate.empresasAuth.register.form.confirmEmailMismatch' | translate }}
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="password">
+              {{ 'pages.translate.empresasAuth.register.form.password' | translate }}
+              <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'" (click)="togglePasswordVisibility()"></i>
+            </label>
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              class="form-control"
+              id="password"
+              placeholder="{{ 'pages.translate.empresasAuth.register.form.passwordPlaceholder' | translate }}"
+              formControlName="password"
+              required
+            />
+            <div *ngIf="companyForm.get('password')?.touched && companyForm.get('password')?.invalid"
+              class="invalid-feedback">
+              <div *ngIf="companyForm.get('password')?.errors?.['required']">
+                {{ 'pages.translate.empresasAuth.register.form.passwordRequired' | translate }}
+              </div>
+              <div *ngIf="companyForm.get('password')?.errors?.['minlength']">
+                {{ 'pages.translate.empresasAuth.register.form.passwordMinLength' | translate }}
+              </div>
+              <div *ngIf="companyForm.get('password')?.errors?.['pattern']">
+                {{ 'pages.translate.empresasAuth.register.form.passwordPattern' | translate }}
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="confirmPassword">
+              {{ 'pages.translate.empresasAuth.register.form.confirmPassword' | translate }}
+              <i class="fa" [ngClass]="showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'" (click)="toggleConfirmPasswordVisibility()"></i>
+            </label>
+            <input type="password" class="form-control" id="confirmPassword"
+              placeholder="{{ 'pages.translate.empresasAuth.register.form.confirmPasswordPlaceholder' | translate }}" formControlName="confirmPassword"
+              [type]="showConfirmPassword ? 'text' : 'password'"
+              required>
+            <div *ngIf="companyForm.get('confirmPassword')?.touched && companyForm.get('confirmPassword')?.invalid"
+              class="invalid-feedback">
+              <div *ngIf="companyForm.get('confirmPassword')?.errors?.['required']">
+                {{ 'pages.translate.empresasAuth.register.form.confirmPasswordRequired' | translate }}
+              </div>
+              <div *ngIf="companyForm.get('confirmPassword')?.errors?.['passwordMismatch']">
+                {{ 'pages.translate.empresasAuth.register.form.confirmPasswordMismatch' | translate }}
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100 mt-3">
+            {{ 'pages.translate.empresasAuth.register.button' | translate }}
+          </button>
+
+          <button type="button" class="btn btn-link mt-3" (click)="toggleScreen()">
+            {{ isLoginScreen ? ('pages.translate.empresasAuth.register.form.switchToRegister' | translate) : ('pages.translate.empresasAuth.register.form.switchToLogin' | translate) }}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

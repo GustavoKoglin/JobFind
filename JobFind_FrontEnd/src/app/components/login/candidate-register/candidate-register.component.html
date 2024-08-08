@@ -51,8 +51,9 @@
           <div class="form-group mb-3">
             <label for="cpf">{{ 'pages.translate.candidatosAuth.register.form.cpf' | translate }}</label>
             <input type="text" class="form-control" id="cpf"
-              placeholder="{{ 'pages.translate.candidatosAuth.register.form.cpfPlaceholder' | translate }}" formControlName="cpf"
-              mask="***.***.***-**"
+              placeholder="{{ 'pages.translate.candidatosAuth.register.form.cpfPlaceholder' | translate }}" |
+              mask="000.000.000-00"
+              formControlName="cpf"
               maxlength="14"
               required>
             <div *ngIf="candidateForm.get('cpf')?.touched && candidateForm.get('cpf')?.invalid"
@@ -101,7 +102,7 @@
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group mb-3">
             <label for="password">
               {{ 'pages.translate.candidatosAuth.register.form.password' | translate }}
               <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'" (click)="togglePasswordVisibility()"></i>
@@ -129,9 +130,13 @@
           </div>
 
           <div class="form-group mb-3">
-            <label for="confirmPassword">{{ 'pages.translate.candidatosAuth.register.form.confirmPassword' | translate }}</label>
+            <label for="confirmPassword">
+              {{ 'pages.translate.candidatosAuth.register.form.confirmPassword' | translate }}
+              <i class="fa" [ngClass]="showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'" (click)="toggleConfirmPasswordVisibility()"></i>
+            </label>
             <input type="password" class="form-control" id="confirmPassword"
               placeholder="{{ 'pages.translate.candidatosAuth.register.form.confirmPasswordPlaceholder' | translate }}" formControlName="confirmPassword"
+              [type]="showConfirmPassword ? 'text' : 'password'"
               required>
             <div *ngIf="candidateForm.get('confirmPassword')?.touched && candidateForm.get('confirmPassword')?.invalid"
               class="invalid-feedback">

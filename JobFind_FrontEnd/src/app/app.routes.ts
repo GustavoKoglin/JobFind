@@ -15,7 +15,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 
 import { CandidateLoginComponent } from './components/login/candidate-login/candidate-login.component';
-import { CompanyLoginComponent } from './components/login/company-login/company.component';
+import { CompanyLoginComponent } from './components/login/company-login/company-login.component';
 import { CandidateRegisterComponent } from './components/login/candidate-register/candidate-register.component';
 import { CompanyRegisterComponent } from './components/login/company-register/company-register.component';
 
