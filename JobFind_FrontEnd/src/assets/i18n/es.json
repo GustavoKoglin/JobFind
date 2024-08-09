@@ -22,10 +22,10 @@
       "footer": {
         "sobre": "Sobre",
         "suporte": "Soporte",
-        "faq" : "FAQ",
+        "faq": "FAQ",
         "trabalheConosco": "Trabaja con nosotros",
         "politicaPrivacidade": "Política de Privacidad",
-        "copyright": "COPYRIGHT © 2024 | JOBFIND | TODOS LOS DERECHOS RESERVADOS.",
+        "copyright": "COPYRIGHT \u00A9 2024 | JOBFIND | TODOS LOS DERECHOS RESERVADOS | DESARROLLADO POR FOREIGN TECNOLOGIES \u2122 \u00AE",
         "termosUso": "Terminos de uso",
         "contato": "Contacto"
       },
@@ -45,15 +45,78 @@
         "empresaRegister": "Enregistrer l'Entreprise",
         "candidatoRegister": "Enregistrer le Candidat"
       },
-      "candidato": {
-        "login": {
-          "title": "Iniciar sesión",
+      "candidatosAuth": {
+        "button": {
+          "login": "Entrar",
+          "register": "Crear una cuenta"
+        },
+        "links": {
+          "register": "Crear una cuenta",
+          "login": "Ya tengo una cuenta"
+        },
+        "register": {
+          "title": "Regístrate como Candidato",
+          "h4": "O",
+          "button": "Registrar",
           "form": {
-            "email": "Correo electrónico",
+            "fullName": "Nombre Completo",
+            "fullNamePlaceholder": "Ingrese su nombre completo",
+            "fullNameRequired": "El nombre completo es obligatorio",
+            "fullNamePattern": "El nombre completo debe contener solo letras",
+            "email": "Correo Electrónico",
+            "emailPlaceholder": "nombre@dominio.com",
+            "emailRequired": "El correo electrónico es obligatorio",
+            "emailInvalid": "Correo electrónico inválido",
+            "confirmEmail": "Confirmar Correo Electrónico",
+            "confirmEmailPlaceholder": "nombre@dominio.com",
+            "confirmEmailRequired": "La confirmación del correo electrónico es obligatoria",
+            "confirmEmailMismatch": "Los correos electrónicos no coinciden",
+            "cpf": "CPF",
+            "cpfPlaceholder": "000.000.000-00",
+            "cpfRequired": "El CPF es obligatorio",
+            "cpfInvalid": "CPF inválido",
+            "password": "Contraseña",
+            "passwordPlaceholder": "Ingrese su contraseña",
+            "passwordRequired": "La contraseña es obligatoria",
+            "passwordMinLength": "La contraseña debe tener al menos 6 caracteres",
+            "passwordMaxLength": "La contraseña no puede tener más de 20 caracteres",
+            "confirmPassword": "Confirmar Contraseña",
+            "confirmPasswordPlaceholder": "Ingrese su contraseña nuevamente",
+            "confirmPasswordRequired": "La confirmación de la contraseña es obligatoria",
+            "confirmPasswordMismatch": "Las contraseñas no coinciden",
+            "terms": "Acepto los términos de uso y la política de privacidad",
+            "termsRequired": "Debe aceptar los términos de uso",
+            "switchToLogin": "¿Ya tienes una cuenta? ¡Inicia sesión!",
+            "switchToRegister": "¿Ya tienes una cuenta? ¡Inicia sesión!"
+          },
+          "social": {
+            "facebook": "Facebook",
+            "google": "Google",
+            "github": "GitHub",
+            "linkedin": "LinkedIn"
+          }
+        },
+        "login": {
+          "loginCandidato": "Iniciar sesión como Candidato:",
+          "login": "O",
+          "registrar": "Regístrate como Candidato:",
+          "social": {
+            "h4": "Inicia sesión con Redes Sociales:",
+            "facebook": "Facebook",
+            "google": "Google",
+            "github": "GitHub",
+            "linkedin": "LinkedIn"
+          },
+          "form": {
+            "email": "Correo Electrónico",
+            "emailLogin": "Iniciar sesión con Correo Electrónico",
+            "cpfLogin": "Iniciar sesión con CPF",
+            "cpf": "CPF",
+            "cpfLoginPlaceholder": "000.000.000-00",
             "emailPlaceholder": "Ingrese su correo electrónico",
             "emailRequired": "El correo electrónico es obligatorio",
             "emailInvalid": "Correo electrónico inválido",
-            "confirmEmail": "Confirme su correo electrónico",
+            "confirmEmail": "Confirmar Correo Electrónico",
             "confirmEmailPlaceholder": "Ingrese su correo electrónico nuevamente",
             "confirmEmailRequired": "La confirmación del correo electrónico es obligatoria",
             "confirmEmailInvalid": "Correo electrónico inválido",
@@ -63,58 +126,113 @@
             "passwordRequired": "La contraseña es obligatoria",
             "passwordMinLength": "La contraseña debe tener al menos 6 caracteres",
             "passwordPattern": "La contraseña debe contener letras y números",
-            "confirmPassword": "Confirme su contraseña",
+            "confirmPassword": "Confirmar Contraseña",
             "confirmPasswordPlaceholder": "Ingrese su contraseña nuevamente",
             "confirmPasswordRequired": "La confirmación de la contraseña es obligatoria",
             "confirmPasswordMinLength": "La confirmación de la contraseña debe tener al menos 6 caracteres",
             "passwordMismatch": "Las contraseñas no coinciden",
             "rememberMe": "Recuérdame",
             "stayLogged": "Permanecer conectado",
-            "forgotPassword": "¿Olvidó la contraseña?"
+            "forgotPassword": "¿Olvidaste la contraseña?"
           }
-        },
-        "button": {
-          "login": "Iniciar sesión"
-        },
-        "links": {
-          "register": "Crear una cuenta",
-          "login": "Ya tengo una cuenta"
         }
       },
       "empresasAuth": {
         "login": {
-          "title": "Iniciar sesión",
+          "title": "Iniciar sesión como Empresa:",
+          "social": {
+            "h4": "Iniciar sesión con Redes Sociales:",
+            "facebook": "Facebook",
+            "google": "Google",
+            "github": "GitHub",
+            "linkedin": "LinkedIn"
+          },
+          "h4": "O",
+          "registrar": "Regístrate como Empresa:",
           "form": {
-            "email": "Correo electrónico",
+            "emailLogin": "Correo Electrónico",
+            "cnpjLogin": "CNPJ",
+            "cnpj": "CNPJ",
+            "cnpjPlaceholder": "00.000.000/0000-00",
+            "email": "Correo Electrónico",
             "emailPlaceholder": "Ingrese su correo electrónico",
             "emailRequired": "El correo electrónico es obligatorio",
             "emailInvalid": "Correo electrónico inválido",
-            "confirmEmail": "Confirmar correo electrónico",
-            "confirmEmailPlaceholder": "Confirme su correo electrónico",
-            "confirmEmailRequired": "Confirmar correo electrónico es obligatorio",
+            "confirmEmail": "Confirmar Correo Electrónico",
+            "confirmEmailPlaceholder": "Ingrese su correo electrónico",
+            "confirmEmailRequired": "La confirmación del correo electrónico es obligatoria",
             "confirmEmailInvalid": "Correo electrónico de confirmación inválido",
             "password": "Contraseña",
             "passwordPlaceholder": "Ingrese su contraseña",
-            "passwordRequired": "Contraseña es obligatoria",
-            "passwordMinLength": "La contraseña debe tener al menos 6 caracteres",
+            "passwordRequired": "La contraseña es obligatoria",
+            "passwordMinLength": "La contraseña debe tener al menos 8 caracteres",
             "passwordPattern": "La contraseña debe contener letras, números y caracteres especiales",
-            "confirmPassword": "Confirmar contraseña",
-            "confirmPasswordPlaceholder": "Confirme su contraseña",
-            "confirmPasswordRequired": "Confirmar contraseña es obligatoria",
-            "confirmPasswordMinLength": "La contraseña de confirmación debe tener al menos 6 caracteres",
+            "confirmPassword": "Confirmar Contraseña",
+            "confirmPasswordPlaceholder": "Ingrese su contraseña nuevamente",
+            "confirmPasswordRequired": "La confirmación de la contraseña es obligatoria",
+            "confirmPasswordMinLength": "La confirmación de la contraseña debe tener al menos 8 caracteres",
             "passwordMismatch": "Las contraseñas no coinciden",
             "rememberMe": "Recuérdame",
             "stayLogged": "Permanecer conectado",
-            "forgotPassword": "¿Olvidó la contraseña?"
+            "forgotPassword": "¿Olvidaste la contraseña?"
           }
         },
         "button": {
-          "login": "Iniciar sesión",
+          "login": "Entrar",
           "register": "Registrarse"
         },
         "links": {
-          "register": "Regístrate",
+          "register": "Registrarse",
           "login": "Ya tengo una cuenta"
+        },
+        "register": {
+          "social": {
+            "facebook": "Facebook",
+            "google": "Google",
+            "github": "GitHub",
+            "linkedin": "LinkedIn"
+          },
+          "title": "Regístrate como Empresa",
+          "button": "Registrar",
+          "form": {
+            "title": "O",
+            "razaoSocial": "Razón Social",
+            "razaoSocialPlaceholder": "Ingrese la razón social de su empresa",
+            "razaoSocialRequired": "La razón social es obligatoria",
+            "razaoSocialPattern": "La razón social debe contener solo letras",
+            "fantasia": "Nombre Comercial",
+            "fantasiaPlaceholder": "Ingrese el nombre comercial de su empresa",
+            "companyName": "Nombre de la Empresa",
+            "companyNamePlaceholder": "Ingrese el nombre de su empresa",
+            "companyNameRequired": "El nombre de la empresa es obligatorio",
+            "companyNamePattern": "El nombre de la empresa debe contener solo letras",
+            "cnpj": "CNPJ",
+            "cnpjPlaceholder": "00.000.000/0000-00",
+            "cnpjRequired": "El CNPJ es obligatorio",
+            "cnpjInvalid": "CNPJ inválido",
+            "email": "Correo Electrónico",
+            "emailPlaceholder": "nombre@dominio.com",
+            "emailRequired": "El correo electrónico es obligatorio",
+            "emailInvalid": "Correo electrónico inválido",
+            "confirmEmail": "Confirmar Correo Electrónico",
+            "confirmEmailPlaceholder": "nombre@dominio.com",
+            "confirmEmailRequired": "La confirmación del correo electrónico es obligatoria",
+            "confirmEmailMismatch": "Los correos electrónicos no coinciden",
+            "password": "Contraseña",
+            "passwordPlaceholder": "Ingrese su contraseña",
+            "passwordRequired": "La contraseña es obligatoria",
+            "passwordMinLength": "La contraseña debe tener al menos 8 caracteres",
+            "passwordPattern": "La contraseña debe contener letras, números y caracteres especiales",
+            "confirmPassword": "Confirmar Contraseña",
+            "confirmPasswordPlaceholder": "Ingrese su contraseña nuevamente",
+            "confirmPasswordRequired": "La confirmación de la contraseña es obligatoria",
+            "confirmPasswordMinLength": "La confirmación de la contraseña debe tener al menos 8 caracteres",
+            "passwordMismatch": "Las contraseñas no coinciden",
+            "terms": "Acepto los términos de uso y la política de privacidad",
+            "termsRequired": "Debe aceptar los términos de uso",
+            "switchToLogin": "¿Ya tienes una cuenta? ¡Inicia sesión!",
+            "switchToRegister": "¿Ya tienes una cuenta? ¡Inicia sesión!"
+          }
         }
       }
     }

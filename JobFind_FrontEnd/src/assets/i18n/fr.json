@@ -28,7 +28,7 @@
         "button": "En savoir plus"
       },
       "footer": {
-        "copyright": "COPYRIGHT © 2024 | JOBFIND | TOUS DROITS RÉSERVÉS.",
+        "copyright": "COPYRIGHT \u00A9 2024 | JOBFIND | TOUS DROITS RÉSERVÉS | DÉVELOPPÉ PAR FOREIGN TECHNOLOGIES \u2122 \u00AE",
         "termosUso": "Conditions d'utilisation",
         "termosPrivacidade": "Confidentialité et modalités",
         "contato": "Contact",
@@ -55,76 +55,194 @@
         "empresaRegister": "Enregistrer l'Entreprise",
         "candidatoRegister": "Enregistrer le Candidat"
       },
-      "candidato": {
-        "login": {
-          "title": "Connexion",
-          "form": {
-            "email": "Email",
-            "emailPlaceholder": "Entrez votre email",
-            "emailRequired": "L'email est requis",
-            "emailInvalid": "Email invalide",
-            "confirmEmail": "Confirmez votre email",
-            "confirmEmailPlaceholder": "Entrez à nouveau votre email",
-            "confirmEmailRequired": "La confirmation de l'email est requise",
-            "confirmEmailInvalid": "Email invalide",
-            "emailMismatch": "Les emails ne correspondent pas",
-            "password": "Mot de passe",
-            "passwordPlaceholder": "Entrez votre mot de passe",
-            "passwordRequired": "Le mot de passe est requis",
-            "passwordMinLength": "Le mot de passe doit contenir au moins 6 caractères",
-            "passwordPattern": "Le mot de passe doit contenir des lettres et des chiffres",
-            "confirmPassword": "Confirmez votre mot de passe",
-            "confirmPasswordPlaceholder": "Entrez à nouveau votre mot de passe",
-            "confirmPasswordRequired": "La confirmation du mot de passe est requise",
-            "confirmPasswordMinLength": "La confirmation du mot de passe doit contenir au moins 6 caractères",
-            "passwordMismatch": "Les mots de passe ne correspondent pas",
-            "rememberMe": "Se souvenir de moi",
-            "stayLogged": "Rester connecté",
-            "forgotPassword": "Mot de passe oublié?"
-          }
-        },
+      "candidatosAuth": {
         "button": {
-          "login": "Se connecter"
+          "login": "Se connecter",
+          "register": "Créer un compte"
         },
         "links": {
           "register": "Créer un compte",
-          "login": "Déjà un compte"
-        }
-      },
-      "empresa": {
-        "login": {
-          "title": "Connexion",
+          "login": "J'ai déjà un compte"
+        },
+        "register": {
+          "title": "Inscrivez-vous en tant que Candidat",
+          "h4": "Ou",
+          "button": "S'inscrire",
           "form": {
+            "fullName": "Nom Complet",
+            "fullNamePlaceholder": "Entrez votre nom complet",
+            "fullNameRequired": "Le nom complet est obligatoire",
+            "fullNamePattern": "Le nom complet doit contenir uniquement des lettres",
             "email": "E-mail",
-            "emailPlaceholder": "Entrez votre e-mail",
-            "emailRequired": "L'e-mail est requis",
+            "emailPlaceholder": "nom@domaine.com",
+            "emailRequired": "L'e-mail est obligatoire",
             "emailInvalid": "E-mail invalide",
             "confirmEmail": "Confirmer l'e-mail",
-            "confirmEmailPlaceholder": "Confirmez votre e-mail",
-            "confirmEmailRequired": "La confirmation de l'e-mail est requise",
-            "confirmEmailInvalid": "E-mail de confirmation invalide",
+            "confirmEmailPlaceholder": "nom@domaine.com",
+            "confirmEmailRequired": "La confirmation de l'e-mail est obligatoire",
+            "confirmEmailMismatch": "Les e-mails ne correspondent pas",
+            "cpf": "CPF",
+            "cpfPlaceholder": "000.000.000-00",
+            "cpfRequired": "Le CPF est obligatoire",
+            "cpfInvalid": "CPF invalide",
             "password": "Mot de passe",
             "passwordPlaceholder": "Entrez votre mot de passe",
-            "passwordRequired": "Le mot de passe est requis",
+            "passwordRequired": "Le mot de passe est obligatoire",
             "passwordMinLength": "Le mot de passe doit contenir au moins 6 caractères",
-            "passwordPattern": "Le mot de passe doit contenir des lettres, des chiffres et des caractères spéciaux",
+            "passwordMaxLength": "Le mot de passe ne peut pas contenir plus de 20 caractères",
             "confirmPassword": "Confirmer le mot de passe",
-            "confirmPasswordPlaceholder": "Confirmez votre mot de passe",
-            "confirmPasswordRequired": "La confirmation du mot de passe est requise",
+            "confirmPasswordPlaceholder": "Entrez à nouveau votre mot de passe",
+            "confirmPasswordRequired": "La confirmation du mot de passe est obligatoire",
+            "confirmPasswordMismatch": "Les mots de passe ne correspondent pas",
+            "terms": "J'accepte les conditions d'utilisation et la politique de confidentialité",
+            "termsRequired": "Vous devez accepter les conditions d'utilisation",
+            "switchToLogin": "Vous avez déjà un compte ? Connectez-vous !",
+            "switchToRegister": "Vous avez déjà un compte ? Connectez-vous !"
+          },
+          "social": {
+            "facebook": "Facebook",
+            "google": "Google",
+            "github": "GitHub",
+            "linkedin": "LinkedIn"
+          }
+        },
+        "login": {
+          "loginCandidato": "Se connecter en tant que Candidat :",
+          "login": "Ou",
+          "registrar": "Inscrivez-vous en tant que Candidat :",
+          "social": {
+            "h4": "Se connecter avec les Réseaux Sociaux :",
+            "facebook": "Facebook",
+            "google": "Google",
+            "github": "GitHub",
+            "linkedin": "LinkedIn"
+          },
+          "form": {
+            "email": "E-mail",
+            "emailLogin": "Se connecter avec E-mail",
+            "cpfLogin": "Se connecter avec CPF",
+            "cpf": "CPF",
+            "cpfLoginPlaceholder": "000.000.000-00",
+            "emailPlaceholder": "Entrez votre e-mail",
+            "emailRequired": "L'e-mail est obligatoire",
+            "emailInvalid": "E-mail invalide",
+            "confirmEmail": "Confirmer l'e-mail",
+            "confirmEmailPlaceholder": "Entrez à nouveau votre e-mail",
+            "confirmEmailRequired": "La confirmation de l'e-mail est obligatoire",
+            "confirmEmailInvalid": "E-mail invalide",
+            "emailMismatch": "Les e-mails ne correspondent pas",
+            "password": "Mot de passe",
+            "passwordPlaceholder": "Entrez votre mot de passe",
+            "passwordRequired": "Le mot de passe est obligatoire",
+            "passwordMinLength": "Le mot de passe doit contenir au moins 6 caractères",
+            "passwordPattern": "Le mot de passe doit contenir des lettres et des chiffres",
+            "confirmPassword": "Confirmer le mot de passe",
+            "confirmPasswordPlaceholder": "Entrez à nouveau votre mot de passe",
+            "confirmPasswordRequired": "La confirmation du mot de passe est obligatoire",
             "confirmPasswordMinLength": "La confirmation du mot de passe doit contenir au moins 6 caractères",
             "passwordMismatch": "Les mots de passe ne correspondent pas",
             "rememberMe": "Se souvenir de moi",
             "stayLogged": "Rester connecté",
-            "forgotPassword": "Mot de passe oublié?"
+            "forgotPassword": "Mot de passe oublié ?"
+          }
+        }
+      },
+      "empresasAuth": {
+        "login": {
+          "title": "Se connecter en tant qu'Entreprise :",
+          "social": {
+            "h4": "Se connecter avec les Réseaux Sociaux :",
+            "facebook": "Facebook",
+            "google": "Google",
+            "github": "GitHub",
+            "linkedin": "LinkedIn"
+          },
+          "h4": "Ou",
+          "registrar": "Inscrivez-vous en tant qu'Entreprise :",
+          "form": {
+            "emailLogin": "E-mail",
+            "cnpjLogin": "CNPJ",
+            "cnpj": "CNPJ",
+            "cnpjPlaceholder": "00.000.000/0000-00",
+            "email": "E-mail",
+            "emailPlaceholder": "Entrez votre e-mail",
+            "emailRequired": "L'e-mail est obligatoire",
+            "emailInvalid": "E-mail invalide",
+            "confirmEmail": "Confirmer l'e-mail",
+            "confirmEmailPlaceholder": "Entrez votre e-mail",
+            "confirmEmailRequired": "La confirmation de l'e-mail est obligatoire",
+            "confirmEmailInvalid": "E-mail de confirmation invalide",
+            "password": "Mot de passe",
+            "passwordPlaceholder": "Entrez votre mot de passe",
+            "passwordRequired": "Le mot de passe est obligatoire",
+            "passwordMinLength": "Le mot de passe doit contenir au moins 8 caractères",
+            "passwordPattern": "Le mot de passe doit contenir des lettres, des chiffres et des caractères spéciaux",
+            "confirmPassword": "Confirmer le mot de passe",
+            "confirmPasswordPlaceholder": "Entrez à nouveau votre mot de passe",
+            "confirmPasswordRequired": "La confirmation du mot de passe est obligatoire",
+            "confirmPasswordMinLength": "La confirmation du mot de passe doit contenir au moins 8 caractères",
+            "passwordMismatch": "Les mots de passe ne correspondent pas",
+            "rememberMe": "Se souvenir de moi",
+            "stayLogged": "Rester connecté",
+            "forgotPassword": "Mot de passe oublié ?"
           }
         },
         "button": {
-          "login": "Connexion",
+          "login": "Se connecter",
           "register": "S'inscrire"
         },
         "links": {
           "register": "S'inscrire",
-          "login": "Vous avez déjà un compte"
+          "login": "J'ai déjà un compte"
+        },
+        "register": {
+          "social": {
+            "facebook": "Facebook",
+            "google": "Google",
+            "github": "GitHub",
+            "linkedin": "LinkedIn"
+          },
+          "title": "Inscrivez-vous en tant qu'Entreprise",
+          "button": "S'inscrire",
+          "form": {
+            "title": "Ou",
+            "razaoSocial": "Raison Sociale",
+            "razaoSocialPlaceholder": "Entrez la raison sociale de votre entreprise",
+            "razaoSocialRequired": "La raison sociale est obligatoire",
+            "razaoSocialPattern": "La raison sociale doit contenir uniquement des lettres",
+            "fantasia": "Nom Commercial",
+            "fantasiaPlaceholder": "Entrez le nom commercial de votre entreprise",
+            "companyName": "Nom de l'Entreprise",
+            "companyNamePlaceholder": "Entrez le nom de votre entreprise",
+            "companyNameRequired": "Le nom de l'entreprise est obligatoire",
+            "companyNamePattern": "Le nom de l'entreprise doit contenir uniquement des lettres",
+            "cnpj": "CNPJ",
+            "cnpjPlaceholder": "00.000.000/0000-00",
+            "cnpjRequired": "Le CNPJ est obligatoire",
+            "cnpjInvalid": "CNPJ invalide",
+            "email": "E-mail",
+            "emailPlaceholder": "nom@domaine.com",
+            "emailRequired": "L'e-mail est obligatoire",
+            "emailInvalid": "E-mail invalide",
+            "confirmEmail": "Confirmer l'e-mail",
+            "confirmEmailPlaceholder": "nom@domaine.com",
+            "confirmEmailRequired": "La confirmation de l'e-mail est obligatoire",
+            "confirmEmailMismatch": "Les e-mails ne correspondent pas",
+            "password": "Mot de passe",
+            "passwordPlaceholder": "Entrez votre mot de passe",
+            "passwordRequired": "Le mot de passe est obligatoire",
+            "passwordMinLength": "Le mot de passe doit contenir au moins 8 caractères",
+            "passwordPattern": "Le mot de passe doit contenir des lettres, des chiffres et des caractères spéciaux",
+            "confirmPassword": "Confirmer le mot de passe",
+            "confirmPasswordPlaceholder": "Entrez à nouveau votre mot de passe",
+            "confirmPasswordRequired": "La confirmation du mot de passe est obligatoire",
+            "confirmPasswordMinLength": "La confirmation du mot de passe doit contenir au moins 8 caractères",
+            "passwordMismatch": "Les mots de passe ne correspondent pas",
+            "terms": "J'accepte les conditions d'utilisation et la politique de confidentialité",
+            "termsRequired": "Vous devez accepter les conditions d'utilisation",
+            "switchToLogin": "Vous avez déjà un compte ? Connectez-vous !",
+            "switchToRegister": "Vous avez déjà un compte ? Connectez-vous !"
+          }
         }
       }
     }

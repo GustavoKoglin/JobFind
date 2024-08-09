@@ -1,38 +1,45 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { CandidateRegistration } from './../interface/candidateRegistraton.interface';
 import { Router } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
 // Define o serviço como injetável
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  loginWithSocial(provider: string) {
-    throw new Error('Method not implemented.');
-  }
 
-  private userTypeSubject = new BehaviorSubject<'empresa' | 'candidato'>('candidato');
+  private userTypeSubject = new BehaviorSubject<'empresa' | 'candidato'>('candidato'); // Valor inicial padrão
 
   private baseUrl = 'http://yourapiurl.com/auth'; // URL base para as requisições de autenticação
 
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
-    private router: Router
-  ) {}
-
-  setLoginType(type: 'empresa' | 'candidato'): void {
-    this.userTypeSubject.next(type);
-    localStorage.setItem('userType', type);
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    this.initializeUserType();
   }
 
+  private initializeUserType(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      const userType = localStorage.getItem('userType') as 'empresa' | 'candidato' || 'candidato';
+      this.userTypeSubject.next(userType);
+    }
+  }
+
+  setLoginType(userType: 'empresa' | 'candidato'): void {
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('userType', userType);
+      this.userTypeSubject.next(userType);
+    }
+  }
   getLoginType(): Observable<'empresa' | 'candidato'> {
-    const userType = localStorage.getItem('userType') as 'empresa' | 'candidato' || 'candidato';
-    this.userTypeSubject.next(userType);
     return this.userTypeSubject.asObservable();
   }
 
@@ -100,49 +107,49 @@ export class AuthService {
   }
 
   loginCandidate(email: string, password: string, cpf: number): Observable<any> {
-    return this.http.post(`${this.baseUrl}/candidato/login`, { email, password, cpf })
+    return this.http.post(`${this.baseUrl}auth/candidato/login`, { email, password, cpf })
       .pipe(catchError(this.handleError));
   }
 
   // Método para login de empresa
   loginCompany(email: string, password: string, cnpj: number): Observable<any> {
-    return this.http.post(`${this.baseUrl}/empresa/login`, { email, cnpj, password })
+    return this.http.post(`${this.baseUrl}auth/empresa/login`, { email, cnpj, password })
       .pipe(catchError(this.handleError));
   }
 
   // Método para registrar um novo candidato
   registerCandidate(nome: string, cpf: number, email: string, emailConfirm: string, senha: string, senhaConfirm: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/candidato/registrar`, { nome, cpf, email, emailConfirm, senha, senhaConfirm })
+    return this.http.post(`${this.baseUrl}auth/candidato/registrar`, { nome, cpf, email, emailConfirm, senha, senhaConfirm })
       .pipe(catchError(this.handleError));
   }
 
   // Método para registrar uma nova empresa
   registerCompany(razaoSocial: string, cnpj: number, email: string, emailConfirm: string, senha: string, senhaConfirm: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/empresa/registrar`, { razaoSocial, cnpj, email, emailConfirm, senha, senhaConfirm })
+    return this.http.post(`${this.baseUrl}auth/empresa/registrar`, { razaoSocial, cnpj, email, emailConfirm, senha, senhaConfirm })
       .pipe(catchError(this.handleError));
   }
 
   // Método para recuperar senha de candidato
   forgotPasswordCandidate(email: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/candidato/forgot-password`, { email })
+    return this.http.post(`${this.baseUrl}auth/candidato/forgot-password`, { email })
       .pipe(catchError(this.handleError));
   }
 
   // Método para recuperar senha de empresa
   forgotPasswordCompany(email: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/empresa/forgot-password`, { email })
+    return this.http.post(`${this.baseUrl}auth/empresa/forgot-password`, { email })
       .pipe(catchError(this.handleError));
   }
 
   // Método para alterar senha de candidato
   changePasswordCandidate(data: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/candidato/change-password`, data)
+    return this.http.post(`${this.baseUrl}auth/candidato/change-password`, data)
       .pipe(catchError(this.handleError));
   }
 
   // Método para alterar senha de empresa
   changePasswordCompany(data: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/empresa/change-password`, data)
+    return this.http.post(`${this.baseUrl}auth/empresa/change-password`, data)
       .pipe(catchError(this.handleError));
   }
 
@@ -150,5 +157,10 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('authToken'); // Exemplo: remova o token de autenticação
     this.router.navigate(['/auth/candidato/login']); // Redirecione para a página de login
+  }
+
+  loginWithSocial(provider: string): Observable<any> {
+    // Ajuste o endpoint e a lógica conforme necessário
+    return this.http.post<any>(`${this.baseUrl}/auth/${provider}`, {});
   }
 }

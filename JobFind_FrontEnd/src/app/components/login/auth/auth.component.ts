@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FooterComponent } from "../../../layouts/footer/footer.component";
-import { NavMenuComponent } from "../../../layouts/nav-menu/nav.menu.component";
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { AuthService } from '../../../services/auth.service';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { AuthService } from '../../../services/auth.service';
+import { StorageService } from '../../../services/storage.service'; // Importe o serviço
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { FooterComponent } from '../../../layouts/footer/footer.component';
+import { NavMenuComponent } from '../../../layouts/nav-menu/nav.menu.component';
 
 @Component({
   selector: 'app-auth',
@@ -29,32 +30,36 @@ export class AuthComponent implements OnInit {
   constructor(
     private translate: TranslateService,
     private authService: AuthService,
-    private router: Router
-  ) {
-    console.log('UserType on Constructor:', this.userType);
-    console.log('LoginType on Constructor:', this.loginType);
-  }
+    private router: Router,
+    private storageService: StorageService // Injete o serviço
+  ) {}
 
   ngOnInit(): void {
     this.authService.getLoginType().subscribe(userType => {
       this.userType = userType;
-      console.log('UserType on Init:', this.userType);
 
-      //redirecionar para a página de login de candidato ou empresa
       if (this.userType === 'candidato' && this.router.url === '/auth/candidato/login') {
         this.router.navigate(['auth/candidato/login']);
       } else if (this.userType === 'empresa' && this.router.url === '/auth/empresa/login') {
         this.router.navigate(['auth/empresa/login']);
       }
 
-      //redirecionar para a página de registro de candidato ou empresa
-      if (this.userType === 'candidato' && this.router.url === '/auth/candidato/registro') {
+      if (this.userType === 'candidato' && this.router.url === '/auth/candidato/registrar') {
         this.router.navigate(['auth/candidato/registrar']);
-      } else if (this.userType === 'empresa' && this.router.url === '/auth/empresa/registro') {
-        this.router.navigate(['/empresa/registrar']);
+      } else if (this.userType === 'empresa' && this.router.url === '/auth/empresa/registrar') {
+        this.router.navigate(['auth/empresa/registrar']);
       }
     });
+
+    // Corrige o tipo para loginType
+    const storedLoginType = this.storageService.getItem('loginType');
+    if (storedLoginType === 'login' || storedLoginType === 'registrar') {
+      this.loginType = storedLoginType;
+    } else {
+      this.loginType = 'login'; // Ou defina um valor padrão, se necessário
+    }
   }
+
 
   navigateTo(path: 'login' | 'registrar'): void {
     if (this.userType) {
@@ -67,7 +72,7 @@ export class AuthComponent implements OnInit {
 
   setLoginType(loginType: 'login' | 'registrar'): void {
     this.loginType = loginType;
-    console.log('LoginType:', this.loginType);
-    this.navigateTo(this.loginType); // Verifique se a navegação está funcionando conforme o esperado
+    this.storageService.setItem('loginType', loginType); // Usando o serviço
+    this.navigateTo(this.loginType);
   }
 }

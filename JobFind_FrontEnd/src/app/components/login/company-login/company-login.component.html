@@ -70,12 +70,12 @@
           </div>
 
           <div *ngIf="loginMethod === 'cnpj'" class="form-group mb-3">
-            <label for="cnpj">{{ 'pages.translate.empresasAuth.login.form.cnpj' | translate }}</label>
+            <label for="cnpj">{{ 'pages.translate.empresasAuth.login.form.cnpjLogin' | translate }}</label>
             <input
               type="text"
               class="form-control"
               id="cnpj"
-              placeholder="{{ 'pages.translate.empresasAuth.login.form.cnpjPlaceholder' | translate }}"
+              placeholder="{{ 'pages.translate.empresasAuth.login.form.cnpjLoginPlaceholder' | translate }}"
               formControlName="cnpj"
               mask="000.000.000-00"
               maxlength="14"

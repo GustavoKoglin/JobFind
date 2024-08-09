@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { AuthService } from '../../../services/auth.service';
 import { NavMenuComponent } from "../../../layouts/nav-menu/nav.menu.component";
@@ -15,6 +15,7 @@ import { ToastrService } from 'ngx-toastr';
     TranslateModule,
     RouterLink,
     RouterLinkActive,
+    RouterModule,
     CommonModule,
     ReactiveFormsModule,
     NavMenuComponent,
@@ -32,7 +33,6 @@ throw new Error('Method not implemented.');
   loginUserType: 'login' | 'registrar' = 'login'; // Assegure-se de que o tipo está correto
   loginMethod: 'cpf' | 'email' = 'email';
   showPassword = false;
-  cpfMask = '000.000.000-00';
 
   constructor(
     private toast: ToastrService,
@@ -41,7 +41,18 @@ throw new Error('Method not implemented.');
     private authService: AuthService,
     private router: Router,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) { }
+  ) {
+    this.candidateForm = this.fb.group({
+      nome: [''],
+      cpf: [''],
+      email: [''],
+      emailConfirm: [''],
+      senha: [''],
+      senhaConfirm: [''],
+      rememberMe: [false],
+      stayLogged: [false]
+    });
+  }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -50,7 +61,7 @@ throw new Error('Method not implemented.');
   initializeForm(): void {
     this.candidateForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      cpf: ['', [Validators.required, Validators.pattern(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/)]],
+      cpf: ['', [Validators.required]],
       senha: ['', [Validators.required, Validators.minLength(6), Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/)]],
       rememberMe: [false],
       stayLogged: [false]
@@ -69,24 +80,11 @@ throw new Error('Method not implemented.');
   }
 
   toggleForm(type: 'login' | 'registrar'): void {
-    if (type === 'registrar') {
-      this.router.navigate(['/auth/candidato/registrar']); // Redireciona para a página de registro
+    if (type === 'login') {
+      this.router.navigate(['/auth/candidato/login']); // Redireciona para a página de registro
     } else {
-      this.router.navigate(['/auth/candidato/login']); // Redireciona para a página de login
+      this.router.navigate(['/auth/candidato/registrar']); // Redireciona para a página de login
     }
-  }
-
-  formatCPF(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    let value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
-
-    // Aplica a formatação: 000.000.000-00
-    value = value
-      .replace(/^(\d{3})(\d)/, '$1.$2') // Adiciona o primeiro ponto
-      .replace(/\.(\d{3})(\d)/, '.$1.$2') // Adiciona o segundo ponto
-      .replace(/\.(\d{3})(\d{1,2})$/, '.$1-$2'); // Adiciona o hífen
-
-    input.value = value;
   }
 
   togglePasswordVisibility(): void {
@@ -100,8 +98,11 @@ throw new Error('Method not implemented.');
 
       if (this.loginUserType === 'login') {
         // Lógica para login
-        this.authService.loginCandidate(email, cpf, senha).subscribe({
-          next: () => this.router.navigate(['#']), // Redireciona para a página de sucesso ou dashboard
+        this.authService.loginCandidate(loginData.email, loginData.cpf, loginData.senha).subscribe({
+          next: () => {
+            console.log('Login bem-sucedido');
+            this.router.navigate(['/candidato/perfil']); // Ajuste a rota conforme necessário
+          },
           error: (err) => {
             console.error('Erro durante o login', err);
             this.toast.error('Falha ao fazer login. Verifique suas credenciais e tente novamente.');
@@ -110,7 +111,10 @@ throw new Error('Method not implemented.');
       } else if (this.loginUserType === 'registrar') {
         // Lógica para registro
         this.authService.registerCandidate(nome, cpf, email, emailConfirm, senha, senhaConfirm).subscribe({
-          next: () => this.router.navigate(['#']), // Redireciona para a página de login após registro
+          next: () => {
+            console.log('Registro bem-sucedido');
+            this.router.navigate(['/candidato/perfil']); // Ajuste a rota conforme necessário
+          },
           error: (err) => {
             console.error('Erro durante o registro', err);
             this.toast.error('Falha ao registrar. Verifique suas informações e tente novamente.');

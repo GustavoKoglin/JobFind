@@ -11,7 +11,7 @@
         "candidatoLogin": "Candidato"
       },
       "footer": {
-        "copyright": "COPYRIGHT © 2024 | JOBFIND | TODOS OS DIREITOS RESERVADOS .",
+        "copyright": "COPYRIGHT \u00A9 2024 | JOBFIND | TODOS OS DIREITOS RESERVADOS | DESENVOLVIDO POR FOREIGN TECHNOLOGIES \u2122 \u00AE",
         "termosUso": "Termos de Uso",
         "contato": "Contato",
         "sobre": "Sobre",
@@ -63,9 +63,9 @@
         },
         "register": {
           "title": "Registre-se como Candidato",
+          "h4" : "Ou",
           "button": "Cadastrar",
           "form": {
-            "title": "Ou",
             "fullName": "Nome Completo",
             "fullNamePlaceholder": "Digite seu nome completo",
             "fullNameRequired": "O nome completo é obrigatório",
@@ -119,7 +119,7 @@
             "emailLogin": "Logar com e-Mail",
             "cpfLogin": "Logar com CPF",
             "cpf": "CPF",
-            "cpfPlaceholder": "000.000.000-00",
+            "cpfLoginPlaceholder": "000.000.000-00",
             "emailPlaceholder": "Digite seu e-Mail",
             "emailRequired": "O e-Mail é obrigatório",
             "emailInvalid": "e-Mail inválido",

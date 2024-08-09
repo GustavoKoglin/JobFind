@@ -1,12 +1,12 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { NavMenuComponent } from '../../../layouts/nav-menu/nav.menu.component';
 import { FooterComponent } from '../../../layouts/footer/footer.component';
-import { Toast, ToastrModule } from 'ngx-toastr';
+import { Toast, ToastrModule, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-candidate-register',
@@ -16,6 +16,7 @@ import { Toast, ToastrModule } from 'ngx-toastr';
   imports: [
     RouterLink,
     RouterLinkActive,
+    RouterModule,
     CommonModule,
     ReactiveFormsModule,
     TranslateModule,
@@ -27,27 +28,40 @@ import { Toast, ToastrModule } from 'ngx-toastr';
 })
 export class CandidateRegisterComponent implements OnInit {
 
-  candidateForm!: FormGroup;
+  registerForm!: FormGroup;
   showPassword = false;
   showConfirmPassword = false;
+  registerUserType = 'register';
+  candidateForm!: FormGroup;
   isLoginScreen = false;
-  cpfMask = '000.000.000-00';
 
   constructor(
     private fb: FormBuilder,
+    private toast: ToastrService,
     private translate: TranslateService,
     private authService: AuthService,
     private router: Router,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) { }
+  ) {
+    this.registerForm = this.fb.group({
+      nome: ['', [Validators.required]],
+      cpf: ['', [Validators.required, Validators.pattern(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/)]],
+      email: ['', [Validators.required, Validators.email]],
+      confirmEmail: ['', [Validators.required, Validators.email]],
+      senha: ['', [Validators.required, Validators.minLength(6)]],
+      confirmSenha: ['', [Validators.required, Validators.minLength(6)]]
+    }, {
+      validators: this.passwordMatchValidator
+    });
+  }
 
   ngOnInit(): void {
     this.candidateForm = this.fb.group({
       razaoSocial: ['', Validators.required],
-      cnpj: ['', [Validators.required, Validators.pattern(/^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/)]],
+      cpf: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       confirmEmail: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6), Validators.pattern(/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/)]],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.pattern(/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{6,}$/)]],
       confirmPassword: ['', Validators.required]
     }, { validator: [this.emailMatchValidator, this.passwordMatchValidator] });
 
@@ -58,19 +72,13 @@ export class CandidateRegisterComponent implements OnInit {
     });
   }
 
-  formatCPF(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    let value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
-
-    // Aplica a formatação: 000.000.000-00
-    value = value
-      .replace(/^(\d{3})(\d)/, '$1.$2') // Adiciona o primeiro ponto
-      .replace(/\.(\d{3})(\d)/, '.$1.$2') // Adiciona o segundo ponto
-      .replace(/\.(\d{3})(\d{1,2})$/, '.$1-$2'); // Adiciona o hífen
-
-    input.value = value;
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 
+  toggleConfirmPasswordVisibility() {
+    this.showConfirmPassword = !this.showConfirmPassword;
+  }
 
   toggleForm(type: 'login' | 'registrar'): void {
     if (type === 'registrar') {
@@ -85,28 +93,25 @@ export class CandidateRegisterComponent implements OnInit {
       ? null : { 'emailMismatch': true };
   }
 
-  passwordMatchValidator(form: FormGroup): { [key: string]: boolean } | null {
-    return form.get('password')?.value === form.get('confirmPassword')?.value
+  passwordMatchValidator(form: FormGroup) {
+    return form.get('senha')?.value === form.get('confirmSenha')?.value
       ? null : { 'passwordMismatch': true };
   }
 
-  togglePasswordVisibility(): void {
-    this.showPassword = !this.showPassword;
-  }
 
-  onSubmit(): void {
-    if (this.candidateForm.valid) {
-      const { razaoSocial, cnpj, email, emailConfirm, senha, senhaConfirm } = this.candidateForm.value;
-      this.authService.registerCandidate(razaoSocial, cnpj, email, emailConfirm, senha, senhaConfirm).subscribe({
-        next: () => this.router.navigate(['/auth/candidato/login']), // Redireciona para a página de login após registro
-        error: (err) => console.error('Error during registration', err)
+  onSubmit() {
+    if (this.registerForm.valid) {
+      const {nome, cpf, email, emailConfirm, senha, senhaConfirm } = this.registerForm.value
+      this.authService.registerCandidate(nome, cpf, email, emailConfirm, senha, senhaConfirm ).subscribe(() => {
+        this.router.navigate(['/dashboard']);
       });
     }
   }
 
-  loginWithSocial(platform: string): void {
-    // Implementar a lógica para login com redes sociais
-    console.log(`Logar com ${platform}`);
+  loginWithSocial(provider: string) {
+    this.authService.loginWithSocial(provider).subscribe(() => {
+      this.router.navigate(['/dashboard']);
+    });
   }
 
   toggleScreen(): void {
@@ -135,7 +140,7 @@ export class CandidateRegisterComponent implements OnInit {
     });
   }
 
-  toggleConfirmPasswordVisibility(): void {
-    this.showConfirmPassword = !this.showConfirmPassword;
-  }
+  // toggleConfirmPasswordVisibility(): void {
+  //   this.showConfirmPassword = !this.showConfirmPassword;
+  // }
 }

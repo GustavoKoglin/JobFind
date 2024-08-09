@@ -31,37 +31,46 @@
         </div>
 
         <h4 class="card-title text-center mt-4">
-          {{ 'pages.translate.candidatosAuth.register.form.title' | translate }}
+          {{ 'pages.translate.candidatosAuth.register.h4' | translate }}
         </h4>
 
-        <form [formGroup]="candidateForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
           <div class="form-group mb-3">
-            <label for="fullName">{{ 'pages.translate.candidatosAuth.register.form.fullName' | translate }}</label>
-            <input type="text" class="form-control" id="fullName"
-              placeholder="{{ 'pages.translate.candidatosAuth.register.form.fullNamePlaceholder' | translate }}" formControlName="fullName"
-              required>
-            <div *ngIf="candidateForm.get('fullName')?.touched && candidateForm.get('fullName')?.invalid"
+            <label for="nome">{{ 'pages.translate.candidatosAuth.register.form.fullName' | translate }}</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nome"
+              placeholder="{{ 'pages.translate.candidatosAuth.register.form.fullNamePlaceholder' | translate }}"
+              formControlName="nome"
+              required
+            />
+            <div *ngIf="registerForm.get('nome')?.touched && registerForm.get('nome')?.invalid"
               class="invalid-feedback">
-              <div *ngIf="candidateForm.get('fullName')?.errors?.['required']">
-                {{ 'pages.translate.candidatosAuth.register.form.fullNameRequired' | translate }}
+              <div *ngIf="registerForm.get('nome')?.errors?.['required']">
+                {{ 'pages.translate.candidatosAuth.register.form.nameRequired' | translate }}
               </div>
             </div>
           </div>
 
           <div class="form-group mb-3">
             <label for="cpf">{{ 'pages.translate.candidatosAuth.register.form.cpf' | translate }}</label>
-            <input type="text" class="form-control" id="cpf"
-              placeholder="{{ 'pages.translate.candidatosAuth.register.form.cpfPlaceholder' | translate }}" |
-              mask="000.000.000-00"
+            <input
+              type="text"
+              class="form-control"
+              id="cpf"
+              placeholder="{{ 'pages.translate.candidatosAuth.register.form.cpfPlaceholder' | translate }}"
               formControlName="cpf"
+              mask="000.000.000-00"
               maxlength="14"
-              required>
-            <div *ngIf="candidateForm.get('cpf')?.touched && candidateForm.get('cpf')?.invalid"
+              required
+            />
+            <div *ngIf="registerForm.get('cpf')?.touched && registerForm.get('cpf')?.invalid"
               class="invalid-feedback">
-              <div *ngIf="candidateForm.get('cpf')?.errors?.['required']">
+              <div *ngIf="registerForm.get('cpf')?.errors?.['required']">
                 {{ 'pages.translate.candidatosAuth.register.form.cpfRequired' | translate }}
               </div>
-              <div *ngIf="candidateForm.get('cpf')?.errors?.['pattern']">
+              <div *ngIf="registerForm.get('cpf')?.errors?.['pattern']">
                 {{ 'pages.translate.candidatosAuth.register.form.cpfInvalid' | translate }}
               </div>
             </div>
@@ -69,15 +78,20 @@
 
           <div class="form-group mb-3">
             <label for="email">{{ 'pages.translate.candidatosAuth.register.form.email' | translate }}</label>
-            <input type="email" class="form-control" id="email"
-              placeholder="{{ 'pages.translate.candidatosAuth.register.form.emailPlaceholder' | translate }}" formControlName="email"
-              required>
-            <div *ngIf="candidateForm.get('email')?.touched && candidateForm.get('email')?.invalid"
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="{{ 'pages.translate.candidatosAuth.register.form.emailPlaceholder' | translate }}"
+              formControlName="email"
+              required
+            />
+            <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid"
               class="invalid-feedback">
-              <div *ngIf="candidateForm.get('email')?.errors?.['required']">
+              <div *ngIf="registerForm.get('email')?.errors?.['required']">
                 {{ 'pages.translate.candidatosAuth.register.form.emailRequired' | translate }}
               </div>
-              <div *ngIf="candidateForm.get('email')?.errors?.['email']">
+              <div *ngIf="registerForm.get('email')?.errors?.['email']">
                 {{ 'pages.translate.candidatosAuth.register.form.emailInvalid' | translate }}
               </div>
             </div>
@@ -85,78 +99,89 @@
 
           <div class="form-group mb-3">
             <label for="confirmEmail">{{ 'pages.translate.candidatosAuth.register.form.confirmEmail' | translate }}</label>
-            <input type="email" class="form-control" id="confirmEmail"
-              placeholder="{{ 'pages.translate.candidatosAuth.register.form.confirmEmailPlaceholder' | translate }}" formControlName="confirmEmail"
-              required>
-            <div *ngIf="candidateForm.get('confirmEmail')?.touched && candidateForm.get('confirmEmail')?.invalid"
+            <input
+              type="email"
+              class="form-control"
+              id="confirmEmail"
+              placeholder="{{ 'pages.translate.candidatosAuth.register.form.confirmEmailPlaceholder' | translate }}"
+              formControlName="confirmEmail"
+              required
+            />
+            <div *ngIf="registerForm.get('confirmEmail')?.touched && registerForm.get('confirmEmail')?.invalid"
               class="invalid-feedback">
-              <div *ngIf="candidateForm.get('confirmEmail')?.errors?.['required']">
+              <div *ngIf="registerForm.get('confirmEmail')?.errors?.['required']">
                 {{ 'pages.translate.candidatosAuth.register.form.confirmEmailRequired' | translate }}
               </div>
-              <div *ngIf="candidateForm.get('confirmEmail')?.errors?.['email']">
+              <div *ngIf="registerForm.get('confirmEmail')?.errors?.['email']">
                 {{ 'pages.translate.candidatosAuth.register.form.confirmEmailInvalid' | translate }}
               </div>
-              <div *ngIf="candidateForm.get('confirmEmail')?.errors?.['emailMismatch']">
+              <div *ngIf="registerForm.get('confirmEmail')?.errors?.['emailMatch']">
                 {{ 'pages.translate.candidatosAuth.register.form.confirmEmailMismatch' | translate }}
               </div>
             </div>
           </div>
 
           <div class="form-group mb-3">
-            <label for="password">
+            <label for="senha">
               {{ 'pages.translate.candidatosAuth.register.form.password' | translate }}
               <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'" (click)="togglePasswordVisibility()"></i>
             </label>
             <input
               [type]="showPassword ? 'text' : 'password'"
               class="form-control"
-              id="password"
+              id="senha"
               placeholder="{{ 'pages.translate.candidatosAuth.register.form.passwordPlaceholder' | translate }}"
-              formControlName="password"
+              formControlName="senha"
               required
             />
-            <div *ngIf="candidateForm.get('password')?.touched && candidateForm.get('password')?.invalid"
+            <div *ngIf="registerForm.get('senha')?.touched && registerForm.get('senha')?.invalid"
               class="invalid-feedback">
-              <div *ngIf="candidateForm.get('password')?.errors?.['required']">
+              <div *ngIf="registerForm.get('senha')?.errors?.['required']">
                 {{ 'pages.translate.candidatosAuth.register.form.passwordRequired' | translate }}
               </div>
-              <div *ngIf="candidateForm.get('password')?.errors?.['minlength']">
+              <div *ngIf="registerForm.get('senha')?.errors?.['minlength']">
                 {{ 'pages.translate.candidatosAuth.register.form.passwordMinLength' | translate }}
               </div>
-              <div *ngIf="candidateForm.get('password')?.errors?.['pattern']">
+              <div *ngIf="registerForm.get('senha')?.errors?.['pattern']">
                 {{ 'pages.translate.candidatosAuth.register.form.passwordPattern' | translate }}
               </div>
             </div>
           </div>
 
           <div class="form-group mb-3">
-            <label for="confirmPassword">
+            <label for="confirmSenha">
               {{ 'pages.translate.candidatosAuth.register.form.confirmPassword' | translate }}
               <i class="fa" [ngClass]="showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'" (click)="toggleConfirmPasswordVisibility()"></i>
             </label>
-            <input type="password" class="form-control" id="confirmPassword"
-              placeholder="{{ 'pages.translate.candidatosAuth.register.form.confirmPasswordPlaceholder' | translate }}" formControlName="confirmPassword"
+            <input
               [type]="showConfirmPassword ? 'text' : 'password'"
-              required>
-            <div *ngIf="candidateForm.get('confirmPassword')?.touched && candidateForm.get('confirmPassword')?.invalid"
+              class="form-control"
+              id="confirmSenha"
+              placeholder="{{ 'pages.translate.candidatosAuth.register.form.confirmPasswordPlaceholder' | translate }}"
+              formControlName="confirmSenha"
+              required
+            />
+            <div *ngIf="registerForm.get('confirmSenha')?.touched && registerForm.get('confirmSenha')?.invalid"
               class="invalid-feedback">
-              <div *ngIf="candidateForm.get('confirmPassword')?.errors?.['required']">
+              <div *ngIf="registerForm.get('confirmSenha')?.errors?.['required']">
                 {{ 'pages.translate.candidatosAuth.register.form.confirmPasswordRequired' | translate }}
               </div>
-              <div *ngIf="candidateForm.get('confirmPassword')?.errors?.['passwordMismatch']">
+              <div *ngIf="registerForm.get('confirmSenha')?.errors?.['passwordMatch']">
                 {{ 'pages.translate.candidatosAuth.register.form.confirmPasswordMismatch' | translate }}
               </div>
             </div>
           </div>
 
           <button type="submit" class="btn btn-primary w-100 mt-3">
-            {{ 'pages.translate.candidatosAuth.register.button' | translate }}
-          </button>
-
-          <button type="button" class="btn btn-link mt-3" (click)="toggleScreen()">
-            {{ isLoginScreen ? ('pages.translate.candidatosAuth.register.form.switchToRegister' | translate) : ('pages.translate.candidatosAuth.register.form.switchToLogin' | translate) }}
+            {{ 'pages.translate.candidatosAuth.button.register' | translate }}
           </button>
         </form>
+
+        <div class="text-center mt-3">
+          <button *ngIf="registerUserType === 'register'" class="btn btn-link" (click)="toggleForm('login')">
+            {{ 'pages.translate.candidatosAuth.links.login' | translate }}
+          </button>
+        </div>
       </div>
     </div>
   </div>

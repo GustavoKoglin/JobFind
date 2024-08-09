@@ -70,12 +70,12 @@
           </div>
 
           <div *ngIf="loginMethod === 'cpf'" class="form-group mb-3">
-            <label for="cpf">{{ 'pages.translate.candidatosAuth.login.form.cpf' | translate }}</label>
+            <label for="cpf">{{ 'pages.translate.candidatosAuth.login.form.cpfLogin' | translate }}</label>
             <input
               type="text"
               class="form-control"
               id="cpf"
-              placeholder="{{ 'pages.translate.candidatosAuth.login.form.cpfPlaceholder' | translate }}"
+              placeholder="{{ 'pages.translate.candidatosAuth.login.form.cpfLoginPlaceholder' | translate }}"
               formControlName="cpf"
               mask="000.000.000-"
               maxlength="14"
