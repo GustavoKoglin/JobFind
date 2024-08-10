@@ -1,0 +1,308 @@
+* {
+  box-sizing: border-box; // Inclui padding e borda no cálculo da largura para todos os elementos
+}
+
+/* Estilo geral do corpo da página */
+body {
+  margin: 0; // Remove margens padrão
+  padding: 0; // Remove paddings padrão
+  width: 100%; // Garante que o body ocupe toda a largura
+}
+
+/* Certifique-se de que o contêiner pai do .container não centralize o conteúdo */
+.parent-container {
+  display: flex; // Usa flexbox para layout
+  justify-content: flex-end; // Alinha o conteúdo do contêiner pai à direita
+}
+
+/* Estilo do .container */
+.container {
+  padding: 0; // Remove o padding padrão do container
+  width: 100%; // Garante que o container ocupe a largura total disponível
+  max-width: 650px; // Define uma largura máxima
+  margin-top: 2rem; // Espaço acima do container
+  margin-bottom: 2rem; // Espaço abaixo do container
+  margin-left: 20px; // Remove a margem esquerda
+  display: flex; // Usa flexbox para layout
+  justify-content: flex-end; // Alinha o conteúdo do container à direita
+}
+
+/* Estilo do card de perfil */
+.profile-card {
+  width: 100%; // Ocupa toda a largura do container
+  max-width: 1200px; // Define a largura máxima do card
+  padding: 20px; // Ajuste o padding conforme necessário
+  box-sizing: border-box; // Inclui padding e borda no cálculo da largura
+  background: #f7f8f8; // Cor de fundo do card
+  border-radius: 8px; // Arredondamento dos cantos
+  margin: 0 auto; // Centraliza o card se a largura do container permitir
+}
+
+/* Estilo do formulário dentro do card */
+.profile-card form {
+  display: flex; // Usa flexbox para layout
+  flex-direction: column; // Organiza os itens em coluna
+  width: 100%; // Garante que o formulário ocupe toda a largura do card
+  box-sizing: border-box; // Inclui padding e borda no cálculo da largura
+  padding: 0; // Remove o padding interno do formulário se necessário
+  margin: 0; // Remove a margem padrão do formulário
+}
+
+/* Estilo do cabeçalho do card */
+.card-header {
+  margin-bottom: 20px; // Adiciona espaço abaixo do cabeçalho
+
+  /* Estilo do título do card */
+  .card-title {
+    font-size: 1.5rem; // Define o tamanho da fonte do título
+    color: rgb(99, 39, 120); // Define a cor do título como o roxo escuro
+  }
+}
+
+/* Estilo do corpo do card */
+.card-body {
+  display: flex; // Usa flexbox para layout
+  flex-direction: row; // Organiza os itens em linha
+  align-items: flex-start; // Alinha os itens no início verticalmente
+
+  /* Estilo da visualização da foto de perfil */
+  .profile-photo-preview {
+    width: 120px; // Define a largura da visualização da foto
+    height: 120px; // Define a altura da visualização da foto
+    display: flex; // Usa flexbox para layout
+    justify-content: center; // Centraliza o conteúdo horizontalmente
+    align-items: center; // Centraliza o conteúdo verticalmente
+    border: 2px solid #ccc; // Define a cor da borda da foto
+    border-radius: 50%; // Arredonda a borda para formato circular
+    overflow: hidden; // Oculta o conteúdo que excede a borda
+    background: #f0f0f0; // Define a cor de fundo da área quando não há imagem
+    cursor: pointer; // Muda o cursor para pointer ao passar sobre a área
+    position: relative; // Define o posicionamento relativo
+
+    /* Estilo da imagem dentro da visualização da foto */
+    img {
+      width: 100%; // Define a largura da imagem para preencher a área
+      height: 100%; // Define a altura da imagem para preencher a área
+      object-fit: cover; // Ajusta a imagem para cobrir a área sem distorcer
+    }
+
+    /* Estilo do placeholder quando não há imagem */
+    .photo-placeholder {
+      font-size: 14px; // Define o tamanho da fonte do texto do placeholder
+      color: #666; // Define a cor do texto do placeholder
+      text-align: center; // Alinha o texto ao centro
+    }
+  }
+
+  /* Estilo do formulário */
+  form {
+    display: flex; // Usa flexbox para layout
+    flex-direction: column; // Organiza os itens em coluna
+    min-height: 500px; // Define a altura mínima do formulário
+
+    /* Estilo das linhas do formulário */
+    .form-row {
+      display: flex; // Usa flexbox para layout
+      flex-direction: row; // Organiza os itens em linha
+      align-items: flex-start; // Alinha os itens no início verticalmente
+      flex-wrap: wrap; // Permite que os itens se movam para a linha seguinte se necessário
+    }
+
+
+    /* Estilo dos grupos de formulário */
+    .form-group {
+      flex: 1; // O grupo de formulário ocupa o espaço restante disponível
+      margin-bottom: 2px; // Adiciona espaço abaixo de cada grupo de formulário
+      margin-right: 10px; // Adiciona espaço à direita dos grupos de formulário
+
+      display: flex; // Usa flexbox para layout
+      flex-direction: column; // Organiza os itens em coluna
+      align-items: flex-start; // Alinha os itens ao início verticalmente
+
+      &:last-child {
+        margin-right: 0; // Remove o espaço à direita do último grupo
+      }
+
+      /* Estilo dos rótulos (labels) */
+      label {
+        font-size: 14px; // Define o tamanho da fonte dos rótulos
+        color: #333; // Define a cor do texto dos rótulos
+        width: 100%; // Define a largura dos rótulos
+        margin-bottom: 0.5rem; // Adiciona espaço abaixo do rótulo
+        position: relative; // Define o posicionamento relativo
+
+        /* Estilo do asterisco vermelho para campos obrigatórios */
+        &.required::after {
+          content: "*"; // Adiciona o asterisco
+          color: red; // Define a cor do asterisco
+          position: absolute; // Define o posicionamento absoluto do asterisco
+          right: -1.2rem; // Posiciona o asterisco à direita do rótulo
+          top: 0; // Alinha o asterisco ao topo do rótulo
+          font-size: 16px; // Define o tamanho da fonte do asterisco
+          visibility: hidden; // Torna o asterisco invisível por padrão
+        }
+
+        /* Mostrar o asterisco se o campo estiver vazio ou inválido */
+        .form-control.ng-touched.ng-invalid+&.required::after {
+          visibility: visible; // Torna o asterisco visível se o campo estiver vazio ou inválido
+        }
+      }
+
+      /* Estilo dos campos de entrada */
+      .form-control {
+        margin-bottom: 15px; // Adiciona espaço abaixo de cada campo de entrada
+        width: 100%; // Define a largura total dos campos
+        border-radius: 4px; // Arredonda as bordas dos campos
+        border-color: #ccc; // Define a cor da borda dos campos
+        padding: 0.75rem 1.25rem; // Adiciona espaçamento interno aos campos
+        font-size: 14px; // Define o tamanho da fonte dos campos
+      }
+    }
+
+    /* Estilo dos botões no final do formulário */
+    .button-container {
+      display: flex; // Usa flexbox para layout
+      justify-content: flex-end; // Centraluza os botões horizontalmente
+      margin-top: 20px; // Adiciona espaço acima dos botões
+
+      button {
+        font-size: 14px; // Define o tamanho da fonte dos botões
+        padding: 0.75rem 1.5rem; // Adiciona espaçamento interno aos botões
+        border-radius: 4px; // Arredonda as bordas dos botões
+        text-transform: uppercase; // Define o texto em maiúsculas
+        margin: 0 10px; // Adiciona espaço horizontal entre os botões
+        transition: background 0.3s, color 0.3s; // Adiciona transição suave para o fundo e a cor dos botões
+      }
+
+      /* Estilo do botão primário */
+      .btn-primary {
+        background: rgb(99, 39, 120); // Define a cor de fundo do botão primário
+        border: none; // Remove a borda do botão
+        color: #fff; // Define a cor do texto do botão
+
+        &:hover {
+          background: #682773; // Define a cor de fundo ao passar o mouse
+        }
+
+        &:focus,
+        &:active {
+          background: #682773; // Define a cor de fundo ao focar ou clicar
+          box-shadow: none; // Remove o sombreado ao focar ou clicar
+        }
+      }
+
+      /* Estilo do botão secundário */
+      .btn-secondary {
+        background: #6c757d; // Define a cor de fundo do botão secundário
+        border: none; // Remove a borda do botão
+        color: #fff; // Define a cor do texto do botão
+
+        &:hover {
+          background: #5a6268; // Define a cor de fundo ao passar o mouse
+        }
+
+        &:focus,
+        &:active {
+          background: #5a6268; // Define a cor de fundo ao focar ou clicar
+          box-shadow: none; // Remove o sombreado ao focar ou clicar
+        }
+      }
+
+      /* Estilo do botão de perigo */
+      .btn-danger {
+        background: #dc3545; // Define a cor de fundo do botão de perigo
+        border: none; // Remove a borda do botão
+        color: #fff; // Define a cor do texto do botão
+
+        &:hover {
+          background: #c82333; // Define a cor de fundo ao passar o mouse
+        }
+
+        &:focus,
+        &:active {
+          background: #c82333; // Define a cor de fundo ao focar ou clicar
+          box-shadow: none; // Remove o sombreado ao focar ou clicar
+        }
+      }
+
+      /* Estilo do botão de sucesso */
+      .btn-success {
+        background: #28a745; // Define a cor de fundo do botão de sucesso
+        border: none; // Remove a borda do botão
+        color: #fff; // Define a cor do texto do botão
+
+        &:hover {
+          background: #218838; // Define a cor de fundo ao passar o mouse
+        }
+
+        &:focus,
+        &:active {
+          background: #218838; // Define a cor de fundo ao focar ou clicar
+          box-shadow: none; // Remove o sombreado ao focar ou clicar
+        }
+      }
+    }
+
+    /* Estilo dos grupos de experiência e qualificações */
+    .experience-group,
+    .qualification-group {
+      margin-bottom: 20px; // Adiciona espaço abaixo de cada grupo
+
+      button {
+        margin-top: 20px; // Adiciona espaço acima dos botões para adicionar ou remover
+      }
+    }
+
+    /* Estilo das labels adicionais (se necessário) */
+    .labels {
+      font-size: 12px; // Define o tamanho da fonte das labels adicionais
+      color: #666; // Define a cor do texto das labels adicionais
+    }
+  }
+}
+
+
+/* Estilo do rodapé da aplicação */
+.app-footer {
+  background: rgb(99, 39, 120); // Define a cor de fundo do rodapé
+  color: #fff; // Define a cor do texto do rodapé
+  padding: 1rem 0; // Adiciona espaçamento interno ao rodapé
+  text-align: center; // Centraliza o texto no rodapé
+  position: absolute; // Define o posicionamento absoluto do rodapé
+  bottom: 0; // Alinha o rodapé ao fundo da tela
+  width: 100%; // Define a largura total do rodapé
+}
+
+/* Consultas de mídia para responsividade */
+@media (max-width: 768px) {
+
+  /* Estilo do card de perfil em telas menores */
+  .profile-card {
+    flex-direction: column; // Muda a direção do layout para coluna
+  }
+
+  /* Estilo da visualização da foto de perfil em telas menores */
+  .profile-photo-preview {
+    width: 100px; // Define uma largura menor para a foto
+    height: 100px; // Define uma altura menor para a foto
+    margin-bottom: 20px; // Adiciona espaço abaixo da foto
+  }
+
+  /* Estilo das linhas do formulário em telas menores */
+  .form-row {
+    flex-direction: column; // Muda a direção dos itens para coluna
+    align-items: flex-start; // Alinha os itens ao início verticalmente
+  }
+
+  /* Estilo dos grupos de formulário em telas menores */
+  .form-group {
+    width: 100%; // Define a largura total dos grupos de formulário
+    margin-bottom: 20px; // Adiciona espaço abaixo de cada grupo
+  }
+
+  /* Estilo dos botões no final do formulário em telas menores */
+  .button-container {
+    flex-direction: column; // Muda a direção dos botões para coluna
+    align-items: center; // Centraliza os botões horizontalmente
+  }
+}

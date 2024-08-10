@@ -163,4 +163,19 @@ export class AuthService {
     // Ajuste o endpoint e a lógica conforme necessário
     return this.http.post<any>(`${this.baseUrl}/auth/${provider}`, {});
   }
+
+  login(email: string, password: string) {
+    // Substitua pela chamada à API de login real
+    this.http.post('/api/auth/login', { email, password }).subscribe(
+      (response: any) => {
+        // Supondo que a resposta contenha um token ou informações do usuário
+        localStorage.setItem('userToken', response.token);
+        // Redireciona para a página de perfil
+        this.router.navigate(['/perfil']);
+      },
+      (error) => {
+        console.error('Erro ao fazer login:', error);
+      }
+    );
+  }
 }

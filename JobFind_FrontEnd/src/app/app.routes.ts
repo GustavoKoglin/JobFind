@@ -19,6 +19,10 @@ import { CompanyLoginComponent } from './components/login/company-login/company-
 import { CandidateRegisterComponent } from './components/login/candidate-register/candidate-register.component';
 import { CompanyRegisterComponent } from './components/login/company-register/company-register.component';
 
+import { CandidateProfileComponent } from './components/profiles/candidate-profile/candidate-profile.component';
+import { CompanyProfileComponent } from './components/profiles/company-profile/company-profile.component';
+
+
 export const routes: Routes = [
   { path: '', component: HomePageComponent, pathMatch: 'full' },
   { path: 'home', component: HomePageComponent },
@@ -32,6 +36,9 @@ export const routes: Routes = [
   { path: 'auth/empresa', component: AuthComponent }, // Página principal de autenticação para empresas
   { path: 'auth/empresa/login', component: CompanyLoginComponent }, // Página de login para empresas
   { path: 'auth/empresa/registrar', component: CompanyRegisterComponent }, // Página de registro para empresas
+
+  { path: 'perfil/candidato', component: CandidateProfileComponent },
+  { path: 'perfil/empresa', component: CompanyProfileComponent },
 
   { path: 'para-empresas', component: CompaniesComponent },
   { path: 'suporte', component: SuporteComponent },
