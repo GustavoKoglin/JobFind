@@ -6,6 +6,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { NavMenuComponent } from "../../../layouts/nav-menu/nav.menu.component";
 import { FooterComponent } from "../../../layouts/footer/footer.component";
+import { StorageService } from '../../../services/storage.service';
 
 @Component({
   selector: 'app-candidate-profile',
@@ -35,9 +36,10 @@ export class CandidateProfileComponent {
     private fb: FormBuilder,
     private toast: ToastrService,
     private translate: TranslateService,
+    private storageService: StorageService
   ) {}
 
-   ngOnInit(): void {
+  ngOnInit(): void {
     this.candidateForm = this.fb.group({
       // Step 1 - Personal Information
       fullName: ['', [Validators.required, Validators.minLength(2)]],
@@ -58,15 +60,38 @@ export class CandidateProfileComponent {
       country: [''],
 
       // Step 2 - Professional Experiences
-      professionalExperiences: this.fb.array([]),
+      professionalExperiences: this.fb.array([this.createExperienceGroup(), this.createExperienceGroup()]),
 
       // Step 3 - Academic Qualifications
-      academicQualifications: this.fb.array([])
+      academicQualifications: this.fb.array([this.createQualificationGroup(), this.createQualificationGroup()])
+    });
+
+    this.restoreFormState(); // Restaura o estado ao inicializar
+  }
+
+
+
+  createExperienceGroup(): FormGroup {
+    return this.fb.group({
+      companyName: ['', Validators.required],
+      position: ['', Validators.required],
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required],
+      responsibilities: ['']
     });
   }
 
   get professionalExperiences(): FormArray {
     return this.candidateForm.get('professionalExperiences') as FormArray;
+  }
+
+  createQualificationGroup(): FormGroup {
+    return this.fb.group({
+      institutionName: ['', Validators.required],
+      course: ['', Validators.required],
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required]
+    });
   }
 
   get academicQualifications(): FormArray {
@@ -107,12 +132,14 @@ export class CandidateProfileComponent {
   }
 
 
+  // Métodos de navegação entre passos
   goToNextStep(): void {
     if (this.candidateForm.valid) {
       this.currentStep++;
       if (this.currentStep > this.totalSteps) {
         this.currentStep = this.totalSteps;
       }
+      this.saveFormState(); // Salva o estado quando avança
     } else {
       this.toast.error('Please fill all required fields.');
     }
@@ -121,6 +148,7 @@ export class CandidateProfileComponent {
   goToPreviousStep(): void {
     if (this.currentStep > 1) {
       this.currentStep--;
+      this.saveFormState(); // Salva o estado quando retorna
     }
   }
 
@@ -168,6 +196,7 @@ export class CandidateProfileComponent {
     if (this.candidateForm.valid) {
       console.log(this.candidateForm.value);
       this.toast.success(this.translate.instant('pages.translate.candidate.submitSuccess'));
+      this.storageService.clear(); // Limpa o storage após o envio bem-sucedido
     } else {
       this.toast.error(this.translate.instant('pages.translate.candidate.submitError'));
     }
@@ -220,4 +249,24 @@ export class CandidateProfileComponent {
   removeProfessionalQualification(index: number) {
     this.professionalQualifications.removeAt(index);
   }
+
+  // Métodos para salvar e restaurar o estado do formulário
+  saveFormState(): void {
+    this.storageService.setItem('candidateFormData', JSON.stringify(this.candidateForm.value));
+    this.storageService.setItem('candidateFormStep', this.currentStep.toString());
+  }
+
+  restoreFormState(): void {
+    const savedFormData = this.storageService.getItem('candidateFormData');
+    const savedStepData = this.storageService.getItem('candidateFormStep');
+
+    if (savedFormData) {
+      this.candidateForm.setValue(JSON.parse(savedFormData));
+    }
+
+    if (savedStepData) {
+      this.currentStep = parseInt(savedStepData, 10);
+    }
+  }
+
 }

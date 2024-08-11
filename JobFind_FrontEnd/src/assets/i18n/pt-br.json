@@ -243,6 +243,8 @@
         }
       },
       "candidate": {
+        "responsibilities": "Responsabilidades Desempenhadas",
+        "responsibilitiesPlaceholder": "Descreva suas responsabilidades desempenhadas",
         "personalData": "Dados Pessoais",
         "profilePhoto": "Foto do Perfil",
         "fullName": "Nome Completo",
@@ -282,7 +284,7 @@
         "position": "Cargo",
         "positionPlaceholder": "Insira o cargo",
         "startDate": "Data de Início",
-        "endDate": "Data de Término",
+        "endDate": "Data de Término ou Previsão",
         "removeExperience": "Remover Experiência",
         "addExperience": "Adicionar Experiência",
         "academicQualifications": "Formação Acadêmica",
@@ -294,6 +296,12 @@
         "removeQualification": "Remover Formação",
         "addQualification": "Adicionar Formação",
         "professionalQualifications": "Qualificações Profissionais",
+        "academicData": "Dados Acadêmicos",
+        "institutionName": "Nome da Instituição",
+        "institutionNamePlaceholder": "Insira o nome da instituição",
+        "course": "Curso",
+        "coursePlaceholder": "Insira o curso",
+        "gradePlaceholder": "Insira a nota",
         "next": "Próximo",
         "previous": "Voltar",
         "save": "Salvar"

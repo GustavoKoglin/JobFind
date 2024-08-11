@@ -184,6 +184,16 @@
                 </div>
               </div>
 
+              <!-- Responsabilidades -->
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label class="small-label">{{ 'pages.translate.candidate.responsibilities' | translate }}</label>
+                  <textarea class="form-control" formControlName="responsibilities"
+                    placeholder="{{ 'pages.translate.candidate.responsibilitiesPlaceholder' | translate }}"
+                    rows="3"></textarea>
+                </div>
+              </div>
+
               <button type="button" class="btn btn-danger" (click)="removeProfessionalExperience(i)">{{
                 'pages.translate.candidate.removeExperience' | translate }}</button>
             </div>

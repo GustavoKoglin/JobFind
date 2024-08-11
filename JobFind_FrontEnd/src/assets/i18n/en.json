@@ -23,7 +23,7 @@
         "copyright": "COPYRIGHT \u00A9 2024 | JOBFIND | ALL RIGHTS RESERVED | DEVELOPED BY FOREING TECHNOLOGIES \u2122 \u00AE",
         "termosUso": "Use Terms",
         "contato": "Contact",
-        "sobre" : "About",
+        "sobre": "About",
         "blog": "Blog",
         "faq": "FAQ",
         "suporte": "Support",
@@ -48,24 +48,24 @@
       },
       "candidatosAuth": {
         "login": {
-          "login":"Or",
+          "login": "Or",
           "social": {
-            "h4" : "Login with Social Media:",
+            "h4": "Login with Social Media:",
             "facebook": "Facebook",
             "google": "Google",
-            "github" : "GitHub",
+            "github": "GitHub",
             "linkedin": "LinkedIn"
           },
-          "loginCandidato" : "Login as Candidate:",
+          "loginCandidato": "Login as Candidate:",
           "title": "Login",
           "form": {
-            "email" : "e-Mail",
+            "email": "e-Mail",
             "emailLogin": "e-Mail",
             "emailPlaceholder": "Enter your email",
             "emailRequired": "Email is required",
             "emailInvalid": "Invalid email",
             "cpfLogin": "CPF",
-            "cpfLoginPlaceholder" : "000.000.000-00",
+            "cpfLoginPlaceholder": "000.000.000-00",
             "cpfRequired": "CPF is required",
             "cpfInvalid": "Invalid CPF",
             "confirmEmail": "Confirm your email",
@@ -89,16 +89,16 @@
           }
         },
         "register": {
-          "h4" : "Or",
+          "h4": "Or",
           "social": {
             "facebook": "Facebook",
             "google": "Google",
-            "github" : "GitHub",
+            "github": "GitHub",
             "linkedin": "LinkedIn"
           },
           "title": "Register as Candidate",
           "form": {
-            "title" : "Or",
+            "title": "Or",
             "fullName": "Name",
             "fullNamePlaceholder": "Enter your name",
             "fullNameRequired": "Name is required",
@@ -126,8 +126,6 @@
             "confirmPasswordPlaceholder": "Re-enter your password",
             "confirmPasswordRequired": "Password confirmation is required"
           }
-
-
         },
         "button": {
           "login": "Login",
@@ -140,17 +138,17 @@
       },
       "empresasAuth": {
         "register": {
-          "button" : "Sign Up",
-          "social" : {
-            "facebook" : "Facebook",
-            "google" : "Google",
-            "github" : "GitHub",
-            "linkedin" : "LinkedIn"
+          "button": "Sign Up",
+          "social": {
+            "facebook": "Facebook",
+            "google": "Google",
+            "github": "GitHub",
+            "linkedin": "LinkedIn"
           },
           "title": "Register as Company",
           "form": {
-            "title" : "Or",
-            "razaoSocial" : "Company Name",
+            "title": "Or",
+            "razaoSocial": "Company Name",
             "razaoSocialPlaceholder": "Enter your company name",
             "razaoSocialRequired": "Company name is required",
             "razaoSocialMinLength": "Company name must be at least 3 characters long",
@@ -186,14 +184,14 @@
             "confirmPasswordMinLength": "Confirm Password must be at least 6 characters long",
             "passwordMismatch": "Passwords do not match!",
             "button": "Sign Up",
-            "switchToLogin" : "Already have an account? Login!",
-            "switchToRegister" : "Already have an account? Login!"
+            "switchToLogin": "Already have an account? Login!",
+            "switchToRegister": "Already have an account? Login!"
           }
         },
         "login": {
-          "h4" : "Or",
+          "h4": "Or",
           "social": {
-            "h4" : "Login with Social Media:",
+            "h4": "Login with Social Media:",
             "facebook": "Facebook",
             "google": "Google",
             "github": "GitHub",
@@ -237,6 +235,70 @@
           "register": "Sign Up",
           "login": "Already have an account"
         }
+      },
+      "candidate": {
+        "responsibilities": "Responsibilities Performed",
+        "responsibilitiesPlaceholder": "Describe your responsibilities performed",
+        "personalData": "Personal Data",
+        "profilePhoto": "Profile Photo",
+        "fullName": "Full Name",
+        "fullNamePlaceholder": "Enter your full name",
+        "cpf": "CPF",
+        "cpfPlaceholder": "Enter your CPF",
+        "rg": "RG",
+        "rgPlaceholder": "Enter your RG",
+        "issuingAgency": "Issuing Agency",
+        "issuingAgencyPlaceholder": "Enter the issuing agency",
+        "issuingDate": "Issuing Date",
+        "email": "Email",
+        "emailPlaceholder": "Enter your email",
+        "confirmEmail": "Confirm Email",
+        "confirmEmailPlaceholder": "Confirm your email",
+        "phone": "Phone",
+        "phonePlaceholder": "Enter your phone",
+        "confirmPhone": "Confirm Phone",
+        "confirmPhonePlaceholder": "Confirm your phone",
+        "address": "Address",
+        "addressPlaceholder": "Enter your address",
+        "number": "Number",
+        "numberPlaceholder": "Number",
+        "complement": "Complement",
+        "complementPlaceholder": "Complement",
+        "zipCode": "ZIP Code",
+        "zipCodePlaceholder": "Enter your ZIP code",
+        "city": "City",
+        "cityPlaceholder": "Enter your city",
+        "state": "State",
+        "statePlaceholder": "Enter your state",
+        "country": "Country",
+        "countryPlaceholder": "Enter your country",
+        "professionalData": "Professional Data",
+        "companyName": "Company Name",
+        "companyNamePlaceholder": "Enter the company name",
+        "position": "Position",
+        "positionPlaceholder": "Enter the position",
+        "startDate": "Start Date",
+        "endDate": "End Date or Forecast",
+        "removeExperience": "Remove Experience",
+        "addExperience": "Add Experience",
+        "academicQualifications": "Academic Qualifications",
+        "institution": "Institution",
+        "institutionPlaceholder": "Enter the institution name",
+        "degree": "Degree",
+        "degreePlaceholder": "Enter the academic degree",
+        "graduationDate": "Graduation Date",
+        "removeQualification": "Remove Qualification",
+        "addQualification": "Add Qualification",
+        "professionalQualifications": "Professional Qualifications",
+        "academicData": "Academic Data",
+        "institutionName": "Institution Name",
+        "institutionNamePlaceholder": "Enter the institution name",
+        "course": "Course",
+        "coursePlaceholder": "Enter the course",
+        "gradePlaceholder": "Enter the grade",
+        "next": "Next",
+        "previous": "Previous",
+        "save": "Save"
       }
     }
   }
