@@ -1,1 +1,302 @@
-<p>company-profile works!</p>
+<app-nav-menu></app-nav-menu>
+
+<div class="container profile-container">
+  <div class="card profile-card">
+    <div class="card-header">
+      <h2 class="card-title">{{ getCurrentStepTitle() }}</h2>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="companyForm" (ngSubmit)="onSubmit()">
+        <!-- Etapa 1: Dados Pessoais -->
+        <div *ngIf="currentStep === 1">
+          <div class="form-row">
+            <!-- Foto de Perfil -->
+            <div class="form-group col-md-6">
+              <div class="profile-photo-preview" (click)="fileInput.click()">
+                <input #fileInput type="file" accept="image/*" (change)="onFileChange($event)" style="display: none;" />
+                <div class="photo-placeholder">
+                  <span *ngIf="!profilePhotoPreview">{{ 'Add Photo' | translate }}</span>
+                  <img *ngIf="profilePhotoPreview" [src]="profilePhotoPreview" alt="Profile Photo Preview" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Razão Social -->
+            <div class="form-group col-md-6">
+              <label class="required">{{ 'pages.translate.company.razaoSocial' | translate }}</label>
+              <input type="text" class="form-control" formControlName="razãoSocial"
+                placeholder="{{ 'pages.translate.company.razaoSocialPlaceholder' | translate }}" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <!-- CNPJ  -->
+            <div class="form-group col-md-6">
+              <label class="required small-label">{{ 'pages.translate.company.cnpj' | translate }}</label>
+              <input type="text" class="form-control" formControlName="cnpj"
+                placeholder="{{ 'pages.translate.company.cnpjPlaceholder' | translate }}" />
+            </div>
+
+            <!-- IE -->
+            <div class="form-group col-md-6">
+              <label class="required small-label">{{ 'pages.translate.company.incricaoEstadual' | translate }}</label>
+              <input type="text" class="form-control" formControlName="inscricaoEstadual"
+                placeholder="{{ 'pages.translate.company.inscricaoEstadualPlaceholder' | translate }}" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <!-- Órgão Emissor -->
+            <div class="form-group col-md-6">
+              <label class="small-label">{{ 'pages.translate.company.issuingAgency' | translate }}</label>
+              <input type="text" class="form-control" formControlName="issuingAgency"
+                placeholder="{{ 'pages.translate.company.issuingAgencyPlaceholder' | translate }}" />
+            </div>
+
+            <!-- Data de Emissão -->
+            <div class="form-group col-md-6">
+              <label class="small-label">{{ 'pages.translate.company.issuingDate' | translate }}</label>
+              <input type="date" class="form-control" formControlName="issuingDate" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <!-- Nome Completo -->
+            <div class="form-group col-md-6">
+              <label class="required">{{ 'pages.translate.candidate.fullName' | translate }}</label>
+              <input type="text" class="form-control" formControlName="fullName"
+                placeholder="{{ 'pages.translate.candidate.fullNamePlaceholder' | translate }}" />
+            </div>
+
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label class="required small-label">{{ 'pages.translate.candidate.rg' | translate }}</label>
+              <input type="text" class="form-control" formControlName="rg"
+                placeholder="{{ 'pages.translate.candidate.rgPlaceholder' | translate }}" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <!-- Órgão Emissor -->
+            <div class="form-group col-md-6">
+              <label class="small-label">{{ 'pages.translate.candidate.issuingAgency' | translate }}</label>
+              <input type="text" class="form-control" formControlName="issuingAgency"
+                placeholder="{{ 'pages.translate.candidate.issuingAgencyPlaceholder' | translate }}" />
+            </div>
+
+            <!-- Data de Emissão -->
+            <div class="form-group col-md-6">
+              <label class="small-label">{{ 'pages.translate.candidate.issuingDate' | translate }}</label>
+              <input type="date" class="form-control" formControlName="issuingDate" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <!-- E-mail -->
+            <div class="form-group col-md-6">
+              <label class="required small-label">{{ 'pages.translate.company.email' | translate }}</label>
+              <input type="email" class="form-control" formControlName="email"
+                placeholder="{{ 'pages.translate.company.emailPlaceholder' | translate }}" />
+            </div>
+
+            <!-- Confirmação de E-mail -->
+            <div class="form-group col-md-6">
+              <label class="required small-label">{{ 'pages.translate.company.confirmEmail' | translate }}</label>
+              <input type="email" class="form-control" formControlName="confirmEmail"
+                placeholder="{{ 'pages.translate.company.confirmEmailPlaceholder' | translate }}" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <!-- Telefone -->
+            <div class="form-group col-md-6">
+              <label class="small-label">{{ 'pages.translate.company.phone' | translate }}</label>
+              <input type="text" class="form-control" formControlName="phone"
+                placeholder="{{ 'pages.translate.company.phonePlaceholder' | translate }}" />
+            </div>
+
+            <!-- Confirmação de Telefone -->
+            <div class="form-group col-md-6">
+              <label class="small-label">{{ 'pages.translate.company.confirmPhone' | translate }}</label>
+              <input type="text" class="form-control" formControlName="confirmPhone"
+                placeholder="{{ 'pages.translate.company.confirmPhonePlaceholder' | translate }}" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <!-- Endereço -->
+            <div class="form-group col-md-6">
+              <label class="small-label">{{ 'pages.translate.company.address' | translate }}</label>
+              <input type="text" class="form-control" formControlName="address"
+                placeholder="{{ 'pages.translate.company.addressPlaceholder' | translate }}" />
+            </div>
+
+            <!-- Número -->
+            <div class="form-group col-md-3">
+              <label class="small-label">{{ 'pages.translate.company.number' | translate }}</label>
+              <input type="text" class="form-control" formControlName="number"
+                placeholder="{{ 'pages.translate.company.numberPlaceholder' | translate }}" />
+            </div>
+
+            <!-- Complemento -->
+            <div class="form-group col-md-3">
+              <label class="small-label">{{ 'pages.translate.company.complement' | translate }}</label>
+              <input type="text" class="form-control" formControlName="complement"
+                placeholder="{{ 'pages.translate.company.complementPlaceholder' | translate }}" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <!-- CEP -->
+            <div class="form-group col-md-6">
+              <label class="small-label">{{ 'pages.translate.company.zipCode' | translate }}</label>
+              <input type="text" class="form-control" formControlName="zipCode"
+                placeholder="{{ 'pages.translate.company.zipCodePlaceholder' | translate }}" />
+            </div>
+
+            <!-- Cidade -->
+            <div class="form-group col-md-6">
+              <label class="small-label">{{ 'pages.translate.company.city' | translate }}</label>
+              <input type="text" class="form-control" formControlName="city"
+                placeholder="{{ 'pages.translate.company.cityPlaceholder' | translate }}" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <!-- Estado -->
+            <div class="form-group col-md-6">
+              <label class="small-label">{{ 'pages.translate.company.state' | translate }}</label>
+              <input type="text" class="form-control" formControlName="state"
+                placeholder="{{ 'pages.translate.company.statePlaceholder' | translate }}" />
+            </div>
+
+            <!-- País -->
+            <div class="form-group col-md-6">
+              <label class="small-label">{{ 'pages.translate.company.country' | translate }}</label>
+              <input type="text" class="form-control" formControlName="country"
+                placeholder="{{ 'pages.translate.company.countryPlaceholder' | translate }}" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Etapa 2: Experiência Profissional -->
+        <div *ngIf="currentStep === 2">
+          <h2>{{ 'pages.translate.company.professionalData' | translate }}</h2>
+          <div formArrayName="professionalExperiences">
+            <div *ngFor="let experience of professionalExperiences.controls; let i = index" [formGroupName]="i"
+              class="experience-group">
+              <div class="form-row">
+                <!-- Nome da Empresa -->
+                <div class="form-group col-md-6">
+                  <label class="small-label">{{ 'pages.translate.company.companyName' | translate }}</label>
+                  <input type="text" class="form-control" formControlName="companyName"
+                    placeholder="{{ 'pages.translate.company.companyNamePlaceholder' | translate }}" />
+                </div>
+
+                <!-- Cargo -->
+                <div class="form-group col-md-6">
+                  <label class="small-label">{{ 'pages.translate.company.position' | translate }}</label>
+                  <input type="text" class="form-control" formControlName="position"
+                    placeholder="{{ 'pages.translate.company.positionPlaceholder' | translate }}" />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <!-- Data de Início -->
+                <div class="form-group col-md-6">
+                  <label class="small-label">{{ 'pages.translate.company.startDate' | translate }}</label>
+                  <input type="date" class="form-control" formControlName="startDate" />
+                </div>
+
+                <!-- Data de Término -->
+                <div class="form-group col-md-6">
+                  <label class="small-label">{{ 'pages.translate.company.endDate' | translate }}</label>
+                  <input type="date" class="form-control" formControlName="endDate" />
+                </div>
+              </div>
+
+              <!-- Responsabilidades -->
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label class="small-label">{{ 'pages.translate.company.responsibilities' | translate }}</label>
+                  <textarea class="form-control" formControlName="responsibilities"
+                    placeholder="{{ 'pages.translate.company.responsibilitiesPlaceholder' | translate }}"
+                    rows="3"></textarea>
+                </div>
+              </div>
+
+              <button type="button" class="btn btn-danger" (click)="removeProfessionalExperience(i)">{{
+                'pages.translate.company.removeExperience' | translate }}</button>
+            </div>
+
+            <button type="button" class="btn btn-primary" (click)="addProfessionalExperience()">{{
+              'pages.translate.company.addExperience' | translate }}</button>
+          </div>
+        </div>
+
+        <!-- Etapa 3: Formação Acadêmica -->
+        <div *ngIf="currentStep === 3">
+          <h2>{{ 'pages.translate.company.academicData' | translate }}</h2>
+          <div formArrayName="academicQualifications">
+            <div *ngFor="let qualification of academicQualifications.controls; let i = index" [formGroupName]="i"
+              class="qualification-group">
+              <div class="form-row">
+                <!-- Nome da Instituição -->
+                <div class="form-group col-md-6">
+                  <label class="small-label">{{ 'pages.translate.company.institutionName' | translate }}</label>
+                  <input type="text" class="form-control" formControlName="institutionName"
+                    placeholder="{{ 'pages.translate.company.institutionNamePlaceholder' | translate }}" />
+                </div>
+
+                <!-- Curso -->
+                <div class="form-group col-md-6">
+                  <label class="small-label">{{ 'pages.translate.company.course' | translate }}</label>
+                  <input type="text" class="form-control" formControlName="course"
+                    placeholder="{{ 'pages.translate.company.coursePlaceholder' | translate }}" />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <!-- Data de Início -->
+                <div class="form-group col-md-6">
+                  <label class="small-label">{{ 'pages.translate.company.startDate' | translate }}</label>
+                  <input type="date" class="form-control" formControlName="startDate" />
+                </div>
+
+                <!-- Data de Término -->
+                <div class="form-group col-md-6">
+                  <label class="small-label">{{ 'pages.translate.company.endDate' | translate }}</label>
+                  <input type="date" class="form-control" formControlName="endDate" />
+                </div>
+              </div>
+
+              <button type="button" class="btn btn-danger" (click)="removeAcademicQualification(i)">{{
+                'pages.translate.company.removeQualification' | translate }}</button>
+            </div>
+
+            <button type="button" class="btn btn-primary" (click)="addAcademicQualification()">{{
+              'pages.translate.company.addQualification' | translate }}</button>
+          </div>
+        </div>
+
+        <!-- Navegação entre etapas -->
+        <div class="button-container">
+          <button type="button" *ngIf="currentStep > 1" (click)="prevStep()" class="btn btn-secondary">
+            {{ 'pages.translate.company.previous' | translate }}
+          </button>
+          <button type="button" *ngIf="currentStep < 3" (click)="nextStep()" class="btn btn-primary">
+            {{ 'pages.translate.company.next' | translate }}
+          </button>
+          <button type="submit" *ngIf="currentStep === 3" class="btn btn-success">
+            {{ 'pages.translate.company.save' | translate }}
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
