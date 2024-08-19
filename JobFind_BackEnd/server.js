@@ -20,6 +20,16 @@ server.get('/perfil/empresa', (req, res) => {
 });
 
 server.patch('/candidato/editar', (req, res) => {
+    const candidate = req.body.candidate;
+    const { name, email, password, phone, address, experience } = req.body;
+    const candidateUpdate = database.update(candidate, {
+        name, 
+        email, 
+        password, 
+        phone, 
+        address, 
+        experience,  // Assuming experience is an array of job experiences
+    })
     res.send({ message: 'Candidato atualizado com sucesso!' });
 });
 
@@ -37,4 +47,4 @@ server.delete('/empresa/excluir', (req, res) => {
 
 server.listen({
     port: 3000,
-})
+});

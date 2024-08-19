@@ -1,0 +1,47 @@
+POST http://localhost:3000/api/candidato/registrar
+Content-Type: application/json
+
+
+{
+    "fullName": "",
+    "dateOfBirth": "",
+    "gender": "",
+    "cpf": "",
+    "rg": "",
+    "issuingAgency": "",
+    "issuingDate": "",
+    "email": "",
+    "confirmEmail": "",
+    "phone": "",
+    "confirmPhone": "",
+    "address": "",
+    {
+        
+        "number": "",
+        "complement": "",
+        "zipCode": "",
+        "city": "",
+        "state": "",
+        "country": "",
+    }
+
+    "companyName": "", 
+    {
+        "position": "",
+        "startDate": "",
+        "endDate": "",
+        "responsibilities": [],
+    },
+
+    "institutionName": "",
+    {
+        "course": "",
+        "startDate": "",
+        "endDate": "",
+        "status": "",
+    },
+}
+
+###
+
+GET http://localhost:3000/api/candidato/login

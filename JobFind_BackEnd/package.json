@@ -13,6 +13,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "fastify": "^4.28.1"
+    "fastify": "^4.28.1",
+    "sdk-node-apis-efi": "^1.1.2"
   }
 }

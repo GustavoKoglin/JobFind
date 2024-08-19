@@ -43,6 +43,8 @@ export class CandidateProfileComponent {
     this.candidateForm = this.fb.group({
       // Step 1 - Personal Information
       fullName: ['', [Validators.required, Validators.minLength(2)]],
+      dateOfBirth: ['', [Validators.required, Validators.minLength(8)]],
+      gender: ['', [Validators.required]],
       cpf: ['', Validators.required],
       rg: ['', Validators.required],
       issuingAgency: [''],
