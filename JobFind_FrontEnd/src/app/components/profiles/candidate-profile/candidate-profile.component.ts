@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { booleanAttribute, Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -65,7 +65,10 @@ export class CandidateProfileComponent {
       professionalExperiences: this.fb.array([this.createExperienceGroup(), this.createExperienceGroup()]),
 
       // Step 3 - Academic Qualifications
-      academicQualifications: this.fb.array([this.createQualificationGroup(), this.createQualificationGroup()])
+      academicQualifications: this.fb.array([this.createQualificationGroup(), this.createQualificationGroup()]),
+
+      // Step 4 - Additional Data
+      additionalData: this.fb.array([this.createAdditionalDataGroup(), this.createAdditionalDataGroup()]),
     });
 
     this.restoreFormState(); // Restaura o estado ao inicializar
@@ -96,8 +99,19 @@ export class CandidateProfileComponent {
     });
   }
 
+  createAdditionalDataGroup(): FormGroup {
+    return this.fb.group({
+      isDisabledPerson: [booleanAttribute],
+    });
+  }
+
+
   get academicQualifications(): FormArray {
     return this.candidateForm.get('academicQualifications') as FormArray;
+  }
+
+  get additionalData(): FormArray {
+    return this.candidateForm.get('additionalData') as FormArray;
   }
 
   get isFirstStep(): boolean {
@@ -117,12 +131,13 @@ export class CandidateProfileComponent {
       case 1: return 'Dados Pessoais';
       case 2: return 'Experiência Profissional';
       case 3: return 'Formação Acadêmica';
+      case 4: return 'Dados Complementares'
       default: return '';
     }
   }
 
   nextStep() {
-    if (this.currentStep < 3) {
+    if (this.currentStep < 4) {
       this.currentStep++;
     }
   }
@@ -174,6 +189,17 @@ export class CandidateProfileComponent {
       startDate: [''],
       endDate: ['']
     }));
+  }
+
+  addAdditionData(): void {
+    this.additionalData.push(this.fb.group({
+      key: [''],
+      value: ['']
+    }));
+  }
+
+  removeAdditionData(index: number): void {
+    this.additionalData.removeAt(index);
   }
 
   removeQualification(index: number): void {

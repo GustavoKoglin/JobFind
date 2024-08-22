@@ -248,15 +248,29 @@
           </div>
         </div>
 
+        <!--Etapa 4 -  Dados complementares -->
+        <div *ngIf="currentStep === 4">
+          <h2>{{ 'pages.translate.candidate.additionalData' | translate }}</h2>
+          <div formArrayName="additionalData">
+            <!--Pessoa com dificiência?-->
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="difficulties" formControlName="difficulties">
+              <label class="form-check-label" for="difficulties">
+                {{ 'pages.translate.candidate.difficulties' | translate }}
+              </label>
+            </div>
+          </div>
+        </div>
+
         <!-- Navegação entre etapas -->
         <div class="button-container">
           <button type="button" *ngIf="currentStep > 1" (click)="prevStep()" class="btn btn-secondary">
             {{ 'pages.translate.candidate.previous' | translate }}
           </button>
-          <button type="button" *ngIf="currentStep < 3" (click)="nextStep()" class="btn btn-primary">
+          <button type="button" *ngIf="currentStep < 4" (click)="nextStep()" class="btn btn-primary">
             {{ 'pages.translate.candidate.next' | translate }}
           </button>
-          <button type="submit" *ngIf="currentStep === 3" class="btn btn-success">
+          <button type="submit" *ngIf="currentStep === 4" class="btn btn-success">
             {{ 'pages.translate.candidate.save' | translate }}
           </button>
         </div>
