@@ -8,7 +8,11 @@
         "vagas": "Jobs",
         "empresas": "Companies",
         "candidatoLogin": "Candidate",
-        "empresaLogin": "Company"
+        "empresaLogin": "Company",
+        "campanhas" : "Campaigns",
+        "eventos" : "Events",
+        "blog" : "Blog",
+        "jobAI" : "JobAI"
       },
       "home": {
         "titulo": "Unlock your team's potential!",
@@ -240,6 +244,8 @@
         "responsibilities": "Responsibilities Performed",
         "responsibilitiesPlaceholder": "Describe your responsibilities performed",
         "personalData": "Personal Data",
+        "professionalExperience" : "Professional Experience",
+        "academicBackground": "Academic Background",
         "profilePhoto": "Profile Photo",
         "fullName": "Full Name",
         "fullNamePlaceholder": "Enter your full name",
@@ -298,7 +304,21 @@
         "gradePlaceholder": "Enter the grade",
         "next": "Next",
         "previous": "Previous",
-        "save": "Save"
+        "save": "Save",
+        "no": "No",
+        "yes": "Yes",
+        "additionalData": "Additional Data",
+        "cid": "CID",
+        "cidPlaceholder": "Enter the CID",
+        "medicalReport": "Please attach the medical report",
+        "selectDisabilityType": "Select the type of disability",
+        "hasDisability": "Do you have any disability?",
+        "visual": "Visual",
+        "auditiva": "Auditory",
+        "fisica": "Physical",
+        "mental": "Mental",
+        "outros": "Others",
+        "submitError": "Please fill out all fields in the form!"
       }
     }
   }

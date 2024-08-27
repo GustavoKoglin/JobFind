@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { CandidateRegistration } from './../interface/candidateRegistraton.interface';
 import { Router } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
+import { tap } from 'rxjs/operators';
 
 // Define o serviço como injetável
 @Injectable({
@@ -108,25 +109,54 @@ export class AuthService {
 
   loginCandidate(email: string, password: string, cpf: number): Observable<any> {
     return this.http.post(`${this.baseUrl}auth/candidato/login`, { email, password, cpf })
-      .pipe(catchError(this.handleError));
+      .pipe(
+        catchError(this.handleError),
+        tap((response: any) => {
+          // Supondo que a resposta contenha um token ou informações do usuário
+          localStorage.setItem('authToken', response.token);
+          // Redireciona para a rota de perfil do candidato
+          this.router.navigate(['/perfil/candidato']);
+        })
+      );
   }
 
-  // Método para login de empresa
   loginCompany(email: string, password: string, cnpj: number): Observable<any> {
     return this.http.post(`${this.baseUrl}auth/empresa/login`, { email, cnpj, password })
-      .pipe(catchError(this.handleError));
+      .pipe(
+        catchError(this.handleError),
+        tap((response: any) => {
+          // Supondo que a resposta contenha um token ou informações do usuário
+          localStorage.setItem('authToken', response.token);
+          // Redireciona para a rota de perfil da empresa
+          this.router.navigate(['/perfil/empresa']);
+        })
+      );
   }
 
-  // Método para registrar um novo candidato
   registerCandidate(nome: string, cpf: number, email: string, emailConfirm: string, senha: string, senhaConfirm: string): Observable<any> {
     return this.http.post(`${this.baseUrl}auth/candidato/registrar`, { nome, cpf, email, emailConfirm, senha, senhaConfirm })
-      .pipe(catchError(this.handleError));
+      .pipe(
+        catchError(this.handleError),
+        tap((response: any) => {
+          // Supondo que a resposta contenha um token ou informações do usuário
+          localStorage.setItem('authToken', response.token);
+          // Redireciona para a rota de perfil do candidato
+          this.router.navigate(['/perfil/candidato']);
+        })
+      );
   }
 
-  // Método para registrar uma nova empresa
   registerCompany(razaoSocial: string, cnpj: number, email: string, emailConfirm: string, senha: string, senhaConfirm: string): Observable<any> {
     return this.http.post(`${this.baseUrl}auth/empresa/registrar`, { razaoSocial, cnpj, email, emailConfirm, senha, senhaConfirm })
-      .pipe(catchError(this.handleError));
+      .pipe(
+        catchError(this.handleError),
+        tap((response: any) => {
+          // Supondo que a resposta contenha um token ou informações do usuário
+          localStorage.setItem('authToken', response.token);
+          // Redireciona para a rota de perfil da empresa
+          this.router.navigate(['/perfil/empresa']);
+        })
+      );
   }
 
   // Método para recuperar senha de candidato

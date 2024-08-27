@@ -8,7 +8,10 @@
         "vagas": "Emplois",
         "empresas": "Entreprises",
         "candidatoLogin": "Candidat",
-        "empresaLogin": "Entreprise"
+        "empresaLogin": "Entreprise",
+        "campanhas" : "Campagnes",
+        "eventos" : "Événements",
+        "jobAI" : "JobAI"
       },
       "rotas": {
         "buttonSaibaMais": "en-savoir-nous",
@@ -249,6 +252,8 @@
         "responsibilities": "Responsabilités Accomplies",
         "responsibilitiesPlaceholder": "Décrivez vos responsabilités accomplies",
         "personalData": "Données Personnelles",
+        "professionalExperience" : "Expérience Professionnelle",
+        "academicBackground": "Formation Académique",
         "profilePhoto": "Photo de Profil",
         "fullName": "Nom Complet",
         "fullNamePlaceholder": "Entrez votre nom complet",
@@ -307,7 +312,21 @@
         "gradePlaceholder": "Entrez la note",
         "next": "Suivant",
         "previous": "Précédent",
-        "save": "Enregistrer"
+        "save": "Enregistrer",
+        "no": "Non",
+        "yes": "Oui",
+        "additionalData": "Données Complémentaires",
+        "cid": "CID",
+        "cidPlaceholder": "Entrez le CID",
+        "medicalReport": "Veuillez joindre le rapport médical",
+        "selectDisabilityType": "Sélectionnez le type de handicap",
+        "hasDisability": "Avez-vous un handicap?",
+        "visual": "Visuel",
+        "auditiva": "Auditif",
+        "fisica": "Physique",
+        "mental": "Mental",
+        "outros": "Autres",
+        "submitError": "Veuillez remplir tous les champs du formulaire!"
       }
     }
   }

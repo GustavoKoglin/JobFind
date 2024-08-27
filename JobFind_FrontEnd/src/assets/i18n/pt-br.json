@@ -8,7 +8,11 @@
         "empresas": "Empresas",
         "login": "Login",
         "empresaLogin": "Empresa",
-        "candidatoLogin": "Candidato"
+        "candidatoLogin": "Candidato",
+        "jobAI": "JobAI",
+        "campanhas": "Campanhas",
+        "eventos": "Eventos"
+
       },
       "footer": {
         "copyright": "COPYRIGHT \u00A9 2024 | JOBFIND | TODOS OS DIREITOS RESERVADOS | DESENVOLVIDO POR FOREIGN TECHNOLOGIES \u2122 \u00AE",
@@ -35,7 +39,7 @@
         "titulo": "Desbloqueie o potencial da sua equipe!",
         "subtitulo": "Com o JobFind, você encontra os melhores talentos, acelera o processo de contratação e fortalece sua equipe.",
         "texto": " Nossa plataforma completa e intuitiva simplifica cada etapa do RH, desde a seleção até o engajamento, proporcionando uma experiência única e digital. Conecte-se com profissionais excepcionais e impulsione o sucesso da sua empresa com o JobFind!",
-        "tituloDois": "Para você que busca o trabalho dos seus sonhos",
+        "tituloDois": "Para você que busca o trabalho dos seus sonhos!",
         "subtituloDois": "Encontre a vaga de trabalho perfeita para você, com a JobFind você tem acesso a diversas oportunidades de emprego, de forma rápida e prática.",
         "textoDois": "Na JobFind, também promovemos diversidade e inclusão. Cadastre-se agora e inicie sua jornada!",
         "button": "Saiba Mais"
@@ -160,7 +164,7 @@
             "emailLogin": "e-Mail",
             "cnpjLogin": "CNPJ",
             "cnpj": "CNPJ",
-            "cnpjPlaceholder": "00.000.000/0000-00",
+            "cnpjLoginPlaceholder": "00.000.000/0000-00",
             "email": "e-Mail",
             "emailPlaceholder": "Digite seu e-Mail",
             "emailRequired": "e-Mail é obrigatório",
@@ -246,6 +250,8 @@
         "responsibilities": "Responsabilidades Desempenhadas",
         "responsibilitiesPlaceholder": "Descreva suas responsabilidades desempenhadas",
         "personalData": "Dados Pessoais",
+        "professionalExperience" : "Experiência Profissional",
+        "academicBackground": "Formação Acadêmica",
         "profilePhoto": "Foto do Perfil",
         "fullName": "Nome Completo",
         "fullNamePlaceholder": "Insira seu nome completo",
@@ -304,7 +310,24 @@
         "gradePlaceholder": "Insira a nota",
         "next": "Próximo",
         "previous": "Voltar",
-        "save": "Salvar"
+        "save": "Salvar",
+
+        "no": "Não",
+        "yes": "Sim",
+
+        "additionalData": "Dados Complementares",
+        "cid" : "CID",
+        "cidPlaceholder": "Insira o CID",
+        "medicalReport": "Por favor anexe o laudo médico",
+        "selectDisabilityType": "Selecione o tipo de deficiência",
+        "hasDisability": "Possui alguma deficiência?",
+        "visual": "Visual",
+        "auditiva": "Auditiva",
+        "fisica": "Física",
+        "mental": "Mental",
+        "outros": "Outros",
+        "submitError": "Preencha todos os campos do formulário!"
+
       }
     }
   }

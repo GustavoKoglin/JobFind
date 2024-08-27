@@ -8,7 +8,11 @@
         "vagas": "Vagas",
         "empresas": "Empresas",
         "candidatoLogin": "Candidato",
-        "empresaLogin": "Empresa"
+        "empresaLogin": "Empresa",
+        "campanhas": "Campañas",
+        "eventos": "Eventos",
+        "jobAI" : "JobAI"
+
       },
       "home": {
         "titulo": "¡Desbloquea el potencial de tu equipo!",
@@ -239,6 +243,8 @@
         "responsibilities": "Responsabilidades Desempeñadas",
         "responsibilitiesPlaceholder": "Describa sus responsabilidades desempeñadas",
         "personalData": "Datos Personales",
+        "professionalExperience" : "Experiencia Profesional",
+        "academicBackground": "Formación Académica",
         "profilePhoto": "Foto de Perfil",
         "fullName": "Nombre Completo",
         "fullNamePlaceholder": "Ingrese su nombre completo",
@@ -297,7 +303,21 @@
         "gradePlaceholder": "Ingrese la nota",
         "next": "Siguiente",
         "previous": "Anterior",
-        "save": "Guardar"
+        "save": "Guardar",
+        "no": "No",
+        "yes": "Sí",
+        "additionalData": "Datos Complementarios",
+        "cid": "CID",
+        "cidPlaceholder": "Ingrese el CID",
+        "medicalReport": "Por favor adjunte el informe médico",
+        "selectDisabilityType": "Seleccione el tipo de discapacidad",
+        "hasDisability": "¿Tiene alguna discapacidad?",
+        "visual": "Visual",
+        "auditiva": "Auditiva",
+        "fisica": "Física",
+        "mental": "Mental",
+        "outros": "Otros",
+        "submitError": "¡Complete todos los campos del formulario!"
       }
     }
   }

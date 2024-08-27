@@ -26,6 +26,8 @@ import { StorageService } from '../../../services/storage.service';
 })
 export class CandidateProfileComponent {
 
+  hasDisability: boolean = false;
+  disabilityTypes: { key: string, label: string }[] = [];
   profilePhotoPreview: string | ArrayBuffer | null = null;
   candidateForm!: FormGroup;
 
@@ -37,9 +39,44 @@ export class CandidateProfileComponent {
     private toast: ToastrService,
     private translate: TranslateService,
     private storageService: StorageService
-  ) {}
+  ) {
+    this.candidateForm = this.fb.group({
+      disabilityType: [''],
+      cid: [''],
+      medicalReport: ['']
+    });
+  }
 
   ngOnInit(): void {
+    this.initializeForm();
+    this.setupDisabilityTypes();
+    this.restoreFormState(); // Restaura o estado ao inicializar
+
+    // Escuta mudanças no idioma
+    this.translate.onLangChange.subscribe(() => {
+      this.setupDisabilityTypes();
+    });
+  }
+
+  setupDisabilityTypes(): void {
+    this.translate.get([
+        'pages.translate.candidate.visual',
+        'pages.translate.candidate.auditiva',
+        'pages.translate.candidate.fisica',
+        'pages.translate.candidate.mental',
+        'pages.translate.candidate.outros'
+    ]).subscribe(translations => {
+        this.disabilityTypes = [
+            { key: 'visual', label: translations['pages.translate.candidate.visual'] || 'Visual' },
+            { key: 'auditiva', label: translations['pages.translate.candidate.auditiva'] || 'Auditiva' },
+            { key: 'fisica', label: translations['pages.translate.candidate.fisica'] || 'Física' },
+            { key: 'mental', label: translations['pages.translate.candidate.mental'] || 'Mental' },
+            { key: 'outros', label: translations['pages.translate.candidate.outros'] || 'Outros' }
+        ];
+    });
+  }
+
+  initializeForm(): void {
     this.candidateForm = this.fb.group({
       // Step 1 - Personal Information
       fullName: ['', [Validators.required, Validators.minLength(2)]],
@@ -60,6 +97,9 @@ export class CandidateProfileComponent {
       city: [''],
       state: [''],
       country: [''],
+      disabilityType: [''],
+      cid: [''],
+      medicalReport: [''],
 
       // Step 2 - Professional Experiences
       professionalExperiences: this.fb.array([this.createExperienceGroup(), this.createExperienceGroup()]),
@@ -70,11 +110,16 @@ export class CandidateProfileComponent {
       // Step 4 - Additional Data
       additionalData: this.fb.array([this.createAdditionalDataGroup(), this.createAdditionalDataGroup()]),
     });
-
-    this.restoreFormState(); // Restaura o estado ao inicializar
   }
 
-
+  setDisability(hasDisability: boolean) {
+    this.hasDisability = hasDisability;
+    if (!hasDisability) {
+      this.candidateForm.get('disabilityType')?.reset();
+      this.candidateForm.get('cid')?.reset();
+      this.candidateForm.get('medicalReport')?.reset();
+    }
+  }
 
   createExperienceGroup(): FormGroup {
     return this.fb.group({
@@ -105,7 +150,6 @@ export class CandidateProfileComponent {
     });
   }
 
-
   get academicQualifications(): FormArray {
     return this.candidateForm.get('academicQualifications') as FormArray;
   }
@@ -128,26 +172,28 @@ export class CandidateProfileComponent {
 
   getCurrentStepTitle(): string {
     switch (this.currentStep) {
-      case 1: return 'Dados Pessoais';
-      case 2: return 'Experiência Profissional';
-      case 3: return 'Formação Acadêmica';
-      case 4: return 'Dados Complementares'
+      case 1: return this.translate.instant('pages.translate.candidate.personalData');
+      case 2: return this.translate.instant('pages.translate.candidate.professionalExperience');
+      case 3: return this.translate.instant('pages.translate.candidate.academicBackground');
+      case 4: return this.translate.instant('pages.translate.candidate.additionalData');
       default: return '';
     }
   }
 
-  nextStep() {
-    if (this.currentStep < 4) {
+
+  nextStep(): void {
+    if (this.currentStep < this.totalSteps) {
       this.currentStep++;
+      this.saveFormState(); // Salva o estado quando avança
     }
   }
 
-  prevStep() {
+  prevStep(): void {
     if (this.currentStep > 1) {
       this.currentStep--;
+      this.saveFormState(); // Salva o estado quando retorna
     }
   }
-
 
   // Métodos de navegação entre passos
   goToNextStep(): void {
@@ -224,6 +270,10 @@ export class CandidateProfileComponent {
     if (this.candidateForm.valid) {
       console.log(this.candidateForm.value);
       this.toast.success(this.translate.instant('pages.translate.candidate.submitSuccess'));
+
+      localStorage.removeItem('candidateFormData'); // Limpa o estado após envio
+      localStorage.removeItem('candidateFormStep');
+
       this.storageService.clear(); // Limpa o storage após o envio bem-sucedido
     } else {
       this.toast.error(this.translate.instant('pages.translate.candidate.submitError'));
@@ -280,21 +330,24 @@ export class CandidateProfileComponent {
 
   // Métodos para salvar e restaurar o estado do formulário
   saveFormState(): void {
-    this.storageService.setItem('candidateFormData', JSON.stringify(this.candidateForm.value));
-    this.storageService.setItem('candidateFormStep', this.currentStep.toString());
+    if (typeof window !== 'undefined' && window.localStorage) { // Verifica se o ambiente é o navegador e localStorage está disponível
+      localStorage.setItem('candidateFormData', JSON.stringify(this.candidateForm.value));
+      localStorage.setItem('candidateFormStep', this.currentStep.toString());
+    }
   }
 
   restoreFormState(): void {
-    const savedFormData = this.storageService.getItem('candidateFormData');
-    const savedStepData = this.storageService.getItem('candidateFormStep');
+    if (typeof window !== 'undefined' && window.localStorage) { // Verifica se o ambiente é o navegador e localStorage está disponível
+      const savedFormData = localStorage.getItem('candidateFormData');
+      const savedStep = localStorage.getItem('candidateFormStep');
 
-    if (savedFormData) {
-      this.candidateForm.setValue(JSON.parse(savedFormData));
-    }
+      if (savedFormData) {
+        this.candidateForm.setValue(JSON.parse(savedFormData));
+      }
 
-    if (savedStepData) {
-      this.currentStep = parseInt(savedStepData, 10);
+      if (savedStep) {
+        this.currentStep = parseInt(savedStep, 10);
+      }
     }
   }
-
 }

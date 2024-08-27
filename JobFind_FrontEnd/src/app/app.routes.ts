@@ -22,6 +22,10 @@ import { CompanyRegisterComponent } from './components/login/company-register/co
 import { CandidateProfileComponent } from './components/profiles/candidate-profile/candidate-profile.component';
 import { CompanyProfileComponent } from './components/profiles/company-profile/company-profile.component';
 
+import { JobAIComponent } from './components/job-ai/job-ai.component';
+import { CampaignsComponent } from './components/campaigns/campaigns.component';
+import { EventsComponent } from './components/events/events.component';
+
 
 export const routes: Routes = [
   { path: '', component: HomePageComponent, pathMatch: 'full' },
@@ -40,6 +44,9 @@ export const routes: Routes = [
   { path: 'perfil/candidato', component: CandidateProfileComponent },
   { path: 'perfil/empresa', component: CompanyProfileComponent },
 
+  { path: 'job-ai', component: JobAIComponent },
+  { path: 'campanhas', component: CampaignsComponent },
+  { path: 'eventos', component: EventsComponent },
   { path: 'para-empresas', component: CompaniesComponent },
   { path: 'suporte', component: SuporteComponent },
   { path: 'trabalhe-conosco', component: WorkWithUsComponent },
